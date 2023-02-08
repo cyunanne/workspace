@@ -9,3 +9,7 @@ bin/
 *.zip
 *.tar.gz
 *.rar
+
+# IntelliJ 무시파일 
+.idea/workspace.xml
+.idea/.gitignore
