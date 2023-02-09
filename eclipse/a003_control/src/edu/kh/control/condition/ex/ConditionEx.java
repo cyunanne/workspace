@@ -141,7 +141,7 @@ public class ConditionEx {
         int age = sc.nextInt();
         String result = "";
         
-        if( age < 0 || age > 100 ) {
+        if( age < 0 || age > 100 ) { 
             result = "잘못 입력하셨습니다.";
         } else if( age < 12 ) {
             result = "적정 연령이 아닙니다.";
