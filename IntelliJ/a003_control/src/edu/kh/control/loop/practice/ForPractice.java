@@ -40,11 +40,9 @@ public class ForPractice {
 
         for(int i=2; i<=input; i++) {
             sum += i;
-            str += (" + " + i);
+            str = str + " + " + i;
         }
-        str += (" = " + sum);
-
-        System.out.println(str);
+        System.out.println(str + " = " + sum);
     }
 
     public void practice4() {
@@ -106,7 +104,7 @@ public class ForPractice {
         int input = sc.nextInt();
 
         for(int j=0; j<input; j++) {
-            for (int i = 0; i <= j; i++) {
+            for (int i=0; i<=j; i++) {
                 System.out.print("*");
             }
             System.out.println();
@@ -135,11 +133,22 @@ public class ForPractice {
             for(int i=input; i>j; i--) {
                 System.out.print(" ");
             }
-            for (int i = 0; i <=j; i++) {
+            for (int i=0; i<=j; i++) {
                 System.out.print("*");
             }
             System.out.println();
         }
+
+        /*for(int j=1; j<=input; j++) {
+            int i=1;
+            for (; i<=input-j; i++) {
+                System.out.print(" ");
+            }
+            for(; i<=input; i++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }*/
     }
 
     public void practice10() {
