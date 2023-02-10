@@ -128,10 +128,99 @@ public class ForEx {
 
         if (input < 2 || input > 9) {
             System.out.println("잘못 입력하셨습니다.");
-        } else {
-            for (int i = 1; i <= 9; i++) {
-                System.out.printf("%d × %d = %2d\n", input, i, input * i);
+            return;
+        }
+
+        for (int i = 1; i <= 9; i++) {
+            System.out.printf("%d × %d = %2d\n", input, i, input * i);
+        }
+    }
+
+    // for문 응용 사용법9: 이중 for문 기본 사용법1
+    public void ex15() {
+        for (int j = 1; j <= 4; j++) {
+            for (int i = 1; i <= 5; i++) {
+                System.out.print(i);
             }
+            System.out.println();
+        }
+    }
+
+    // for문 응용 사용법10: 이중 for문 기본 사용법2
+    public void ex16() {
+        for (int j = 1; j <= 5; j++) {
+            for (int i = 1; i <= 5; i++) {
+                System.out.printf("%3d", i * j);
+            }
+            System.out.println();
+        }
+    }
+
+    // for문 응용 사용법11: 이중for문 응용 사용법1 - 구구단 2~9단 출력
+    public void ex17() {
+        for (int j = 2; j <= 9; j++) {
+            for (int i = 1; i <= 9; i++) {
+                System.out.printf("%dx%d=%2d ", j, i, i * j);
+            }
+            System.out.println();
+        }
+    }
+
+    // for문 응용 사용법12: 이중for문 응용 사용법2
+    public void ex18() {
+        for (int j = 1; j <= 4; j++) {
+            for (int i = 1; i <= j; i++) {
+                System.out.print(i);
+            }
+            System.out.println();
+        }
+    }
+
+    // for문 응용 사용법13: 이중for문 응용 사용법3
+    public void ex19() {
+        for (int j = 4; j >= 1; j--) {
+            for (int i = 4; i >= j; i--) {
+                System.out.print(i);
+            }
+            System.out.println();
+        }
+    }
+
+    // for문 응용 사용법14: 이중for문 응용 사용법4
+    public void ex20() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("숫자 입력: ");
+        int input = sc.nextInt();
+
+        for (int j = input; j >= 1; j--) {
+            for (int i = j; i >= 1; i--) {
+                System.out.print(i);
+            }
+            System.out.println();
+        }
+    }
+
+    // for문 응용 사용법15: 카운트
+    public void ex21() {
+        int sum = 0, count = 0;
+        for (int i = 1; i <= 20; i++) {
+            if (i % 3 == 0) {
+                sum += i;
+                count++;
+            }
+        }
+        System.out.println("sum: " + sum);
+        System.out.println("count: " + count);
+    }
+
+    // for문 응용 사용법16: 카운트를 이용한 이중for문
+    public void ex22() {
+        int count = 1;
+        for (int j = 1; j <= 3; j++) {
+            for (int i = 1; i <= 4; i++) {
+                System.out.printf("%3d", count++);
+            }
+            System.out.println();
         }
     }
 }

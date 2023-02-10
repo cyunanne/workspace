@@ -1,4 +1,4 @@
-package edu.kh.control.condition.ex;
+package edu.kh.control.condition.practice;
 
 import java.util.Scanner;
 

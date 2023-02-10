@@ -1,6 +1,6 @@
-package edu.kh.control.condition.run;
+package edu.kh.control.condition.practice;
 
-import edu.kh.control.condition.ex.ConditionPractice;
+import edu.kh.control.condition.practice.ConditionPractice;
 
 public class ConditionPracticeRun {
 	
