@@ -1,4 +1,6 @@
-package edu.kh.control.condition.ex;
+package edu.kh.control.condition.run;
+
+import edu.kh.control.condition.ex.ConditionEx;
 
 public class ConditionRun {
 
