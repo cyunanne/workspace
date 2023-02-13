@@ -105,14 +105,12 @@ public class BranchEx {
 	public void ex6() {
 		
 		Scanner sc = new Scanner(System.in);
-		int start, end, change;
-		
 		System.out.print("시작: ");
-		start = sc.nextInt();
+		int start = sc.nextInt();
 		System.out.print("종료: ");
-		end = sc.nextInt();
+		int end = sc.nextInt();
 		System.out.print("변경할 배수: ");
-		change = sc.nextInt();
+		int change = sc.nextInt();
 		
 		for(int i=start; i<=end; i++) {
 			if(i%change == 0) {

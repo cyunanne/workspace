@@ -1,6 +1,4 @@
-package edu.kh.control.loop.run;
-
-import edu.kh.control.loop.ex.ForEx;
+package edu.kh.control.loop.ex;
 
 public class ForRun {
 

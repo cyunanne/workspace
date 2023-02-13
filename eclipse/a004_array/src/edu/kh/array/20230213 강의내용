@@ -1,0 +1,13 @@
+[ JVM 메모리 구조 ]
+
+Stack 	: 메서드 내 지역 변수 선언 시 할당되는 영역
+Heap	: 동적 메모리 영역, new 연산자에 의해 생성된 배열/객체가 할당되는 영역
+		  * Heap 영역에 할당된 공간을 절대로 비어있을 수 없다
+		    초기값을 설정하지 않으면 컴파일러에 의해 해당 자료형의 기본값으로 자동 초기화
+		    (byte/short/int:0, long:0L, float:0.0f, double:0.0, char:\u0000(=0), boolean:false)
+Static 	: 
+
+int[] arr = new int[3];
+  1) int[] arr
+  2) new int[3]
+  3) =(대입연산자)
