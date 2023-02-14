@@ -43,5 +43,60 @@ public class ArrayEx2 {
                 arr[i][j] = (number++) * 5;
 
         System.out.println("==========");
+
+        // 3) 선언 및 초기화
+        int[][] arr2 = {{1,2,3,4,5},
+                        {60,70,80,90,100},
+                        {11,22,33,44,55}};
+
+        for(int i=0; i<arr2.length; i++) {
+            System.out.print(i + "행 : ");
+            for(int j=0; j<arr2[i].length; j++) {
+                System.out.print(arr2[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    // 2차원배열 응용1
+    public void ex2() {
+
+        // 3x3 int형 배열에 난수(0~9) 대입, 각 행의 합, 전체 합 출력
+
+        int[][] arr = new int[3][3];
+        int[] rowSum = new int[3];
+        for(int i=0; i<3; i++) {
+            for (int j = 0; j < 3; j++) {
+                arr[i][j] = (int) (Math.random() * 10);
+                rowSum[i] += arr[i][j];
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        int totalSum = 0;
+        for(int i=0; i< rowSum.length; i++) {
+            System.out.printf("\n%d행 합계 : %d", i, rowSum[i]);
+            totalSum += rowSum[i];
+        }
+        System.out.printf("\n전체 합 : %d", totalSum);
+    }
+
+    // 2차원배열 응용2: 가변배열
+    public void ex3() {
+        char[][] arr = new char[4][];
+        arr[0] = new char[3];
+        arr[1] = new char[4];
+        arr[2] = new char[5];
+        arr[3] = new char[2];
+
+        char alphabet = 'a';
+        for(int i=0; i<arr.length; i++) {
+            for(int j=0; j<arr[i].length; j++) {
+                arr[i][j] = alphabet++;
+                System.out.printf("%2c", arr[i][j]);
+            }
+            System.out.println();
+        }
     }
 }

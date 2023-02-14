@@ -1,6 +1,13 @@
+package programmers.level0;
+
 import java.math.BigInteger;
 
-public class Add {
+public class FountainAddition {
+
+    public static void main(String[] args) {
+        FountainAddition add = new FountainAddition();
+        add.solution(1, 2, 3, 4); // answer: [5,4]
+    }
 
     public int[] solution(int numer1, int denom1, int numer2, int denom2) {
         int[] answer = new int[2];
