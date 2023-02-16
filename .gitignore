@@ -11,3 +11,6 @@ bin/
 *.rar
 .idea/
 *.iml
+*.bin
+*.lock
+*.probe
