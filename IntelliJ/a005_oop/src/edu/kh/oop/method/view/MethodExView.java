@@ -4,16 +4,16 @@ import edu.kh.oop.method.service.MethodExService;
 
 import java.util.Scanner;
 
+/**
+ * View
+ * : 프로그램 실행 시 보여지는 부분
+ *   콘솔에 내용을 출력, 입력받는 용도의 객체를 만들기 위한 클래스
+ * */
 public class MethodExView {
-
-    /*
-    * View
-    * : 프로그램 실행 시 보여지는 부분
-    *   콘솔에 내용을 출력, 입력받는 용도의 객체를 만들기 위한 클래스
-    * */
 
     // 클래스 내 어디서든 사용 가능한 Scanner 객체 생성
     private Scanner sc = new Scanner(System.in);
+
     // 클래스 내 어디서든 사용 가능한 MethodExService 객체 생성
     private MethodExService service = new MethodExService();
 
