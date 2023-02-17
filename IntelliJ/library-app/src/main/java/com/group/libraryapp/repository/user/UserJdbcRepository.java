@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class UserRepository {
+public class UserJdbcRepository {
 
     /**
      * jdbctemplate 객체를 사용하는 것은 UserRepository뿐이지만, Spring은 Controller 클래스에 최초로 객체를 전달하기 때문에
@@ -15,7 +15,7 @@ public class UserRepository {
      * */
     private final JdbcTemplate jdbcTemplate;
 
-    public UserRepository(JdbcTemplate jdbcTemplate) {
+    public UserJdbcRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
