@@ -39,13 +39,10 @@ public class BingoGame {
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                while (true) {
+                do {
                     board[i][j] = (int) (Math.random() * size * size + 1) + "";
-                    if (dupCheck[Integer.valueOf(board[i][j])] == false) {
-                        dupCheck[Integer.valueOf(board[i][j])] = true;
-                        break;
-                    }
-                }
+                } while (dupCheck[Integer.valueOf(board[i][j])]);
+                dupCheck[Integer.valueOf(board[i][j])] = true;
             }
         }
         printBoard();

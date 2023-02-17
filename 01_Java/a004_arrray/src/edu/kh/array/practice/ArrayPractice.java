@@ -167,13 +167,10 @@ public class ArrayPractice {
         int[] arr = new int[10];
         System.out.print("발생한 난수 : ");
         for (int i = 0; i < 10; i++) {
-            while (true) {
+            do {
                 arr[i] = (int) (Math.random() * 10 + 1);
-                if (check[arr[i]] == false) {
-                    check[arr[i]] = true;
-                    break;
-                }
-            }
+            } while (check[arr[i]]);
+            check[arr[i]] = true;
             System.out.print(arr[i] + " ");
         }
     }
@@ -182,13 +179,10 @@ public class ArrayPractice {
         boolean[] check = new boolean[46]; // false로 자동 초기화
         int[] arr = new int[6];
         for (int i = 0; i < 6; i++) {
-            while (true) {
+            do {
                 arr[i] = (int) (Math.random() * 45 + 1);
-                if (check[arr[i]] == false) {
-                    check[arr[i]] = true;
-                    break;
-                }
-            }
+            } while (check[arr[i]]);
+            check[arr[i]] = true;
         }
         Arrays.sort(arr);
         for (int i = 0; i < 6; i++) {
@@ -381,14 +375,11 @@ public class ArrayPractice {
             System.out.printf("== %d분단 ==\n", i + 1);
             for (int j = 0; j < seat[i].length; j++) {
                 for (int k = 0; k < seat[i][j].length; k++) {
-                    int pick = -1;
-                    while (true) {
+                    int pick;
+                    do {
                         pick = (int) (Math.random() * 12);
-                        if (check[pick] == false) {
-                            check[pick] = true;
-                            break;
-                        }
-                    }
+                    } while (check[pick]);
+                    check[pick] = true;
                     seat[i][j][k] = students[pick];
                     System.out.print(seat[i][j][k] + "  ");
                 }
@@ -407,14 +398,11 @@ public class ArrayPractice {
             System.out.printf("== %d분단 ==\n", i + 1);
             for (int j = 0; j < seat[i].length; j++) {
                 for (int k = 0; k < seat[i][j].length; k++) {
-                    int pick = -1;
-                    while (true) {
+                    int pick;
+                    do {
                         pick = (int) (Math.random() * 12);
-                        if (check[pick] == false) {
-                            check[pick] = true;
-                            break;
-                        }
-                    }
+                    } while (check[pick]);
+                    check[pick] = true;
                     seat[i][j][k] = students[pick];
                     System.out.print(seat[i][j][k] + "  ");
                 }
@@ -516,7 +504,6 @@ public class ArrayPractice {
                     } else {
                         System.out.print(arr[i][j] + " ");
                     }
-
                 }
                 System.out.println();
             }
