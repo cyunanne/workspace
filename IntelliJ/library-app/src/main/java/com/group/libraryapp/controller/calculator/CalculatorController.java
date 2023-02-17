@@ -5,7 +5,7 @@ import com.group.libraryapp.dto.calculator.request.CalculatorMultiplyRequest;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @@RestController: 해당 클래스를 API 진입지점으로 지정
+ * @@RestController: 해당 클래스를 API 진입지점으로 지정하고, 내부 메소드 반환값을 JSON으로 자동 변환해준다.
  */
 @RestController // 해당 클래스를 API 진입 지점으로 설정
 public class CalculatorController {
