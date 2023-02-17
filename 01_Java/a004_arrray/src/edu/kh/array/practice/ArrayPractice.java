@@ -226,20 +226,20 @@ public class ArrayPractice {
     public void practice14() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("배열의 크기를 입력하세요 : ");
-        int sizeOfArray = scanner.nextInt();
+        int sizeOfArray = scanner.nextInt(); scanner.nextLine(); // 개행문자 제거
         String[] arr = new String[sizeOfArray];
 
         int curIndex = 0;
         while (true) {
             for (int i = curIndex; i < sizeOfArray; i++) {
                 System.out.printf("%d번째 문자열 : ", curIndex + 1);
-                arr[curIndex++] = scanner.next();
+                arr[curIndex++] = scanner.nextLine();
             }
 
             String check = "";
             while (true) {
                 System.out.print("더 값을 입력하시겠습니까?(Y/N) : ");
-                check = scanner.next().toLowerCase();
+                check = scanner.nextLine().toLowerCase();
                 if (check.equals("y") || check.equals("n")) break;
                 else System.out.println("Y/y 또는 N/n만 입력해주세요.");
             }
@@ -247,7 +247,7 @@ public class ArrayPractice {
 
             // 배열 확장
             System.out.print("더 입력하고 싶은 개수 : ");
-            sizeOfArray += scanner.nextInt();
+            sizeOfArray += scanner.nextInt(); scanner.nextLine(); // 개행문자 제거
             String[] newArr = new String[sizeOfArray];
             System.arraycopy(arr, 0, newArr, 0, curIndex);
             arr = newArr;
