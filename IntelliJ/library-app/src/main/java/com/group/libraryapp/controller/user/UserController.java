@@ -64,12 +64,21 @@ public class UserController {
 
     @PutMapping("/user")
     public void updateUser(@RequestBody UserUpdateRequest request) {
+        String checksql = "SELECT * FROM user WHERE id = ?";
+        // jdbcTemplate.query(sql, RowMapper 구현 익명클래스)는 List를 반환한다.
+        if (jdbcTemplate.query(checksql, (rs, rowNum) -> 0, request.getId()).isEmpty()) { // 리스트가 비어있으면
+          throw new IllegalArgumentException();
+        }
         String sql = "UPDATE user SET name = ? WHERE id = ?";
         jdbcTemplate.update(sql, request.getName(), request.getId());
     }
 
     @DeleteMapping("/user")
     public void deleteUser(@RequestParam String name) {
+        String checksql = "SELECT * FROM user WHERE name = ?";
+        if (jdbcTemplate.query(checksql, (rs, rowNum) -> 0, name).isEmpty()) {
+            throw new IllegalArgumentException();
+        }
         String sql = "DELETE FROM user WHERE name = ?";
         jdbcTemplate.update(sql, name);
     }
