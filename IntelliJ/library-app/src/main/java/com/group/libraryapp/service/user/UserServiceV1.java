@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * jdbc를 활용해서 DB에 접근하는 방식으로 구현
+ */
 @Service
 public class UserServiceV1 {
 

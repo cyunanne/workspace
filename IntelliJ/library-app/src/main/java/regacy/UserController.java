@@ -1,4 +1,8 @@
-package com.group.libraryapp.controller.user;
+/**
+ * @Package com.group.libraryapp.controller.user.UserController
+ * @Date 2023.2.17.Fri
+ */
+package regacy;
 
 import com.group.libraryapp.dto.user.request.UserCreateRequest;
 import com.group.libraryapp.dto.user.request.UserUpdateRequest;
@@ -9,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController // API 진입지점으로 설정
-public class UserController_20230217 {
+public class UserController {
 
     // 유저 정보 저장방법 1 : 메모리 저장소 생성
 //    private final List<User> users = new ArrayList<>();
@@ -26,7 +30,7 @@ public class UserController_20230217 {
         // this.userService = new UserService(jdbcTemplate);
     }*/
 
-    public UserController_20230217(UserServiceV1 userServiceV1) {
+    public UserController(UserServiceV1 userServiceV1) {
         this.userServiceV1 = userServiceV1;
     }
 
