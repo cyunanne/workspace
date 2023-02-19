@@ -22,8 +22,9 @@ public class UserServiceV2 {
 
     @Transactional
     public void saveUser(UserCreateRequest request) {
-        User user = userRepository.save(new User(request.getName(), request.getAge())); // 내장함수 save 활용
-        System.out.println(user.getId()); // 생성된 객체를 반환하므로 이때 부여된 id를 확인할 수 있다.
+        userRepository.save(new User(request.getName(), request.getAge())); // 내장함수 save 활용
+//        User user = userRepository.save(new User(request.getName(), request.getAge())); // 내장함수 save 활용
+//        System.out.println(user.getId()); // 생성된 객체를 반환하므로 이때 부여된 id를 확인할 수 있다.
     }
 
     @Transactional(readOnly = true)
