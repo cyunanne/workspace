@@ -1,7 +1,7 @@
 package com.group.libraryapp.service.user;
 
-import com.group.libraryapp.domain.User;
-import com.group.libraryapp.domain.UserRepository;
+import com.group.libraryapp.domain.user.User;
+import com.group.libraryapp.domain.user.UserRepository;
 import com.group.libraryapp.dto.user.request.UserCreateRequest;
 import com.group.libraryapp.dto.user.request.UserUpdateRequest;
 import com.group.libraryapp.dto.user.response.UserResponse;
@@ -25,7 +25,7 @@ public class UserServiceV2 {
         userRepository.save(new User(request.getName(), request.getAge())); // 내장함수 save 활용
 //        User user = userRepository.save(new User(request.getName(), request.getAge())); // 내장함수 save 활용
 //        System.out.println(user.getId()); // 생성된 객체를 반환하므로 이때 부여된 id를 확인할 수 있다.
-    }
+     }
 
     @Transactional(readOnly = true)
     public List<UserResponse> getUsers() {
@@ -38,7 +38,7 @@ public class UserServiceV2 {
     public void updateUser(UserUpdateRequest request) {
         User user = userRepository.findById(request.getId()).orElseThrow(IllegalArgumentException::new);
         user.updateName(request.getName());
-        userRepository.save(user);
+//        userRepository.save(user); // 영속성 컨텍스트에의해 자동으로 실행됨
     }
 
     @Transactional
