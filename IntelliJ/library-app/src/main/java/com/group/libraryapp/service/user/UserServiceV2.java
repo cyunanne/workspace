@@ -43,7 +43,7 @@ public class UserServiceV2 {
 
     @Transactional
     public void deleteUser(String name) {
-        User user = userRepository.findByName(name);
+        User user = userRepository.findByName(name).orElseThrow(IllegalArgumentException::new);
         if( user == null ) {
             throw new IllegalArgumentException();
         }
