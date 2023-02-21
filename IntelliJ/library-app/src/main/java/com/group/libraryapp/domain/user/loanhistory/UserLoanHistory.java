@@ -22,14 +22,18 @@ public class UserLoanHistory {
     public UserLoanHistory() {}
 
     public UserLoanHistory(User user, Book book) {
-        userId = user.getId();
-        bookName = book.getName();
-        isReturn = false;
+        this.userId = user.getId();
+        this.bookName = book.getName();
+        this.isReturn = false;
     }
 
     public UserLoanHistory(long userId, String bookName) {
         this.userId = userId;
         this.bookName = bookName;
         this.isReturn = false;
+    }
+
+    public void doReturn() {
+        this.isReturn = true;
     }
 }
