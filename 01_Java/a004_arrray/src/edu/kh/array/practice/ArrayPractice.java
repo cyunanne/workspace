@@ -230,14 +230,15 @@ public class ArrayPractice {
                 arr[curIndex++] = scanner.nextLine();
             }
 
-            String check = "";
+            // 추가입력 확인
+            char check;
             while (true) {
                 System.out.print("더 값을 입력하시겠습니까?(Y/N) : ");
-                check = scanner.nextLine().toLowerCase();
-                if (check.equals("y") || check.equals("n")) break;
+                check = scanner.nextLine().toLowerCase().charAt(0);
+                if (check == 'y' || check == 'n') break;
                 else System.out.println("Y/y 또는 N/n만 입력해주세요.");
             }
-            if (check.equals("n")) break;
+            if (check == 'n') break;
 
             // 배열 확장
             System.out.print("더 입력하고 싶은 개수 : ");
