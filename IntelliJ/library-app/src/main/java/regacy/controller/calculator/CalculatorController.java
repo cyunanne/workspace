@@ -1,7 +1,7 @@
-package com.group.libraryapp.controller.calculator;
+package regacy.controller.calculator;
 
-import com.group.libraryapp.dto.calculator.request.CalculatorAddRequest;
-import com.group.libraryapp.dto.calculator.request.CalculatorMultiplyRequest;
+import regacy.dto.calculator.request.CalculatorAddRequest;
+import regacy.dto.calculator.request.CalculatorMultiplyRequest;
 import org.springframework.web.bind.annotation.*;
 
 /**

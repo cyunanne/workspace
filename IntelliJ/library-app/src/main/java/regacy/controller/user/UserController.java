@@ -2,7 +2,7 @@
  * @Package com.group.libraryapp.controller.user.UserController
  * @Date 2023.2.17.Fri
  */
-package regacy;
+package regacy.controller.user;
 
 import com.group.libraryapp.dto.user.request.UserCreateRequest;
 import com.group.libraryapp.dto.user.request.UserUpdateRequest;

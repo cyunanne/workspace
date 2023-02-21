@@ -1,6 +1,10 @@
 package com.group.libraryapp.domain.user;
 
+import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -11,6 +15,8 @@ public class User {
     @Column(nullable = false, length = 25)
     private String name; // 필수입력
     private Integer age;
+    @OneToMany(mappedBy = "user") // 연관관계의 주인(두 데이터를 연결해주는 객체의 필드) 설정
+    private List<UserLoanHistory> userLoanHistories = new ArrayList<UserLoanHistory>();
 
     protected User() {}
 
