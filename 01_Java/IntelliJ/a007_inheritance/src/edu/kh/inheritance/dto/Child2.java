@@ -21,6 +21,13 @@ public class Child2 extends Parent {
 		this.house = house;
 	}
 
+	// 자식이 상속받은 getMoney()을 재정의
+	@Override // 컴파일러에게 해당 메소드가 재정의 되었음을 알려주는 컴퓨터용 주석 -> 오버라이딩 형식이 맞는지 검사 진행
+	public int getMoney() {
+		System.out.println("자식이 오버라이딩 한 getMoney()");
+		return super.getMoney() + 500;
+	}
+
 	public String toString() {
 		return house;
 	}

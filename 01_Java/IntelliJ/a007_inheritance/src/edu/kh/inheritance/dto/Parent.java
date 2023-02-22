@@ -1,6 +1,7 @@
 package edu.kh.inheritance.dto;
 
-public class Parent {
+// final class : 상속 불가. 보통 코드 재사용을 원치 않을 때 사용
+public /*final*/ class Parent {
 
 	private int money = 500_000_000;
 	protected String lastName = "박";
@@ -14,10 +15,11 @@ public class Parent {
 		this.money = money;
 		this.lastName = lastName;
 		
-		System.out.println("Parent(int, String) 매개변수 생성자");
+		System.out.printf("Parent(int:%d, String:%s) 매개변수 생성자\n", money, lastName);
 	}
-	
-	public int getMoney() {
+
+	// final method : 오버라이딩 불가
+	public /*final*/ int getMoney() {
 		return money;
 	}
 	public void setMoney(int money) {
