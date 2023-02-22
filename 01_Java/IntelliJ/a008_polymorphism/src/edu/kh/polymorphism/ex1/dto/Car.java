@@ -40,6 +40,6 @@ public class Car {
 
     @Override
     public String toString() {
-        return String.format("%d / %d / %s\n", wheel, seat, fuel);
+        return String.format("%d / %d / %s", wheel, seat, fuel);
     }
 }
