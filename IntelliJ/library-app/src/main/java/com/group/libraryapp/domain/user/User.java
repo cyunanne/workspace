@@ -15,8 +15,8 @@ public class User {
     @Column(nullable = false, length = 25)
     private String name; // 필수입력
     private Integer age;
-    @OneToMany(mappedBy = "user") // 연관관계의 주인(두 데이터를 연결해주는 객체의 필드) 설정
-    private List<UserLoanHistory> userLoanHistories = new ArrayList<UserLoanHistory>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true) // 연관관계의 주인(두 데이터를 연결해주는 객체의 필드) 설정
+    private List<UserLoanHistory> userLoanHistories = new ArrayList<>();
 
     protected User() {}
 
@@ -42,5 +42,18 @@ public class User {
 
     public void updateName(String name) {
         this.name = name;
+    }
+
+    public void loanBook(String bookName) {
+        // userLoanHistories에 설정된 cascade 옵션 때문에 아래 코드가 실행되면 새로 생긴 userLoanHistory 객체가 DB에 저장됨
+        userLoanHistories.add(new UserLoanHistory(this, bookName));
+    }
+
+    public void returnBook(String bookName) {
+        UserLoanHistory targetHistory = this.userLoanHistories.stream()
+                .filter(history -> history.getBookName().equals(bookName))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+        targetHistory.doReturn();
     }
 }
