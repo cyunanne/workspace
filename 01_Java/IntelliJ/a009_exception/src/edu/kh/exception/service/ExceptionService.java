@@ -62,16 +62,10 @@ public class ExceptionService {
         }
 
         System.out.println("try-catch 수행 후 프로그램이 종료되지 않음");
-
-//        finally {
-//            // finally: try-catch 구문이 끝난 후 마지막으로 수행
-              //          예외가 발생하든 말든 무조건 실행
-//            System.out.println("프로그램을 종료합니다.");
-//        }
     }
 
+    /** 입력받은 두 정수 나누기 */
     public void ex3() {
-        // 입력받은 두 정수 나누기
         Scanner scanner = new Scanner(System.in);
 
         try {
@@ -82,9 +76,12 @@ public class ExceptionService {
             System.out.printf("%d / %d = %d\n", num1, num2, num1/num2);
         } catch(ArithmeticException e) { // 산술적 예외 처리
             System.out.println("0으로 나눌 수 없습니다.");
-        } catch(/*InputMismatch*/Exception e) {
-            // 주의사항 : 상위 타입을 처리하는 catch를 하위 타입을 처리하는 catch 보다 먼저 사용하면 에러 발생(Unreachable code)
+        } catch(InputMismatchException e) {
+            // catch는 여러 개 작성할 수 있다.
             System.out.println("입력이 잘못되었습니다.");
+        } catch(Exception e) {
+            // 주의사항: 상위 타입을 처리하는 catch를 하위 타입을 처리하는 catch 보다 먼저 사용하면 에러 발생(Unreachable code)
+            System.out.println("알 수 없는 오류가 발생했습니다.");
         } finally {
             // finally: try-catch 구문이 끝난 후 마지막으로 수행 (예외가 발생하든 말든 무조건 실행)
             System.out.println("프로그램을 종료합니다.");
