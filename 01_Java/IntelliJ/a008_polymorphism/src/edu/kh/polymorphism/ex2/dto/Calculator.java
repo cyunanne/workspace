@@ -65,4 +65,7 @@ public interface Calculator {
      * @return a의 x제곱 (a^x)
      */
     int square(int a, int x);
+
+    int square_recursive(int a, int x);
+    int square_for(int a, int x);
 }

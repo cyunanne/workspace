@@ -54,28 +54,47 @@ public class TestService {
 
         Calculator cal = new YNCalculrator();
 
-        int a = 7;
-        int b = 4;
-        System.out.println("a = 7, b = 4");
-
-        System.out.println("합 : " + cal.plus(a,b));
-        System.out.println("차 : " + cal.minus(a,b));
-        System.out.println("곱 : " + cal.multiple(a,b));
-        System.out.println("몫 : " + cal.divide(a,b));
-
-        System.out.println("나누기 결과(실수) : " + cal.divide2(a,b));
-
-        System.out.println("----------------------------------");
-
-        int r = 12;
-        System.out.println("반지름 = " + r);
-        System.out.println("원의 넓이 : " + cal.areaOfCircle(r));
-
-        System.out.println("----------------------------------");
+//        int a = 7;
+//        int b = 4;
+//        System.out.println("a = 7, b = 4");
+//
+//        System.out.println("합 : " + cal.plus(a,b));
+//        System.out.println("차 : " + cal.minus(a,b));
+//        System.out.println("곱 : " + cal.multiple(a,b));
+//        System.out.println("몫 : " + cal.divide(a,b));
+//
+//        System.out.println("나누기 결과(실수) : " + cal.divide2(a,b));
+//
+//        System.out.println("----------------------------------");
+//
+//        int r = 12;
+//        System.out.println("반지름 = " + r);
+//        System.out.println("원의 넓이 : " + cal.areaOfCircle(r));
+//
+//        System.out.println("----------------------------------");
 
         int num = 2;
         int x = 9;
+        long start, end;
         System.out.println(num + "의 " + x + "제곱");
+
+        // Math.pow()
+        start = System.nanoTime();
         System.out.println("결과 : " + cal.square(num, x));
+        end = System.nanoTime();
+        System.out.println("Math.pow() 걸린시간 : " + ((end - start) / 1000) + "μs");
+
+        // 재귀
+        start = System.nanoTime();
+        System.out.println("결과 : " + cal.square_recursive(num, x));
+        end = System.nanoTime();
+        System.out.println("재귀 걸린시간 : " + ((end - start) / 1000) + "μs");
+
+        // for
+        start = System.nanoTime();
+        System.out.println("결과 : " + cal.square_for(num, x));
+        end = System.nanoTime();
+        System.out.println("for 걸린시간 : " + ((end - start) / 1000) + "μs");
+
     }
 }

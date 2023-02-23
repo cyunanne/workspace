@@ -36,4 +36,17 @@ public class YNCalculrator implements Calculator {
     public int square(int a, int x) {
         return (int)Math.pow(a, x);
     }
+
+    @Override
+    public int square_recursive(int a, int x) {
+        if(x==1) return a;
+        return a * square(a, x-1);
+    }
+
+    @Override
+    public int square_for(int a, int x) {
+        int result = 1;
+        for(int i=0; i<x ;i++) result *= a;
+        return result;
+    }
 }
