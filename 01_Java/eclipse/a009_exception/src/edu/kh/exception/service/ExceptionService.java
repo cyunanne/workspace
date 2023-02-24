@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import edu.kh.exception.user.exception.ScoreInputException;
+
 public class ExceptionService {
 
     // 예외(Exception) 확인하기
@@ -60,7 +62,6 @@ public class ExceptionService {
             System.out.println("오류가 발생했습니다.");
 
         }
-
         System.out.println("try-catch 수행 후 프로그램이 종료되지 않음");
     }
 
@@ -84,7 +85,72 @@ public class ExceptionService {
             System.out.println("알 수 없는 오류가 발생했습니다.");
         } finally {
             // finally: try-catch 구문이 끝난 후 마지막으로 수행 (예외가 발생하든 말든 무조건 실행)
+        	scanner.close();
             System.out.println("프로그램을 종료합니다.");
         }
+    }
+    
+    public void ex4() {
+    	/* 예외처리2: throws */
+    	// throw:  예외 강제 발생
+    	//         ex) throw new IOException();
+    	// throws: 해당 메서드에서 발생한 예외를 호출한 메서드로 던져버리는 예외 처리 방법
+    	
+    	System.out.println("ex4() 실행");
+    	
+    	try {
+    		methodA();
+    	} catch(IOException e) {
+//    		e.getMessage();
+    		e.printStackTrace(); // 예외가 발생한 지점까지의 stack 구조를 추적하여 출력
+    		System.out.println("catch문 처리");
+    	}
+    }
+    
+    public void methodA() throws IOException {
+    	System.out.println("methodA() 실행");
+    	methodB();
+    }
+    
+    public void methodB() throws IOException {
+    	System.out.println("methodB() 실행");
+    	methodC(); // methodC()는 IOException을 던질 수 있기 때문에 호출 시 예외 처리 구문을 작성해야 한다.
+    }
+    
+    public void methodC() throws IOException {
+    	System.out.println("methodC() 실행");
+    	throw new IOException(); // 예외 강제발생
+    }
+    
+    public void ex5() throws ScoreInputException {
+    	/* 
+    	 * 사용자 정의 예외
+    	 * - 자바에서 제공하지 않는 예외상황이 있을 경우 이를 처리하기 위한 예외클래스를 사용자가 직접 작성 
+    	 */
+    	
+    	Scanner sc = new Scanner(System.in);
+    	System.out.print("점수 입력(0~100) : ");
+    	int score = sc.nextInt();
+    	
+    	// 사용자 정의 예외 강제발생
+    	if( score < 0 || score > 100 ) {
+//    		throw new ScoreInputException();
+    		throw new ScoreInputException("ex5() 호출 중 0~100사이 범위 초과");
+    	}
+    	
+    	System.out.println("입력한 점수는 : " + score  + " 입니다.");
+    }
+    
+    public void startEx5() {
+    	
+    	try {
+    		ex5();
+    	} catch(ScoreInputException e) {
+//    		e.printStackTrace();
+    		System.out.println("예외 내용 : " + e.getMessage());
+    		System.out.println("예외처리 진행");
+    	} finally {
+    		System.out.println("프로그램 종료");
+    	}
     }
 }

@@ -1,6 +1,26 @@
-.project
-.classpath
-.metadata/
+# MAC XOS
+.DS_Store
+
+# Spring Project
+.gradle/
+gradle/
+build/
+**/src/main/**/build/
+**/src/test/**/build/
+**/src/main/**/bin/
+**/src/test/**/bin/
+
+# IntelliJ
+HELP.md
+.idea/
+/shelf/
+/workspace.xml
+*.iws
+*.iml
+*.ipr
+out/
+
+# Java Project
 bin/
 .settings/
 *.class
@@ -10,5 +30,12 @@ bin/
 *.zip
 *.tar.gz
 *.rar
-.idea/
 *.iml
+*.bin
+*.lock
+*.probe
+
+# Eclipse
+.project
+.metadata/
+.classpath
