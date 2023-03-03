@@ -29,6 +29,7 @@ public class StudentView {
                 System.out.println("9. 성적 순서 조회");
                 System.out.println("0. 프로그램 종료");
 
+                System.out.println("\n--------------------");
                 System.out.print("메뉴 선택 >> ");
                 input = scanner.nextInt();
                 scanner.nextLine(); // 버퍼에 남은 개행문자 제거
@@ -39,11 +40,11 @@ public class StudentView {
                     case 2: selectAll(); break;
                     case 3: updateStudent(); break;
                     case 4: removeStudent(); break;
-                    case 5: break;
-                    case 6: break;
-                    case 7: break;
-                    case 8: break;
-                    case 9: break;
+                    case 5: selectName(); break;
+                    case 6: selectAddress(); break;
+                    case 7: selectGrade(); break;
+                    case 8: selectGender(); break;
+                    case 9: selectScoreOrder(); break;
                     case 0: System.out.println("[ 프로그램 종료 ]"); break;
                     default:System.out.println("[ 잘못 입력하셨습니다. ]");
                 }
@@ -131,5 +132,87 @@ public class StudentView {
 
         Student s = service.removeStudent(index);
         System.out.println(s.getName() + "의 정보가 제거 되었습니다.");
+    }
+
+    private void selectName() {
+        System.out.println("\n--- 학생 이름 검색 ---\n");
+        System.out.print("검색할 이름: ");
+        String name = scanner.nextLine();
+
+        List<Student> list = service.selectName(name);
+
+        if( list.isEmpty() ) { // 검색 결과가 없을 경우
+            System.out.println("[ 검색 결과가 없습니다. ]");
+        } else {
+            for(Student s : list) System.out.println(s);
+        }
+    }
+
+    private void selectAddress() {
+        System.out.println("\n--- 학생 주소 검색 ---\n");
+        System.out.print("주소에 포함된 단어 입력: ");
+        String addr = scanner.nextLine();
+
+        List<Student> list = service.selectAddress(addr);
+
+        if( list.isEmpty() ) { // 검색 결과가 없을 경우
+            System.out.println("[ 검색 결과가 없습니다. ]");
+        } else {
+            for(Student s : list)
+                System.out.printf("%d학년 %d반 %d번 %s / 주소: %s\n",
+                        s.getGrade(), s.getClassRoom(), s.getNumber(), s.getName(), s.getAddress());
+        }
+    }
+
+    private void selectGrade() {
+        System.out.println("\n--- 학년별 조회 ---\n");
+        System.out.print("조회할 학년을 입력하세요: ");
+        int grade = scanner.nextInt();
+
+        List<Student> list = service.selectGrade(grade);
+
+        if( list.isEmpty() ) { // 검색 결과가 없을 경우
+            System.out.println("[ " + grade + "학년 학생이 존재하지 않습니다. ]");
+        } else {
+            System.out.println("[ " + grade + "학년 조회 결과 ]");
+            for(Student s : list)
+                System.out.printf("%d학년 %d반 %d번 %s\n",
+                        s.getGrade(), s.getClassRoom(), s.getNumber(), s.getName());
+        }
+    }
+
+    private void selectGender() {
+        System.out.println("\n--- 성별 조회 ---\n");
+
+        char gender;
+
+        while(true) {
+            System.out.print("조회할 성별을 입력하세요(M/F): ");
+            gender = scanner.nextLine().toUpperCase().charAt(0);
+
+            if (gender == 'M' || gender == 'F') break;
+
+            System.out.println("M 또는 F만 입력 해주세요.");
+        }
+
+        List<Student> list = service.selectGender(gender);
+
+        if( list.isEmpty() ) { // 검색 결과가 없을 경우
+            System.out.println("[ 검색 결과가 없습니다. ]");
+        } else {
+            System.out.println("[ " + (gender=='M' ? "남" : "여") + "학생 목록 ]");
+            for(Student s : list)
+                System.out.printf("%d학년 %d반 %d번 %s(%c)\n",
+                        s.getGrade(), s.getClassRoom(), s.getNumber(), s.getName(), s.getGender());
+        }
+    }
+
+    private void selectScoreOrder() {
+        System.out.println("\n--- 성적 순서 조회 ---\n");
+
+        List<Student> list = service.selectScoreOrder(); // 성적 순서로 정렬
+
+        for(Student s : list)
+            System.out.println(s);
     }
 }

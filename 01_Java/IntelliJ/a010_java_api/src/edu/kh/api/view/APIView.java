@@ -3,6 +3,7 @@ package edu.kh.api.view;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Scanner;
 
 import edu.kh.api.dto.Student;
@@ -120,7 +121,9 @@ public class APIView {
 		System.out.println("s1: " + System.identityHashCode(s1));
 		System.out.println("s2: " + System.identityHashCode(s2));
 		System.out.println("s3: " + System.identityHashCode(s3));
-		
+        System.out.println("s2: " + Objects.hashCode(s2));
+        System.out.println("s3: " + Objects.hashCode(s3));
+
 		s3 += "def"; 
 		System.out.println("--------------");
 		System.out.println("s2: " + System.identityHashCode(s2));
