@@ -183,3 +183,140 @@ WHERE DEPT_CODE IS NOT NULL;
 -- OOO의 급여는 OOO원 입니다.
 SELECT EMP_NAME || '의 급여는 ' || SALARY || '원 입니다.' AS 결과
 FROM EMPLOYEE;
+
+--------------------------------------------------------------------------------
+
+-- LIKE
+-- 비교하려는 값이 특정한 패턴을 만족(TRUE) 시키면 조회하는 연산자
+-- 작성법
+--		WHERE 컬럼명 LIKE '패턴'
+-- 패턴
+-- 		1. '%'(포함)
+--   	  1) '%A'  : A로 끝나는 문자열
+--   	  2) 'A%'  : A로 시작하는 문자열
+--   	  3) '%A%' : A를 포함하는 문자열
+-- 		2. '_'(글자 수)
+--   	  1) 'A_' : A 뒤에 한 글자만 있는 문자열 (ex. A1, AB, A가)
+--   	  2) '___A' : A 앞에 세 글자가 있는 문자 (ex. 123A)
+
+-- EMPLOY 테이블에서 성이 '전'씨인 사원의 사번, 이름 조회
+SELECT EMP_ID, EMP_NAME
+FROM EMPLOYEE
+WHERE EMP_NAME LIKE '전%';
+
+-- EMPLOY 테이블에서 이름에 '하'가 포함되는 사원의 사번, 이름 조회
+SELECT EMP_ID, EMP_NAME
+FROM EMPLOYEE
+WHERE EMP_NAME LIKE '%하%';
+
+-- EMPLOY 테이블에서 전화번호가 '010'으로 시작하는 사원의 사번, 이름, 전화번호 조회
+SELECT EMP_ID, EMP_NAME, PHONE
+FROM EMPLOYEE
+WHERE PHONE LIKE '010%';
+
+-- EMPLOY 테이블에서 전화번호가 '010'으로 시작하지 않는 사원의 사번, 이름, 전화번호 조회
+SELECT EMP_ID, EMP_NAME, PHONE
+FROM EMPLOYEE
+WHERE PHONE NOT LIKE '010%';
+
+-- EMPLOY 테이블에서 이메일 @ 앞이 5글자인 사의 사번, 이름, 이메일 조회
+SELECT EMP_ID, EMP_NAME, EMAIL 
+FROM EMPLOYEE
+WHERE EMAIL LIKE '_____@%';
+
+-- EMPLOY 테이블에서 이메일 _ 앞이 3글자인 사의 사번, 이름, 이메일 조회
+SELECT EMP_ID, EMP_NAME, EMAIL 
+FROM EMPLOYEE
+WHERE EMAIL LIKE '____%';
+-- 문제점: 와일드카드 문자(_)와 패턴에 사용된 일반 문자가 같은 문자여서 구분이 안됨
+-- ~> 해결방법: ESCAPE 옵션을 이용하여 일반 문자를 구분
+SELECT EMP_ID, EMP_NAME, EMAIL 
+FROM EMPLOYEE
+WHERE EMAIL LIKE '___$_%' ESCAPE '$'; -- '$' 뒤의 한 글자(_)를 일반 문자로 만듦
+
+--------------------------------------------------------------------------------
+
+-- <WHERE절 날짜(시간) 비교>
+-- EMPLOYEE 테이블에서 입사일이 '1990/01/01' ~ '2000/12/31'인 사원의 사번, 이름, 고용일 조회
+-- 오라클 DB는 작성된 값('1990/01/01')이 다른 형식의 데이터 타입이어도(CHAR) 
+--  표기법이 일치한다면 자동으로 데이터 타입을 변경(DATE)
+SELECT EMP_ID, EMP_NAME, HIRE_DATE 
+FROM EMPLOYEE
+--WHERE HIRE_DATE BETWEEN '1990/01/01' AND '2000/12/31' ; 	-- CHAR to DATE
+WHERE SALARY >= '3000000';									-- CHAR to NUMBER
+
+--------------------------------------------------------------------------------
+
+-- ORDER BY 절
+-- SELECT 문의 조회 결과(RESULT SET)를 정렬할때 사용하는 구문
+-- SELECT 문의 제일 마지막에 해석된다.
+-- 작성법
+-- 	 3	SELECT 컬럼명
+-- 	 1	FROM 테이블명
+--	 2	WHERE 조건식
+--	 4	ORDER BY 정렬기준;
+
+-- EMPLOYEE 테이블에서 모든 사원의 이름, 급여를 급여 오름차순으로 조회
+SELECT EMP_NAME, SALARY 
+FROM EMPLOYEE
+ORDER BY SALARY /*ASC*/; -- 오름차순(ASC)이 기본값
+
+-- 급여 내림차순으로 조회
+SELECT EMP_NAME, SALARY 
+FROM EMPLOYEE
+ORDER BY SALARY DESC;
+
+-- 급여가 200만 이상인 사원을 급여 오름차순으로 조회
+SELECT EMP_NAME, SALARY 
+FROM EMPLOYEE
+WHERE SALARY >= 2000000
+ORDER BY SALARY;
+
+-- 문자열, 날짜, 숫자 모두 정렬 가능
+-- 이름(문자열) 오름차순 정렬
+SELECT EMP_NAME FROM EMPLOYEE ORDER BY EMP_NAME;
+-- 입사일(날짜) 내림차순 정렬
+SELECT EMP_NAME, HIRE_DATE FROM EMPLOYEE ORDER BY HIRE_DATE DESC;
+
+-- ORDER BY 절에 별칭|순서 사용하기
+
+-- 연봉 내림차순 조회
+/*2*/SELECT EMP_NAME 이름, SALARY * 12 AS 연봉
+/*1*/FROM EMPLOYEE
+-- ORDER BY SALARY * 12 DESC;
+-- ORDER BY 연봉 DESC;
+/*3*/ORDER BY 2 DESC; -- SELECT 문의 2번 컬럼을 기준으로 정렬
+
+-- !주의: WHERE 절에서 별칭|순서는 사용할 수 없다.(해석순서때문)
+/*3*/SELECT EMP_NAME 이름, SALARY * 12 AS 연봉
+/*1*/FROM EMPLOYEE
+/*2*/--WHERE 연봉 >= 5000000; -- ORA-00904: "연봉": 부적합한 식별자
+	 WHERE SALARY * 12 >= 5000000
+/*4*/ORDER BY 연봉 DESC;
+
+-- NULLS FIRST|LAST 확인
+-- NULLS FIRST : 내림차순 기본값
+-- NULLS LAST :  오름차순 기본값
+
+-- 전화번호 오름차순 조회
+SELECT EMP_NAME 이름, PHONE
+FROM EMPLOYEE
+ORDER BY PHONE /*NULLS LAST*/ NULLS FIRST; -- NULLS LAST가 오름차순 기본값
+
+-- 전호번호 내림차순 조회
+SELECT EMP_NAME 이름, PHONE
+FROM EMPLOYEE
+ORDER BY PHONE DESC /*NULLS FIRST*/ NULLS LAST; -- NULLS FIRST가 내림차순 기본값
+
+-- <정렬 중첩>
+-- 큰 분류를 먼저 정렬하고 내부 분류를 다음에 정렬하는 방식
+
+-- 부서 코드별 급여 내림차순 (부서코드는 오름차순)
+SELECT EMP_NAME, DEPT_CODE, SALARY 
+FROM EMPLOYEE
+ORDER BY DEPT_CODE, SALARY DESC;
+
+-- 부서 코드별 급여 내림차순 (부서코드는 내림차순, NULL은 마지막에 출력)
+SELECT EMP_NAME, DEPT_CODE, SALARY 
+FROM EMPLOYEE
+ORDER BY DEPT_CODE DESC NULLS LAST, SALARY DESC;
