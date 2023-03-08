@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: "jdbc:mysql://localhost/library"
+    username: "root"
+    password: ""
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none # Spring이 시작할때 DB에 있는 기조 데이터 처리방식(none: 아무것도 안함)
+    properties:
+      hibernate:
+        show_sql: true # JPA를 사용해 DB에 SQL을 날릴 때 SQL을 보여줄지 결정
+        format_sql: true # SQL을 예쁘게 보여줄지 결정
+        dialect: org.hibernate.dialect.MySQL8Dialect # MySQL8버전 SQL문법 사용
