@@ -267,3 +267,81 @@ FROM EMPLOYEE;
 
 
 /************************************ 그룹 함수 ************************************/
+
+-- SUM(숫자가 기록된 컬럼명) : 합계
+-- 모든 사원의 급여 합
+SELECT SUM(SALARY) FROM EMPLOYEE;
+
+-- 부서 코드가 'D9'인 사원들의 급여 합
+SELECT SUM(SALARY) 
+FROM EMPLOYEE
+WHERE DEPT_CODE = 'D9';
+
+-- AVG(숫자가 기록된 컬럼명) : 평균
+-- 모든 사원의 급여 평균 조회
+SELECT ROUND( AVG(SALARY), 1 ) FROM EMPLOYEE;
+
+-- 모든 사원의 급여 합과 평균 조회
+SELECT SUM(SALARY) 합계, 
+	   ROUND( AVG(SALARY), 1 ) 평균
+FROM EMPLOYEE;
+--> 그룹 합수 여러 개를 동시 작성 가능
+
+
+-- MAX(컬럼명) : 해당 컬럼의 최대값
+-- MIN(컬럼명) : 해당 컬럼의 최소값
+--> 타입 제한 X (숫자 : 대/소, 문자열 : 문자 순서, 날짜 : 과거 < 미래)
+
+SELECT MIN(SALARY), MAX(SALARY),
+	  MIN(EMP_NAME), MAX(EMP_NAME),
+	  MIN(HIRE_DATE), MAX(HIRE_DATE)
+FROM EMPLOYEE;
+
+-------------------------------------------------------------
+
+-- COUNT(* | 컬럼명) : 조회된 행의 개수를 반환
+-- COUNT(*)      : NULL을 포함한 모든 행의 개수를 반환
+-- COUNT(컬럼명) : 지정된 컬럼의 값이 NULL인 경우를 제외한 행의 개수를 반환
+-- COUNT(DISTINCT 컬럼명)
+--   : 지정된 컬럼에서 중복된 값을 제외한 행의 개수를 반환
+
+-- EMPLOYEE 테이블에 존재하는 모든 사원의 수
+SELECT COUNT(*) FROM EMPLOYEE; -- 23
+
+-- EMPLOYEE 테이블에서 부서코드가 있는 사원의 수
+SELECT COUNT(DEPT_CODE) FROM EMPLOYEE; -- 21 (NULL 제외)
+
+SELECT COUNT(*) FROM EMPLOYEE
+WHERE DEPT_CODE IS NOT NULL; -- 이렇게도 가능하다
+
+-- EMPLOYEE 테이블에 존재하는 직급코드의 개수
+SELECT COUNT(DISTINCT JOB_CODE) FROM EMPLOYEE; -- 7(중복 제외하고 카운트)
+
+
+-- EMPLOYEE 테이블의 남자 사원 수 조회
+SELECT COUNT(*) FROM EMPLOYEE
+WHERE SUBSTR(EMP_NO,8,1) = '1';
+
+
+-- EMPLOYEE 테이블의 여자 사원 수 조회
+SELECT COUNT(*) FROM EMPLOYEE
+WHERE SUBSTR(EMP_NO,8,1) = '2';
+
+
+-- EMPLOYEE 테이블의 남자 사원 수, 여자 사원 수 조회
+SELECT COUNT(DECODE(SUBSTR(EMP_NO,8,1), '1', 1, NULL)) "남자 사원 수",
+	   COUNT(DECODE(SUBSTR(EMP_NO,8,1), '2', 1, NULL)) "여자 사원 수"
+FROM EMPLOYEE;
+
+SELECT SUM(DECODE(SUBSTR(EMP_NO,8,1), '1', 1, 0)) "남자 사원 수",
+	   SUM(DECODE(SUBSTR(EMP_NO,8,1), '2', 1, 0)) "여자 사원 수"
+FROM EMPLOYEE;
+
+-- * 서브쿼리를 이용한 방법 *
+SELECT 
+	(SELECT COUNT(*) FROM EMPLOYEE  
+	 WHERE SUBSTR(EMP_NO,8,1) = '1' ) "남자 사원 수" ,
+	 
+	(SELECT COUNT(*) FROM EMPLOYEE  
+	 WHERE SUBSTR(EMP_NO,8,1) = '2' ) "여자 사원 수" 
+FROM DUAL;
