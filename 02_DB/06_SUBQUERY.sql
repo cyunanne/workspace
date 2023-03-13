@@ -24,10 +24,10 @@ WHERE DEPT_CODE = 'D9';
 --> 위의 2개의 단계를 하나의 쿼리로!!! --> 1) 쿼리문을 서브쿼리로!!
 SELECT EMP_NAME, DEPT_CODE
 FROM EMPLOYEE
-WHERE DEPT_CODE = 
-	(SELECT DEPT_CODE
-	 FROM EMPLOYEE
-  	 WHERE EMP_NAME = '노옹철');
+WHERE DEPT_CODE = (
+	SELECT DEPT_CODE
+	FROM EMPLOYEE
+  	WHERE EMP_NAME = '노옹철');
 				  
 -- 서브쿼리 예시 2.
 -- 전 직원의 평균 급여보다 많은 급여를 받고 있는 직원의 
@@ -136,7 +136,8 @@ FROM EMPLOYEE
 GROUP BY DEPT_CODE;
 
 -- 2) 부서별 급여합이 17700000인 부서의 부서명과 급여 합 조회
-SELECT DEPT_TITLE, SUM(SALARY)
+SELECT DEPT_TITLE, SUM(SALARY) --, DEPT_CODE --> ORA-00979: GROUP BY 표현식이 아닙니다.
+--> SELECT절에 작성된 컬럼(그룹함수 외)을 모두 GROUP BY절에 작성해야 그룹이 구성된다.
 FROM EMPLOYEE
 JOIN DEPARTMENT ON (DEPT_ID=DEPT_CODE)
 GROUP BY DEPT_TITLE
@@ -173,61 +174,142 @@ HAVING SUM(SALARY) = (
 -- 부서별 최고 급여를 받는 직원의 
 -- 이름, 직급, 부서, 급여를 부서 순으로 정렬하여 조회
 
+-- (1) 부서별 최고 급여 조회
+SELECT MAX(SALARY) FROM EMPLOYEE GROUP BY DEPT_CODE; -- 7행 1열(다중행)
 
+-- (2) 부서별 최고 급여자 정보 조회
+SELECT EMP_NAME, JOB_CODE, DEPT_CODE, SALARY
+FROM EMPLOYEE
+WHERE SALARY IN (SELECT MAX(SALARY) FROM EMPLOYEE GROUP BY DEPT_CODE)
+ORDER BY DEPT_CODE;
 
--- 사수에 해당하는 직원에 대해 조회 
+-- 사수에 해당하는 직원(MANAGER_ID=NULL)에 대해 조회 
 --  사번, 이름, 부서명, 직급명, 구분(사수 / 직원)
 
 -- 1) 사수에 해당하는 사원 번호 조회
+SELECT DISTINCT MANAGER_ID 
+FROM EMPLOYEE 
+WHERE MANAGER_ID IS NOT NULL;
 
-
--- 2) 직원의 사번, 이름, 부서명, 직급 조회
-
+-- 2) 직원의 사번, 이름, 부서명, 직급명 조회
+SELECT EMP_ID, EMP_NAME, DEPT_TITLE, JOB_NAME
+FROM EMPLOYEE 
+LEFT JOIN DEPARTMENT ON(DEPT_ID = DEPT_CODE)
+LEFT JOIN JOB USING(JOB_CODE);
 
 -- 3) 사수에 해당하는 직원에 대한 정보 추출 조회 (이때, 구분은 '사수'로)
-
+SELECT EMP_ID, EMP_NAME, DEPT_TITLE, JOB_NAME, '사수' AS 구분
+FROM EMPLOYEE 
+LEFT JOIN DEPARTMENT ON(DEPT_ID = DEPT_CODE)
+LEFT JOIN JOB USING(JOB_CODE)
+WHERE EMP_ID IN (
+	SELECT DISTINCT MANAGER_ID 
+	FROM EMPLOYEE 
+	WHERE MANAGER_ID IS NOT NULL);
 
 -- 4) 일반 직원에 해당하는 사원들 정보 조회 (이때, 구분은 '사원'으로)
-
+SELECT EMP_ID, EMP_NAME, DEPT_TITLE, JOB_NAME, '사원' AS 구분
+FROM EMPLOYEE 
+LEFT JOIN DEPARTMENT ON(DEPT_ID = DEPT_CODE)
+LEFT JOIN JOB USING(JOB_CODE)
+WHERE EMP_ID NOT IN (
+	SELECT DISTINCT MANAGER_ID 
+	FROM EMPLOYEE 
+	WHERE MANAGER_ID IS NOT NULL);
             
-
 -- 5) 3, 4의 조회 결과를 하나로 합침 -> SELECT절 SUBQUERY
 -- * SELECT 절에도 서브쿼리 사용할 수 있음
 
+-- #1 UNION ... 느림
+SELECT EMP_ID, EMP_NAME, DEPT_TITLE, JOB_NAME, '사수' AS 구분
+FROM EMPLOYEE 
+LEFT JOIN DEPARTMENT ON(DEPT_ID = DEPT_CODE)
+LEFT JOIN JOB USING(JOB_CODE)
+WHERE EMP_ID IN (
+	SELECT DISTINCT MANAGER_ID 
+	FROM EMPLOYEE 
+	WHERE MANAGER_ID IS NOT NULL)	
+UNION
+SELECT EMP_ID, EMP_NAME, DEPT_TITLE, JOB_NAME, '사원' AS 구분
+FROM EMPLOYEE 
+LEFT JOIN DEPARTMENT ON(DEPT_ID = DEPT_CODE)
+LEFT JOIN JOB USING(JOB_CODE)
+WHERE EMP_ID NOT IN (
+	SELECT DISTINCT MANAGER_ID 
+	FROM EMPLOYEE 
+	WHERE MANAGER_ID IS NOT NULL);
 
-
-
+-- #2 선택함수(CASE)로 풀이 ... #1보다 빠름
+SELECT EMP_ID, EMP_NAME, DEPT_TITLE, JOB_NAME, 
+	CASE 
+		WHEN EMP_ID IN (
+			SELECT DISTINCT MANAGER_ID 	
+			FROM EMPLOYEE 
+			WHERE MANAGER_ID IS NOT NULL)
+		THEN '사수'
+		ELSE '사원'
+	END AS 구분
+FROM EMPLOYEE 
+LEFT JOIN DEPARTMENT ON(DEPT_ID = DEPT_CODE)
+JOIN JOB USING(JOB_CODE)
+ORDER BY EMP_ID;
 
 -- 대리 직급의 직원들 중에서 과장 직급의 최소 급여보다 많이 받는 직원의
 -- 사번, 이름, 직급, 급여를 조회하세요
 -- 단, > ANY 혹은 < ANY 연산자를 사용하세요
 
 -- > ANY, < ANY : 여러개의 결과값 중에서 하나라도 큰 / 작은 경우
---                     가장 작은 값보다 큰가? / 가장 큰 값 보다 작은가?
+--                가장 작은 값보다 큰가? / 가장 큰 값 보다 작은가?
 
 -- 1) 직급이 대리인 직원들의 사번, 이름, 직급명, 급여 조회
-
+SELECT EMP_ID, EMP_NAME, JOB_NAME, SALARY
+FROM EMPLOYEE
+JOIN JOB USING(JOB_CODE)
+WHERE JOB_NAME = '대리';
 
 -- 2) 직급이 과장인 직원들 급여 조회
-
+SELECT SALARY
+FROM EMPLOYEE
+JOIN JOB USING(JOB_CODE)
+WHERE JOB_NAME = '과장';
 
 -- 3) 대리 직급의 직원들 중에서 과장 직급의 최소 급여보다 많이 받는 직원
 -- 3-1) MIN을 이용하여 단일행 서브쿼리를 만듦.
-
+SELECT EMP_ID, EMP_NAME, JOB_NAME, SALARY
+FROM EMPLOYEE
+JOIN JOB USING(JOB_CODE)
+WHERE JOB_NAME = '대리'
+AND SALARY > (
+	SELECT MIN(SALARY)
+	FROM EMPLOYEE
+	JOIN JOB USING(JOB_CODE)
+	WHERE JOB_NAME = '과장');
 
 -- 3-2) ANY를 이용하여 과장 중 가장 급여가 적은 직원 초과하는 대리를 조회
-
-
-
+SELECT EMP_ID, EMP_NAME, JOB_NAME, SALARY
+FROM EMPLOYEE
+JOIN JOB USING(JOB_CODE)
+WHERE JOB_NAME = '대리'
+AND SALARY > ANY (
+	SELECT SALARY
+	FROM EMPLOYEE
+	JOIN JOB USING(JOB_CODE)
+	WHERE JOB_NAME = '과장');
 
 -- 차장 직급의 급여의 가장 큰 값보다 많이 받는 과장 직급의 직원
 -- 사번, 이름, 직급, 급여를 조회하세요
 -- 단, > ALL 혹은 < ALL 연산자를 사용하세요
-
 -- > ALL, < ALL : 여러개의 결과값의 모든 값보다 큰 / 작은 경우
---                     가장 큰 값 보다 크냐? / 가장 작은 값 보다 작냐?
-
-
+--                가장 큰 값 보다 크냐? / 가장 작은 값 보다 작냐?
+SELECT EMP_ID, EMP_NAME, JOB_NAME, SALARY
+FROM EMPLOYEE
+JOIN JOB USING(JOB_CODE)
+WHERE JOB_NAME = '과장'
+AND SALARY > ALL (
+	SELECT SALARY
+	FROM EMPLOYEE
+	JOIN JOB USING(JOB_CODE)
+	WHERE JOB_NAME = '차장');
                       
                       
 -- 서브쿼리 중첩 사용(응용편!)
@@ -238,16 +320,30 @@ HAVING SUM(SALARY) = (
 -- EMPLOYEE테이블의 DEPT_CODE와 동일한 사원을 구하시오.
 
 -- 1) LOCATION 테이블을 통해 NATIONAL_CODE가 KO인 LOCAL_CODE 조회
-
+SELECT LOCAL_CODE
+FROM LOCATION
+WHERE NATIONAL_CODE = 'KO'; -- 'L1' (단일행)
 
 -- 2)DEPARTMENT 테이블에서 위의 결과와 동일한 LOCATION_ID를 가지고 있는 DEPT_ID를 조회
-
+SELECT DEPT_ID
+FROM DEPARTMENT
+WHERE LOCATION_ID = (
+	SELECT LOCAL_CODE
+	FROM LOCATION
+	WHERE NATIONAL_CODE = 'KO'); -- 5행 (다중행)
 
 -- 3) 최종적으로 EMPLOYEE 테이블에서 위의 결과들과 동일한 DEPT_CODE를 가지는 사원을 조회
-
-                      
-
-
+SELECT EMP_NAME, DEPT_CODE
+FROM EMPLOYEE
+WHERE DEPT_CODE IN (
+	SELECT DEPT_ID
+	FROM DEPARTMENT
+	WHERE LOCATION_ID = (
+		SELECT LOCAL_CODE
+		FROM LOCATION
+		WHERE NATIONAL_CODE = 'KO'));
+--> 한국에서 근무하는 사원 조회
+	                      
 -----------------------------------------------------------------------
 
 -- 3. 다중열 서브쿼리 (단일행 = 결과값은 한 행)
