@@ -1,0 +1,6 @@
+list_a = [1, 2, 3, 4]
+print(list_a) # 결과 : [1, 2, 3, 4]
+list_b = ['a', 'b', 'c']
+print(list_b) # 결과 : ['a', 'b', 'c']
+list_c = [True, False]
+print(list_c) # 결과 : [True, False]
