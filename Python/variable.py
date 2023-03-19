@@ -1,7 +1,7 @@
 a, b = 100, 200
-a, b = b, a + b # 200, 300
+a, b = b, a + b 
 
-print(a, b)
+print(a, b) # 200, 300
 
 text = 'Welcome to Python!'
 
