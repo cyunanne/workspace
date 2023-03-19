@@ -734,8 +734,114 @@ JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID);
 
 05_DML(INSERT,UPDATE,DELETE).SQL
 
+--- *** DML(Data Manipulation Language) : 데이터 조작 언어
+-- 테이블에 값을 삽입하거나(INSERT), 수정하거나(UPDATE), 삭제(DELETE)하는 구문
+
+-- 1. INSERT
+-- 테이블에 새로운 행을 추가하는 구문
+-- 1)  INSERT INTO 테이블명 VALUES(데이터, 데이터, ...)
+-- 테이블에 모든 컬럼에 대한 값을 INSERT할 때 사용
+-- INSERT하고자 하는 컬럼이 모든 컬럼인 경우 컬럼명 생략 가능. 단, 컬럼의 순서를 지켜서 VALUES에 값을 기입해야 함
+INSERT INTO EMPLOYEE2
+VALUES(900, '장채현', '901123-2345678', 
+	'jang_ch@kh.or.kr', '01012341234','D1', 'J7', 'S3', 
+	4300000, 0.2, 200, SYSDATE, NULL, 'N');
+-- 2)  INSERT INTO 테이블명(컬럼명, 컬럼명, 컬럼명,...)
+-- VALUES (데이터1, 데이터2, 데이터3, ...);
+-- 테이블에 내가 선택한 컬럼에 대한 값만 INSERT할 때 사용
+-- 선택안된 컬럼은 값이 NULL이 들어감
+INSERT INTO EMPLOYEE2(EMP_NAME, EMP_ID, EMP_NO, EMAIL, PHONE, 
+                      DEPT_CODE, JOB_CODE, SAL_LEVEL, SALARY)
+VALUES('장채현', 900, '901123-2345678', 'jang_ch@kh.or.kr', '01012341234',
+       'D1', 'J7', 'S3', 4300000);  
+-- (참고) INSERT시 VALUES 대신 서브쿼리 사용 가능
+INSERT INTO EMP_01
+SELECT EMP_ID, EMP_NAME, DEPT_TITLE
+FROM EMPLOYEE2
+LEFT JOIN DEPARTMENT2 ON(DEPT_CODE = DEPT_ID); 
+
+-- 2. UPDATE
+-- 테이블에 기록된 컬럼의 값을 수정하는 구문
+-- [작성법]
+-- UPDATE 테이블명 SET 컬럼명 = 바꿀값 [WHERE 컬럼명 비교연산자 비교값];
+UPDATE DEPARTMENT2
+SET DEPT_TITLE = '전략기획팀'
+WHERE DEPT_ID = 'D9';
+
+-- * 조건절을 설정하지 않고 UPDATE 구문 실행 시 모든 행의 컬럼 값 변경.
+---> WHERE 작성을 잘하자!!!
+
+-- * 여러 컬럼을 한번에 수정할 시 콤마(,)로 컬럼을 구분하면됨.
+-- D9 / 총무부  -> D0 / 전략기획2팀으로 수정
+UPDATE DEPARTMENT2 
+SET DEPT_ID = 'D0',
+    DEPT_TITLE = '전략기획2팀'
+WHERE DEPT_ID = 'D9'; -- 1행 수정
+
+-- * UPDATE시에도 서브쿼리를 사용 가능
+
+-- [작성법]
+-- UPDATE 테이블명
+-- SET 컬럼명 = (서브쿼리)
+UPDATE EMPLOYEE2
+SET SALARY = (SELECT SALARY FROM EMPLOYEE2 WHERE EMP_NAME = '유재식'),
+    BONUS = (SELECT BONUS FROM EMPLOYEE2 WHERE EMP_NAME = '유재식')
+WHERE EMP_NAME = '방명수';
+
+-- * 다중행 다중열 서브쿼리를 이용한 UPDATE문
+UPDATE EMPLOYEE2
+SET (SALARY, BONUS) = (SELECT SALARY, BONUS
+                       FROM EMPLOYEE2
+                       WHERE EMP_NAME = '유재식')
+WHERE EMP_NAME IN ('노옹철', '전형돈', '정중하', '하동운'); -- 4행 수정
 
 
+
+-- 3. MERGE(병합) (참고만 하세요!)
+
+-- 구조가 같은 두 개의 테이블을 하나로 합치는 기능.
+-- 테이블에서 지정하는 조건의 값이 존재하면 UPDATE
+-- 조건의 값이 없으면 INSERT됨
+
+MERGE INTO EMP_M01 USING EMP_M02 ON(EMP_M01.EMP_ID = EMP_M02.EMP_ID)
+WHEN MATCHED THEN
+UPDATE SET
+EMP_M01.EMP_NAME = EMP_M02.EMP_NAME,
+EMP_M01.EMP_NO = EMP_M02.EMP_NO,
+EMP_M01.EMAIL = EMP_M02.EMAIL,
+EMP_M01.PHONE = EMP_M02.PHONE,
+EMP_M01.DEPT_CODE = EMP_M02.DEPT_CODE,
+EMP_M01.JOB_CODE = EMP_M02.JOB_CODE,
+EMP_M01.SAL_LEVEL = EMP_M02.SAL_LEVEL,
+EMP_M01.SALARY = EMP_M02.SALARY,
+EMP_M01.BONUS = EMP_M02.BONUS,
+EMP_M01.MANAGER_ID = EMP_M02.MANAGER_ID,
+EMP_M01.HIRE_DATE = EMP_M02.HIRE_DATE,
+EMP_M01.ENT_DATE = EMP_M02.ENT_DATE,
+EMP_M01.ENT_YN = EMP_M02.ENT_YN
+WHEN NOT MATCHED THEN
+INSERT VALUES (EMP_M02.EMP_ID, EMP_M02.EMP_NAME, EMP_M02.EMP_NO,
+               EMP_M02.EMAIL, EMP_M02.PHONE, EMP_M02.DEPT_CODE,
+               EMP_M02.JOB_CODE, EMP_M02.SAL_LEVEL, EMP_M02.SALARY,
+               EMP_M02.BONUS, EMP_M02.MANAGER_ID, EMP_M02.HIRE_DATE,
+               EMP_M02.ENT_DATE, EMP_M02.ENT_YN);
+
+SELECT * FROM EMP_M01; 
+
+-- 4. DELETE
+-- 테이블의 행을 삭제하는 구문
+
+-- [작성법]
+-- DELTE FROM 테이블명 WHERE 조건설정
+-- 만약 WHERE 조건을 설정하지 않으면 모든 행이 다 삭제됨
+DELETE FROM EMPLOYEE2
+WHERE EMP_NAME = '장채현'; -- 1행 삭제
+
+-- 5. TRUNCATE (DDL 입니다! DML 아닙니다!)
+-- 테이블의 전체 행을 삭제하는 DDL
+-- DELETE보다 수행속도가 더 빠르다.
+-- ROLLBACK을 통해 복구할 수 없다.
+TRUNCATE TABLE EMPLOYEE3;
 
 
 
@@ -743,8 +849,198 @@ JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID);
 
 06_SUBQUERY.SQL
 
+/*
+    * SUBQUERY (서브쿼리)
+    - 하나의 SQL문 안에 포함된 또다른 SQL문
+    - 메인쿼리(기존쿼리)를 위해 보조 역할을 하는 쿼리문
+    -- SELECT, FROM, WHERE, HAVGIN 절에서 사용가능
+*/
+SELECT EMP_NAME, DEPT_CODE
+FROM EMPLOYEE
+WHERE DEPT_CODE = (
+	SELECT DEPT_CODE
+	FROM EMPLOYEE
+  	WHERE EMP_NAME = '노옹철');
+
+/*  서브쿼리 유형
+    - 단일행 서브쿼리 : 서브쿼리의 조회 결과 값의 개수가 1개일 때 (행1, 열1)
+    - 다중행 서브쿼리 : 서브쿼리의 조회 결과 값의 개수가 여러개일 때 (행N, 열1)
+    - 다중열 서브쿼리 : 서브쿼리의 SELECT 절에 자열된 항목수가 여러개 일 때 (행1, 열N)
+    - 다중행 다중열 서브쿼리 : 조회 결과 행 수와 열 수가 여러개일 때 (행N, 열N)
+    - 상관 서브쿼리 : 서브쿼리가 만든 결과 값을 메인 쿼리가 비교 연산할 때 
+                                메인 쿼리 테이블의 값이 변경되면 서브쿼리의 결과값도 바뀌는 서브쿼리
+    - 스칼라 서브쿼리 : 상관 쿼리이면서 결과 값이 하나인 서브쿼리
+   * 서브쿼리 유형에 따라 서브쿼리 앞에 붙은 연산자가 다름
+*/
+
+-- 1. 단일행 서브쿼리 (SINGLE ROW SUBQUERY)
+--    서브쿼리의 조회 결과 값의 개수가 1개인 서브쿼리 (행1, 열1)
+--    단일행 서브쿼리 앞에는 비교 연산자 사용
+--    <, >, <=, >=, =, !=/^=/<>
+SELECT EMP_ID, EMP_NAME, JOB_CODE, DEPT_CODE, SALARY, HIRE_DATE
+FROM EMPLOYEE
+WHERE SALARY = (SELECT MIN(SALARY) FROM EMPLOYEE);
+
+-- 메인쿼리 + 서브쿼리(where) + 서브쿼리(from)
+-- (복잡하지만 신뢰도있는 정보 조회 가능)
+
+-- 2. 다중행 서브쿼리 (MULTI ROW SUBQUERY)
+--    서브쿼리의 조회 결과 값의 개수가 여러행일 때 
+
+/*
+    >> 다중행 서브쿼리 앞에는 일반 비교연산자 사용 x
+    
+    - IN / NOT IN : 여러 개의 결과값 중에서 한 개라도 일치하는 값이 있다면
+                    혹은 없다면 이라는 의미(가장 많이 사용!)
+    - > ANY, < ANY : 여러개의 결과값 중에서 한개라도 큰 / 작은 경우
+                     가장 작은 값보다 큰가? / 가장 큰 값 보다 작은가?
+    - > ALL, < ALL : 여러개의 결과값의 모든 값보다 큰 / 작은 경우
+                     가장 큰 값 보다 큰가? / 가장 작은 값 보다 작은가?
+    - EXISTS / NOT EXISTS : 값이 존재하는가? / 존재하지 않는가?
+    
+*/
+
+-- 차장 직급의 급여의 가장 큰 값보다 많이 받는 과장 직급의 직원
+SELECT EMP_ID, EMP_NAME, JOB_NAME, SALARY
+FROM EMPLOYEE
+JOIN JOB USING(JOB_CODE)
+WHERE JOB_NAME = '과장'
+AND SALARY > ALL (
+	SELECT SALARY
+	FROM EMPLOYEE
+	JOIN JOB USING(JOB_CODE)
+	WHERE JOB_NAME = '차장');
 
 
+
+-- 3. 다중열 서브쿼리 (단일행 = 결과값은 한 행)
+--    서브쿼리 SELECT 절에 나열된 컬럼 수가 여러개 일 때
+
+-- 퇴사한 여직원과 같은 부서, 같은 직급에 해당하는 사원
+SELECT EMP_NAME, JOB_NAME, DEPT_TITLE, HIRE_DATE
+FROM EMPLOYEE
+NATURAL JOIN JOB 
+JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID)
+WHERE (DEPT_TITLE, JOB_NAME) = (
+	SELECT DEPT_TITLE, JOB_NAME
+	FROM EMPLOYEE 
+	NATURAL JOIN JOB
+	JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID)
+	WHERE ENT_YN = 'Y'
+	AND SUBSTR(EMP_NO,8,1) = '2');
+
+-- 4. 다중행 다중열 서브쿼리
+--    서브쿼리 조회 결과 행 수와 열 수가 여러개 일 때
+SELECT EMP_ID, EMP_NAME, JOB_CODE, SALARY
+FROM EMPLOYEE 
+WHERE (JOB_CODE, TRUNC(SALARY, -4)) IN (
+	SELECT JOB_CODE, TRUNC(AVG(SALARY), -4)
+	FROM EMPLOYEE 
+	GROUP BY JOB_CODE);
+
+-- 5. 상관(상호연관) 서브쿼리
+--   상관쿼리는 메인쿼리가 사용하는 테이블값을 서브쿼리가 이용해서 결과를 만듦
+--   메인쿼리의 테이블값이 변경되면 서브쿼리의 결과값도 바뀌게 되는 구조임
+--   먼저 메인쿼리 한 행을 조회하고 해당 행이 서브쿼리의 조건을 충족하는지 확인하여 SELECT를 진행함
+
+-- 사수가 있는 직원의 사번, 이름, 부서명, 사수사번 조회
+-- EXISTS : 서브쿼리에서 조회된 결과가 일치하는 행이 메인쿼리에 하나라도 있으면 조회 결과에 포함
+--          (서브쿼리 조회 결과가 1행 이상이면 메인쿼리 행을 결과에 포함)
+SELECT EMP_ID, EMP_NAME, DEPT_TITLE, MANAGER_ID
+FROM EMPLOYEE MAIN
+LEFT JOIN DEPARTMENT ON(DEPT_ID = DEPT_CODE)
+WHERE EXISTS (
+	SELECT EMP_ID FROM EMPLOYEE SUB
+	WHERE SUB.EMP_ID = MAIN.MANAGER_ID);
+
+-- 6. 스칼라 서브쿼리
+--    SELECT절에 사용되는 단일행 서브쿼리 결과(1행만 반환)
+--    SQL에서 단일 값을 가르켜 '스칼라'라고 함
+--    상관쿼리와 자주 같이 사용됨
+-- 각 직원들이 속한 직급의 급여 평균 조회
+SELECT EMP_NAME, JOB_CODE, SALARY, (
+	SELECT FLOOR(AVG(SALARY))
+	FROM EMPLOYEE S
+	WHERE S.JOB_CODE = M.JOB_CODE) "급여 평균"
+FROM EMPLOYEE M;
+
+
+
+-- 7. 인라인 뷰(INLINE-VIEW)
+--    FROM 절에서 서브쿼리를 사용하는 경우로
+--    서브쿼리가 만든 결과의 집합(RESULT SET)을 테이블 대신에 사용한다.
+
+-- INLINE : SQL
+-- VIEW : 조회 목적의 가상 테이블(원하는 컬럼만 작성)
+
+-- 인라인뷰를 활용한 TOP-N분석
+-- 전 직원 중 급여가 높은 상위 5명의
+-- 순위, 이름, 급여 조회
+
+
+
+
+-- * 조건절에 ROWNUM 사용 시 주의사항
+-- 조건절에 ROWNUM을 작성하는 경우 조건 범위 내에 1번행이 반드시 포함되어야 한다.
+SELECT EMP_NAME, ROWNUM
+FROM EMPLOYEE
+WHERE ROWNUM = 5;
+--> 조회 결과 없음 (조회 결과에 ROWNUM이 붙는거라 1개뿐인 결과에 ROWNUM=5가 붙을 수 없음)
+SELECT EMP_NAME, ROWNUM
+FROM EMPLOYEE
+WHERE ROWNUM = 5 OR ROWNUM = 1;
+--> 1행만 조회됨
+--> EMPLOYEE 테이블 상단에 위치한 5명을 조회하여 그 5명 안에서 정렬
+--> 문제원인 : SELECT 해석 순서 상 ORDER BY가 가장 마지막으로 해석되기 때문에 
+--           급여 상위 5명이라는 의도와 맞지 않는 형태로 조회됨
+--> 해결방법 : 인라인뷰(FROM절에 작성되는 서브쿼리)를 이용하여 해결
+SELECT ROWNUM, EMP_NAME, SALARY
+FROM (
+	SELECT EMP_NAME, SALARY
+	FROM EMPLOYEE
+	ORDER BY SALARY DESC) -- 인라인 뷰: 조회 결과(RESULT SET)를 가상의 테이블인 뷰(VIEW)로 이용(행 순서, 컬럼 그대로 이용)
+WHERE ROWNUM <= 5;
+-- * 인라인 뷰 사용 시 컬럼명에 유의해야 한다.
+-- 메인 쿼리에서 인라인 뷰의 컬럼명을 그대로 사용해야 한다.
+
+
+-- 8. WITH
+--    서브쿼리에 이름을 붙여주고 사용시 이름을 사용하게 함
+--    인라인뷰로 사용될 서브쿼리에 주로 사용됨
+--    ***실행 속도도 빨라진다***는 장점이 있다. (SQL 실행 시 WITH절을 가장 먼저 수행)
+
+-- 전 직원의 급여 순위 
+SELECT ROWNUM, EMP_NAME, SALARY
+FROM (
+	SELECT EMP_NAME, SALARY
+	FROM EMPLOYEE 
+	ORDER BY SALARY DESC);
+
+--  WITH를 이용해서 MAIN 쿼리를 깔끔하게 정리
+WITH TOP_SALARY AS (
+	SELECT EMP_NAME, SALARY
+	FROM EMPLOYEE 
+	ORDER BY SALARY DESC)
+SELECT ROWNUM, EMP_NAME, SALARY 
+FROM TOP_SALARY;
+
+
+
+-- 9. RANK() OVER / DENSE_RANK() OVER
+-- SELECT 절에만 사용 가능
+-- RANK() OVER : 동일한 순위 이후의 등수를 동일한 인원 수 만큼 건너뛰고 순위 계산
+--               EX) 공동 1위가 2명이면 다음 순위는 2위가 아니라 3위
+
+SELECT EMP_NAME, SALARY, RANK() OVER(ORDER BY SALARY DESC) 순위
+FROM EMPLOYEE
+WHERE RANK() OVER(ORDER BY SALARY DESC) <= 5;
+--> ORA-30483: 윈도우 함수를 여기에 사용할 수 없습니다
+--> WHERE 절에서 사용할 수 없음(SELECT 절에서만 사용 가능)
+
+-- DENSE_RANK() OVER : 동일한 순위 이후의 등수를 이후의 순위로 계산
+--                     EX) 공동 1위가 2명이어도 다음 순위는 2위
+SELECT EMP_NAME, SALARY, DENSE_RANK() OVER(ORDER BY SALARY DESC) 순위
+FROM EMPLOYEE;
 
 
 
@@ -754,7 +1050,45 @@ JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID);
 07_TCL.SQL
 
 
+-- TCL(TRANSACTION CONTROL LANGUAGE) : 트랜잭션 제어 언어
+-- COMMIT(트랜잭션 종료 후 저장), ROLLBACK(트랜잭션 취소), SAVEPOINT(임시저장)
 
+-- DML : 데이터 조작 언어로 데이터의 삽입(INSERT), 수정(UPDATE), 삭제(DELETE)
+--> 트랜잭션은 DML과 관련되어 있음.
+
+
+/* TRANSACTION이란?
+ - 데이터베이스의 논리적 연산 단위
+ 
+ - 데이터 변경 사항을 묶어 하나의 트랜잭션에 담아 처리함.
+
+ - 트랜잭션의 대상이 되는 데이터 변경 사항 : INSERT, UPDATE, DELETE (DML)
+ 
+ EX) INSERT 수행 --------------------------------> DB 반영(X)
+   
+     INSERT 수행 --> 트랜잭션에 추가 --> COMMIT --> DB 반영(O)
+     
+     INSERT 10번 수행 --> 1개 트랜잭션에 10개 추가 --> ROLLBACK --> DB 반영 안됨
+
+
+    1) COMMIT : 메모리 버퍼(트랜잭션)에 임시 저장된 데이터 변경 사항을 DB에 반영
+    
+    2) ROLLBACK : 메모리 버퍼(트랜잭션)에 임시 저장된 데이터 변경 사항을 삭제하고
+                 마지막 COMMIT 상태로 돌아감.
+                
+    3) SAVEPOINT : 메모리 버퍼(트랜잭션)에 저장 지점을 정의하여
+                   ROLLBACK 수행 시 전체 작업을 삭제하는 것이 아닌
+                   저장 지점까지만 일부 ROLLBACK 
+    
+    [SAVEPOINT 사용법]
+    
+    SAVEPOINT 포인트명1;
+    ...
+    SAVEPOINT 포인트명2;
+    ...
+    ROLLBACK TO 포인트명1; -- 포인트1 지점 까지 데이터 변경사항 삭제
+
+*/
 
 
 
