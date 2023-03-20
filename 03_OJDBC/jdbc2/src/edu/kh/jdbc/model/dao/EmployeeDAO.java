@@ -124,7 +124,8 @@ public class EmployeeDAO {
                     + "FROM EMPLOYEE "
                     + "NATURAL JOIN JOB "
                     + "LEFT JOIN DEPARTMENT ON(DEPT_CODE=DEPT_ID) "
-                    + "WHERE EMP_NAME LIKE '%" + input + "%'";
+                    + "WHERE EMP_NAME LIKE '%" + input + "%' "
+                    + "ORDER BY EMP_ID";
 
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);

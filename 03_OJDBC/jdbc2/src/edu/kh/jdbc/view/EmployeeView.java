@@ -105,7 +105,7 @@ public class EmployeeView {
             List<Employee> empList = service.selectName(input);
 
             if(empList.isEmpty()) { // 조회된 사원이 없을 경우
-                System.out.println("\n[사원이 존재하지 않습니다.]\n");
+                System.out.println("\n[입력된 글자를 포함하는 사원이 존재하지 않습니다.]\n");
                 return;
             }
 
