@@ -23,3 +23,13 @@ print(today + timedelta(days=10)) # 오늘부터 10일 후 날짜 출력
 from time import localtime, strftime
 
 print(localtime())
+
+print(strftime("%Y-%m-%d %H:%M"))
+print(strftime("%Y년 %m월 %d일 %H시 %M분"))
+
+##
+
+# 라이브러리 설치/삭제
+# 터미널에서 입력
+# pip install Django==2.0
+# pip uninstall Django==2.0
