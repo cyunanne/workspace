@@ -23,7 +23,17 @@ public class Emp {
 	
 	public Emp() { }
 
-	public int getEmpId() {
+    public Emp(int empId, String empName, String deptTitle, String jobName, int salary, String phone, String email) {
+    	this.empId = empId;
+		this.empName = empName;
+		this.departmentTitle = deptTitle;
+		this.jobName = jobName;
+		this.salary = salary;
+		this.phone = phone;
+		this.email = email;
+	}
+
+    public int getEmpId() {
 		return empId;
 	}
 
