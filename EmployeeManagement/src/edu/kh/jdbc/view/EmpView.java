@@ -6,7 +6,7 @@ import java.util.Scanner;
 import edu.kh.jdbc.model.service.EmpService;
 
 public class EmpView {
-
+  
 	private Scanner sc = new Scanner(System.in);
 	
 	private EmpService service = new EmpService();
