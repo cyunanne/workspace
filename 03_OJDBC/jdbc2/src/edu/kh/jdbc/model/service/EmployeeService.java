@@ -164,4 +164,20 @@ public class EmployeeService {
         close(conn);
         return result;
     }
+
+    /**
+     * 회원 삭제 서비스
+     * @param input
+     * @return
+     * @throws SQLException
+     */
+    public int deleteEmployee(int input) throws SQLException {
+
+        Connection conn = getConnection();
+        int result = dao.deleteEmployee(conn, input);
+        if(result > 0) commit(conn);
+        else rollback(conn);
+        close(conn);
+        return result;
+    }
 }

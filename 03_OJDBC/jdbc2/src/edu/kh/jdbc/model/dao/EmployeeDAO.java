@@ -320,4 +320,27 @@ public class EmployeeDAO {
 
         return result;
     }
+
+    /**
+     * 사원 정보 삭제 처리 SQL 수행 후 결과 행 개수 반환
+     * @param conn
+     * @param input
+     * @return
+     * @throws SQLException
+     */
+    public int deleteEmployee(Connection conn, int input) throws SQLException {
+
+        int result = 0;
+
+        try {
+            String sql = "DELETE FROM EMPLOYEE WHERE EMP_ID=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, input);
+            result = pstmt.executeUpdate();
+        } finally {
+            close(pstmt);
+        }
+
+        return result;
+    }
 }

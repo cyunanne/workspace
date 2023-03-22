@@ -45,7 +45,7 @@ public class EmployeeView {
                     case 5: insertEmployee(); break;
                     case 6: updateEmployee(); break;
                     case 7: retireEmployee(); break;
-                    case 8: break;
+                    case 8: deleteEmployee(); break;
                     case 0: System.out.println("\n[프로그램을 종료합니다...]\n"); break;
                     default: System.out.println("\n[메뉴에 존재하는 번호를 입력하세요.]\n");
                 }
@@ -56,6 +56,38 @@ public class EmployeeView {
                 input = -1; // while문이 종료되지 않게 하기 위한 값 대입
             }
         } while(input != 0);
+    }
+
+    /**
+     * 사번으로 사원 정보 삭제
+     */
+    private void deleteEmployee() {
+        System.out.println("\n----------- 사원 삭제 -----------\n");
+
+        System.out.print("삭제할 사원의 사번 : ");
+        int input = sc.nextInt();
+        System.out.print("정말로 삭제 하시겠습니까?(Y/N) ");
+        char check = sc.next().toUpperCase().charAt(0);
+
+        if(check == 'N') {
+            System.out.println("\n[취소되었습니다.]\n");
+            return;
+        }
+
+        if(check != 'Y') {
+            System.out.println("\n[잘못 입력하셨습니다.]\n");
+            return;
+        }
+
+        // 서비스 호출 후 결과 반환 받기
+        try {
+            int result = service.deleteEmployee(input);
+            if(result > 0) System.out.println("[삭제 완료]");
+            else           System.out.println("[사번이 일치하는 사원이 없습니다.]");
+        } catch(SQLException e) {
+            System.out.println("\n[사원 삭제 처리 중 예외 발생]\n");
+            e.printStackTrace();
+        }
     }
 
     /**
