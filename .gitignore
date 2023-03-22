@@ -20,7 +20,11 @@ HELP.md
 *.ipr
 out/
 
+<<<<<<< HEAD
 # Java Project
+=======
+# Eclipse : Java Project
+>>>>>>> study/main
 .porject
 .metadata/
 bin/
