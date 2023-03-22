@@ -64,14 +64,13 @@ def args_type(*args):
 
 args_type() # <class 'tuple'>
 
-# 키워드(딕셔너리) 매개변수
+# 키워드(딕셔너리) 가변 매개변수
 def star_player(**kwargs):
     for i, j in kwargs.items():
         if "서장훈" in kwargs.values():
             print("서장훈 들어옴")
         else:
             print(f"{i}는 역시 {j}지!")
-
 
 star_player(축구="손흥민", 야구="박용택", 농구="허재")
 star_player(야구="서장훈")

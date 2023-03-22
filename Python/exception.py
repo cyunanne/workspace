@@ -29,6 +29,12 @@ finally:
 #help(SystemExit)
 
 # 사용자 정의 예외 선언
-def UserDefinedExcepton(Exception): 
-    pass
+class UserDefinedExcepton(Exception): 
+    def __init__(self):
+        super().__init__('에러메시지')
 
+input = int(input("예외를 발생시키겠습니까?(1:예/2:아니오) : "))
+if(input == 1):
+    raise UserDefinedExc5epton()
+else:
+    print("예외가 발생하지 않았습니다.")

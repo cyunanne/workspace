@@ -77,4 +77,4 @@ print(restaurant)
 print(restaurant.price)
 
 print(issubclass(ChildRestaurant, ParentRestaurant)) # True
-print(issubclass(ParentRestaurant, ChildRestaurant))
+print(issubclass(ParentRestaurant, ChildRestaurant)) # False
