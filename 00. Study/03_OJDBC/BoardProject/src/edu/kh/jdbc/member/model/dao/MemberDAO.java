@@ -1,11 +1,16 @@
 package edu.kh.jdbc.member.model.dao;
 
+import edu.kh.jdbc.member.model.dto.Member;
+
 import static edu.kh.jdbc.common.JDBCTemplate.*;
 
 import java.io.FileInputStream;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class MemberDAO {
@@ -27,4 +32,35 @@ public class MemberDAO {
         }
     }
 
+    /**
+     * 회원 목록 조회 SQL 수행
+     * @param conn
+     * @return memberList
+     * @throws Exception
+     */
+    public List<Member> selectMemberList(Connection conn) throws Exception {
+        List<Member> memberList = new ArrayList<>();
+        try {
+            String sql = prop.getProperty("selectMemberList");
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            while(rs.next()) {
+                String memberId = rs.getString("MEMBER_ID");
+                String memberName = rs.getString("MEMBER_NM");
+                String memberGender = rs.getString("MEMBER_GENDER");
+
+                Member member = new Member();
+                member.setMemberId(memberId);
+                member.setMemberName(memberName);
+                member.setMemberGender(memberGender);
+
+                memberList.add(member);
+            }
+        } finally {
+            close(rs);
+            close(stmt);
+        }
+        return memberList;
+    }
 }

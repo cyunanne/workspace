@@ -1,8 +1,11 @@
 package edu.kh.jdbc.member.view;
 
+import edu.kh.jdbc.common.Session;
+import edu.kh.jdbc.member.model.dto.Member;
 import edu.kh.jdbc.member.model.service.MemberService;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -36,11 +39,11 @@ public class MemberView {
                 scanner.nextLine(); // 입력 버퍼 개행 문자 제거
 
                 switch(input) {
-                    case 1: break;
-                    case 2: break;
-                    case 3: break;
-                    case 4: break;
-                    case 5: break;
+                    case 1: selectMyInfo(); break;
+                    case 2: selectMemberList(); break;
+                    case 3:  break;
+                    case 4:  break;
+                    case 5:  break;
                     case 9: System.out.println("\n=== 메인 메뉴로 돌아갑니다 ===\n"); break;
                     case 0: System.out.println("\n=== 프로그램 종료 ===\n"); System.exit(0);
                     default: System.out.println("\n*** 메뉴 번호만 입력해 주세요 ***\n");
@@ -51,5 +54,44 @@ public class MemberView {
                 input = -1; // while 종료 방지
             }
         } while(input != 9);
+    }
+
+    /**
+     * 회원 목록 조회
+     */
+    private void selectMemberList() {
+        System.out.println("\n=== 회원 목록 조회 ===\n");
+        try {
+            List<Member> memberList = service.selectMemberList();
+            if(memberList.isEmpty()) {
+                System.out.println("\n=== 조회 결과가 없습니다 ===\n");
+                return;
+            }
+            for(int i=0; i<memberList.size(); i++) {
+                System.out.printf("%d\t\t%s\t\t%s\t\t%s\n",
+                        i+1,
+                        memberList.get(i).getMemberId(),
+                        memberList.get(i).getMemberName(),
+                        memberList.get(i).getMemberGender());
+            }
+        } catch (Exception e) {
+            System.out.println("\n*** 회원 목록 조회 중 예외 발생 ***\n");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 내 정보 조회
+     * 회원번호, 아이디, 이름, 성별(남/여), 가입일
+     */
+    private void selectMyInfo() {
+        System.out.println("\n=== 내 정보 조회 ===\n");
+
+        // Session.loginMember 이용
+        System.out.println("회원번호 : " + Session.loginMember.getMemberNo());
+        System.out.println("아이디 : " + Session.loginMember.getMemberId());
+        System.out.println("이름 : " + Session.loginMember.getMemberName());
+        System.out.println("성별 : " + (Session.loginMember.getMemberGender().equals("M") ? "남" : "여"));
+        System.out.println("가입일 : " + Session.loginMember.getEnrollDate());
     }
 }
