@@ -138,3 +138,18 @@ FROM "BOARD" B JOIN "MEMBER" USING(MEMBER_NO)
 WHERE BOARD_NO != 0 AND DELETE_FL = 'N'-- INDEX를 사용하기 위해 추가
 ORDER BY BOARD_NO DESC; -- 날짜로 정렬하는 것 보다 INDEX로 정렬하는 게 더 빠름
 
+---------------------------------------------------------------------------------------
+
+-- 로그인
+SELECT MEMBER_NO, MEMBER_ID, MEMBER_NM, MEMBER_GENDER, 
+	TO_CHAR(ENROLL_DT, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') ENROLL_DT
+FROM "MEMBER" WHERE MEMBER_ID = 'user01' AND MEMBER_PW = 'pass01' AND UNREGISTER_FL = 'N'
+
+;
+
+-- 탈퇴하지 않은 회원 중 아이디 중복 검사
+SELECT COUNT(*) FROM "MEMBER" WHERE UNREGISTER_FL = 'N' AND MEMBER_ID = 'user01'
+
+;
+
+-- 
