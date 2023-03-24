@@ -71,9 +71,9 @@ public class EmpService {
 	 * @return
 	 * @throws SQLException
 	 */
-	public int updateById(Emp emp) throws SQLException {
+	public int updateEmpById(Emp emp) throws SQLException {
 		Connection conn = getConnection();
-		int result = dao.updateByID(conn, emp);
+		int result = dao.updateEmpById(conn, emp);
 		if(result >= 1) commit(conn);
 		else 		    rollback(conn);
 		close(conn);
@@ -96,18 +96,16 @@ public class EmpService {
 	}
 
 	/**
-	 * 퇴직 처리
+	 * 퇴직 처리 (업데이트 대상이 없어서 실패하는 경우는 고려하지 않음)
 	 * @param id
 	 * @return
 	 * @throws SQLException
 	 */
-	public int updateRetireById(int id) throws SQLException {
+	public void updateRetireById(int id) throws SQLException {
 		Connection conn = getConnection();
-		int result = dao.updateRetireById(conn, id);
-		if(result >= 1) commit(conn);
-		else 		    rollback(conn);
+		dao.updateRetireById(conn, id);
+		commit(conn);
 		close(conn);
-		return result;
 	}
 
 	/**
@@ -132,5 +130,17 @@ public class EmpService {
 		List<Map<String, String>> statistics = dao.departmentStatistics(conn);
 		close(conn);
 		return statistics;
+	}
+
+	/**
+	 * 퇴직처리 하려는 직원의 존재여부 및 기퇴직여부 확인
+	 * @param input
+	 * @return
+	 */
+	public int checkEmployee(int input) throws SQLException {
+		Connection conn = getConnection();
+		int check = dao.checkEmployee(conn, input);
+		close(conn);
+		return check;
 	}
 }

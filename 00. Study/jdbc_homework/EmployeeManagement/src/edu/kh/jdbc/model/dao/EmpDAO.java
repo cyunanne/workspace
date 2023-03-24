@@ -1,13 +1,9 @@
 package edu.kh.jdbc.model.dao;
 
 import edu.kh.jdbc.model.dto.Emp;
-import oracle.net.jdbc.TNSAddress.SOException;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static edu.kh.jdbc.common.JDBCTemplate.close;
 
@@ -152,7 +148,7 @@ public class EmpDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	public int updateByID(Connection conn, Emp emp) throws SQLException {
+	public int updateEmpById(Connection conn, Emp emp) throws SQLException {
 		int result = 0;
 		String sql = "update EMPLOYEE SET email=?, phone=?, BONUS=?, SALARY=? WHERE emp_id=?";
 
@@ -167,7 +163,6 @@ public class EmpDAO {
 		} finally {
 			close(pstmt);
 		}
-
 		return result;
 	}
 
@@ -217,7 +212,7 @@ public class EmpDAO {
 
 	public List<Emp> selectLatestEnterTop5(Connection conn) throws SQLException {
 		String sql = "SELECT * FROM (\n" +
-				"\tSELECT EMP_ID, EMP_NAME, DEPT_TITLE, HIRE_DATE\n" +
+				"\tSELECT EMP_ID, EMP_NAME, NVL(DEPT_TITLE, '소속없음') DEPT_TITLE, HIRE_DATE\n" +
 				"\tFROM EMPLOYEE LEFT JOIN DEPARTMENT ON(DEPT_CODE=DEPT_ID)\n" +
 				"\tORDER BY HIRE_DATE DESC)\n" +
 				"WHERE ROWNUM <= 5";
@@ -257,10 +252,11 @@ public class EmpDAO {
 			rs = stmt.executeQuery(sql);
 
 			while(rs.next()) {
-				Map<String, String> map = new LinkedHashMap<String, String>();
-				map.put("dept_title", rs.getString("DEPT_TITLE"));
+				Map<String, String> map = new HashMap<String, String>();
+//				Map<String, String> map = new LinkedHashMap<>();
+				map.put("deptTitle", rs.getString("DEPT_TITLE"));
 				map.put("people", rs.getString("PEOPLE"));
-				map.put("salary_avg", rs.getString("SALARY").trim());
+				map.put("salaryAvg", rs.getString("SALARY").trim());
 				result.add(map);
 			}
 		} finally {
@@ -268,5 +264,30 @@ public class EmpDAO {
 			close(stmt);
 		}
 		return result;
+	}
+
+	/**
+	 * 조회 SQL 수행 후 결과 반환
+	 * @param conn
+	 * @param input
+	 * @return
+	 * @throws SQLException
+	 */
+	public int checkEmployee(Connection conn, int input) throws SQLException {
+		String sql = "SELECT DECODE(ENT_YN, 'Y', 1, 'N', 2) FROM EMPLOYEE WHERE EMP_ID=?";
+		int check = 0;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, input);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				check = rs.getInt("CHECK");
+			}
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return check;
 	}
 }

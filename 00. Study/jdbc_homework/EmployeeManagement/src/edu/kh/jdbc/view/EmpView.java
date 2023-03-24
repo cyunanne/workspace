@@ -1,10 +1,7 @@
 package edu.kh.jdbc.view;
 
 import java.sql.SQLException;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 import edu.kh.jdbc.model.dto.Emp;
 import edu.kh.jdbc.model.service.EmpService;
@@ -93,19 +90,19 @@ public class EmpView {
 				
 				
 				System.out.println("0. 프로그램 종료");
-				
-				
+
+
 				System.out.print("메뉴 선택 >> ");
 				input = sc.nextInt();
 				sc.nextLine(); // 입력 버퍼 개행문자 제거
-				
-				
+
+
 				switch(input) {
 				case 1: selectAll(); break;
 				case 2: selectRetiredAll(); break;
 				case 3: selectOneById(); break;
 				case 4: insertEmp(); break;
-				case 5: updateById(); break;
+				case 5: updateEmpById(); break;
 				case 6: deleteById(); break;
 				case 7: updateRetireById(); break;
 				case 8: selectLatestEnterTop5(); break;
@@ -114,8 +111,8 @@ public class EmpView {
 				
 				default: System.out.println("\n[메뉴에 존재하는 번호를 입력하세요.]\n");
 				}
-				
-				
+
+
 			}catch (InputMismatchException e) {
 				System.out.println("\n[잘못된 입력입니다.]\n");
 				sc.nextLine(); // 입력 버퍼에 남아있는 문자열 제거
@@ -137,6 +134,12 @@ public class EmpView {
 		// HINT.
 		// - 별도의 DTO 작성 또는
 		//   Map(LinkedHashMap : key 순서가 유지되는 Map) 이용
+
+		// DTO가 없을 때 Map을 사용하는 이유
+		// 1. DTO를 작성하는 게 코드 낭비인 경우
+		// 2. DTO와 Map의 구조가 유사하기 때문에
+		//   - DTO:Field ≈ Map:Key
+
 		System.out.println("***** 부서별 통계 조회 *****");
 
 		try {
@@ -144,8 +147,14 @@ public class EmpView {
 
 			System.out.println("부서명 / 인원 수 / 급여 평균");
 			for (Map<String, String> s : statistics) {
-				System.out.printf("%s / %s / %s\n", s.get("dept_title"), s.get("people"), s.get("salary_avg"));
+				System.out.printf("%s / %s명 / %s\n", s.get("deptTitle"), s.get("people"), s.get("salaryAvg"));
+//				Set<String> set = s.keySet();
+//				for(String key : set) {
+//					System.out.print(s.get(key) + " ");
+//				}
+//				System.out.println();
 			}
+
 		} catch (SQLException e) {
 			System.out.println("\n[부서별 통계 조회 중 오류 발생]\n");
 			throw new RuntimeException(e);
@@ -178,7 +187,7 @@ public class EmpView {
 	}
 
 	/**
-	 * 사번이 일치하는 사원 퇴직 처리
+	 * 7. 사번이 일치하는 사원 퇴직 처리
 	 */
 	private void updateRetireById() {
 		// - ENT_YN -> 'Y' , ENT_DATE -> SYSDATE로 수정
@@ -193,21 +202,34 @@ public class EmpView {
 		try {
 			System.out.print("퇴직을 원하는 사원의 사번 입력 : ");
 			int id = sc.nextInt(); sc.nextLine();
-			System.out.print("정말로 퇴직 처리 하시겠습니까?(Y/N) : ");
-			char check = sc.next().toUpperCase().charAt(0);
 
-			if(check == 'N') {
+			// 1. 사번이 일치하는 사원이 있는지, 있다면 이미 퇴직한 사원인지 화인하는 서비스 호출
+			int check = service.checkEmployee(id);
+			if(check == 0) {
+				System.out.println("\n[사번이 일치하는 사원이 존재하지 않습니다]\n");
+				return;
+			} else if(check == 1) {
+				System.out.println("\n[이미 퇴직 처리된 사원입니다]\n");
+				return;
+			}
+
+			// 2. 퇴직하지 않은 사원이 존재하면 정말 퇴직처리 할 것인지 확인 후 서비스 호출
+			System.out.print("정말로 퇴직 처리 하시겠습니까?(Y/N) : ");
+			char doubleCheck = sc.next().toUpperCase().charAt(0);
+
+			if(doubleCheck == 'N') {
 				System.out.println("\n[취소되었습니다]\n");
 				return;
-			} else if(check != 'Y') {
+			} else if(doubleCheck != 'Y') {
 				System.out.println("\n[잘못입력하셨습니다]\n");
 				return;
 			}
 
-			int result = service.updateRetireById(id);
+			// 앞서 사번 존재여부를 확인했으므로 사번이 없어서 실패하는 경우는 발생하지 않는다.
+			// => 업데이트 성공 또는 예외 발생
+			service.updateRetireById(id);
+			System.out.println("\n[사원 퇴직 처리 완료]\n");
 
-			if(result == 0) System.out.println("\n[사번이 일치하는 않거나, 이미 퇴직한 사원입니다]\n");
-			else            System.out.println("\n[사원 퇴직 처리 완료]\n");
 		} catch (SQLException e) {
 			System.out.println("\n[사원 퇴직처리 중 오류 발생]\n");
 			throw new RuntimeException(e);
@@ -218,7 +240,7 @@ public class EmpView {
 	}
 
 	/**
-	 * 사번으로 사원 정보 삭제
+	 * 6. 사번으로 사원 정보 삭제
 	 */
 	private void deleteById() {
 		System.out.println("***** 사번이 일치하는 사원 조회 *****");
@@ -251,37 +273,44 @@ public class EmpView {
 	}
 
 	/**
-	 * 사원 정보 수정
+	 * 5. 사원 정보 수정
 	 */
-	private void updateById() {
+	private void updateEmpById() {
 		System.out.println("***** 사원 정보 수정 *****");
 
 		System.out.print("수정하려는 사원의 사번 입력 : ");
 		int id = sc.nextInt(); sc.nextLine();
 
-		System.out.print("이메일 : ");
-		String email = sc.next();
-
-		System.out.print("전화번호(-제외) : ");
-		String phone = sc.next();
-
-		System.out.print("급여 : ");
-		int salary = sc.nextInt();
-
-		System.out.print("보너스 : ");
-		double bonus = sc.nextDouble();
-
-		Emp emp = new Emp();
-		emp.setEmpId(id);
-		emp.setEmail(email);
-		emp.setPhone(phone);
-		emp.setSalary(salary);
-		emp.setBonus(bonus);
-
 		try {
-			int result = service.updateById(emp);
+			// 수정될 정보를 입력받기 전 해당 사번을 가진 사원이 존재하는지 확인
+			boolean empIsExist = (service.selectOneByID(id) != null);
+			if( empIsExist ) {
+				System.out.println("\n[사번이 일치하는 사원이 없습니다.]\n");
+				return;
+			}
 
-			if(result == 0)	System.out.println("\n[사번이 일치하는 사원이 없습니다.]\n");
+			System.out.print("이메일 : ");
+			String email = sc.next();
+
+			System.out.print("전화번호(-제외) : ");
+			String phone = sc.next();
+
+			System.out.print("급여 : ");
+			int salary = sc.nextInt();
+
+			System.out.print("보너스 : ");
+			double bonus = sc.nextDouble();
+
+			Emp emp = new Emp();
+			emp.setEmpId(id);
+			emp.setEmail(email);
+			emp.setPhone(phone);
+			emp.setSalary(salary);
+			emp.setBonus(bonus);
+
+			int result = service.updateEmpById(emp);
+
+			if(result == 0)	System.out.println("\n[사원 수정 실패...]\n");
 			else 			System.out.println("\n[사원 수정 완료]\n");
 
 		} catch (SQLException e) {

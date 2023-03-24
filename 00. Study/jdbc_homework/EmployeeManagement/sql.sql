@@ -95,3 +95,19 @@ ORDER BY 1
 
 
 ;
+
+-- 입력받은 사번을 가진 사원이 존재하지 않으면 0
+-- 사워은 있는데 퇴직처리된 사원이면 1
+-- 사원도 있고 재직중인 사원이면 2 조회
+SELECT
+	CASE 
+		WHEN (SELECT COUNT(*) FROM EMPLOYEE WHERE EMP_ID=227)=0 THEN 0
+		ELSE (SELECT DECODE(ENT_YN, 'N', 1, 'Y', 2) FROM EMPLOYEE WHERE EMP_ID=227)
+	END "CHECK"
+FROM DUAL
+
+;
+
+SELECT DECODE(ENT_YN, 'N', 1, 'Y', 2) FROM EMPLOYEE WHERE EMP_ID=221
+
+;
