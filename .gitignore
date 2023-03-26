@@ -40,3 +40,4 @@ bin/
 *.bin
 *.lock
 *.probe
+00. Study/00_tools/
