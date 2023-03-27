@@ -1,3 +1,6 @@
+# Installation Files
+00. Study/00_tools/
+
 # MAC XOS
 .DS_Store
 
@@ -20,12 +23,9 @@ HELP.md
 *.ipr
 out/
 
-<<<<<<< HEAD
-# Java Project
-=======
 # Eclipse : Java Project
->>>>>>> study/main
-.porject
+*.classpath
+*.project
 .metadata/
 bin/
 .settings/
@@ -40,4 +40,4 @@ bin/
 *.bin
 *.lock
 *.probe
-00. Study/00_tools/
+
