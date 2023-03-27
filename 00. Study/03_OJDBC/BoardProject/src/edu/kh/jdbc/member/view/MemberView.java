@@ -41,15 +41,17 @@ public class MemberView {
                 switch(input) {
                     case 1: selectMyInfo(); break;
                     case 2: selectMemberList(); break;
-                    case 3:  break;
-                    case 4:  break;
-                    case 5:  break;
+                    case 3: updateMember(); break;
+                    case 4: updatePassword(); break;
+                    case 5: 
+                    	if(unregistMember()) return; 
+                    	break;
                     case 9: System.out.println("\n=== 메인 메뉴로 돌아갑니다 ===\n"); break;
                     case 0: System.out.println("\n=== 프로그램 종료 ===\n"); System.exit(0);
                     default: System.out.println("\n*** 메뉴 번호만 입력해 주세요 ***\n");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("\n*** 입력 형식이 올바르지 않습니다. ***\n");
+                System.out.println("\n*** 입력 형식이 올바르지 않습니다 ***\n");
                 scanner.nextLine(); // 입력 버퍼에 잘못된 문자열 제거
                 input = -1; // while 종료 방지
             }
@@ -57,7 +59,121 @@ public class MemberView {
     }
 
     /**
-     * 회원 목록 조회
+     * 5. 회원 탈퇴
+     * (보안코드, 비밀번호, UPDATE)
+     */
+    private boolean unregistMember() {
+    	System.out.println("\n=== 회원 탈퇴 ===\n");
+    	
+    	System.out.print("비밀번호 입력 : ");
+		String memberPw = scanner.next();
+		
+		// 보안문자 일치여부 확인
+		String code = service.createSecurityCode();
+		System.out.println("보안문자 : " + code);
+		System.out.print("보안문자 입력 : ");
+		String inputCode = scanner.next();
+		if(!code.equals(inputCode)) {
+			System.out.println("\n*** 보안문자가 일치하지 않습니다 ***\n");
+			return false;
+		}
+		
+		// 회원 탈퇴 재확인
+		while(true) {
+			System.out.print("정말 탈퇴하시겠습니까?(Y/N) ");
+			char check = scanner.next().toUpperCase().charAt(0);
+			if(check == 'N') {
+				System.out.println("\n=== 회원 탈퇴가 취소되었습니다 ===\n");
+				return false; // 메서드 종료
+			} else if(check == 'Y') {
+				break; // 반복문 종료
+			}
+			System.out.println("\n*** 잘못 입력하셨습니다 ***\n");
+		}
+		
+		// 회원 탈퇴 서비스 호출
+		try {
+			int result = service.unregistMember(memberPw, Session.loginMember.getMemberNo());
+			if(result > 0) {
+    			System.out.println("\n=== 탈퇴되었습니다... ===\n");
+    			Session.loginMember = null; // logout
+    			return true; // 탈퇴 성공
+    		} else {
+    			System.out.println("\n*** 비밀번호가 일치하지 않습니다 ***\n");
+    		}
+		} catch(Exception e) {
+			System.out.println("\n*** 회원 탈퇴 중 예외 발생 ***\n");
+            e.getStackTrace();
+		}
+		
+		return false; // 탈퇴 실패
+    }
+
+	/**
+     * 4. 비밀번호 변경
+     *  - 입력 : 현재 비밀번호, 새 비밀번호, 새 비밀번호 확인
+     */
+    private void updatePassword() {
+    	System.out.println("\n=== 비밀번호 변경 ===\n");
+
+    	System.out.print("현재 비밀번호 입력 : ");
+		String curPassword = scanner.next();
+    	String newPassword = null;
+    	while(true) {
+    		System.out.print("새 비밀번호 입력 : ");
+    		newPassword = scanner.next();
+    		System.out.print("새 비밀번호 입력 확인 : ");
+    		String pwConfirm = scanner.next();
+    		if(newPassword.equals(pwConfirm)) break;
+    		System.out.println("\n*** 비밀번호가 일치하지 않습니다  ***\n");
+    	}
+    	try {
+    		int result = service.updatePassword(curPassword, newPassword, Session.loginMember.getMemberNo());
+    		if(result > 0) {
+    			System.out.println("\n=== 비밀번호가 변경되었습니다 ===\n");	
+    		} else {
+    			System.out.println("\n*** 비밀번호 변경 실패 ***\n");
+    		}
+    	} catch(Exception e) {
+    		System.out.println("\n*** 비밀번호 변경 중 예외 발생 ***\n");
+            e.printStackTrace();
+    	}
+	}
+
+	/**
+     * 3. 회원 정보 수정(이름, 성별)
+     */
+    private void updateMember() {
+    	System.out.println("\n=== 회원 정보 수정 ===\n");
+    	try {
+    		System.out.print("수정할 이름 : ");
+    		String memberName = scanner.next();
+    		String memberGender = null;
+    		while(true) {
+	    		System.out.print("수정할 성별(M/F) : ");
+	    		memberGender = scanner.next().toUpperCase();
+	    		if(memberGender.equals("M") || memberGender.equals("F")) break;
+	    		System.out.println("\n*** M 또는 F만 입력해 주세요 ***\n");
+    		}
+    		
+    		int result = service.updateMember(memberName, memberGender, Session.loginMember.getMemberNo());
+    		if(result > 0) {
+    			System.out.println("\n=== 수정되었습니다 ===\n");
+    			
+    			// DB와 Java프로그램 데이터 동기화
+    			Session.loginMember.setMemberName(memberName);
+    			Session.loginMember.setMemberGender(memberGender);
+    		} else {
+    			System.out.println("\n*** 수정 실패 ***\n");
+    		}
+    	} catch(Exception e) {
+    		System.out.println("\n*** 회원 정보 수정 중 예외 발생 ***\n");
+            e.printStackTrace();
+    	}
+	}
+
+	/**
+     * 2. 회원 목록 조회
      */
     private void selectMemberList() {
         System.out.println("\n=== 회원 목록 조회 ===\n");
@@ -81,7 +197,7 @@ public class MemberView {
     }
 
     /**
-     * 내 정보 조회
+     * 1. 내 정보 조회
      * 회원번호, 아이디, 이름, 성별(남/여), 가입일
      */
     private void selectMyInfo() {
