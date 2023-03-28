@@ -1,5 +1,6 @@
 package edu.kh.jdbc.main.view;
 
+import edu.kh.jdbc.board.view.BoardView;
 import edu.kh.jdbc.common.Session;
 import edu.kh.jdbc.main.model.service.MainService;
 import edu.kh.jdbc.member.model.dto.Member;
@@ -13,8 +14,8 @@ public class MainView {
     private Scanner scanner = new Scanner(System.in);
     private MainService service = new MainService();
 
-    // 회원 기능 화면 객체 생성
-    private MemberView memberView = new MemberView();
+    private MemberView memberView = new MemberView(); // 회원 기능 화면 객체 생성
+    private BoardView boardView = new BoardView(); // 게시판 기능 화면 객체 생성
 
     /**
      * 메인 메뉴 출력
@@ -58,7 +59,7 @@ public class MainView {
                     // 메뉴 선택에 따른 메서드 호출
                     switch (input) {
                         case 1: memberView.memberMenu(); break;
-                        case 2: /*boardView.boardMenu();*/ break;
+                        case 2: boardView.boardMenu(); break;
                         case 3:
                             System.out.println("\n=== 로그아웃 되었습니다 ===\n");
                             Session.loginMember = null; // 참조 중이던 로그인 회원 객체 제거

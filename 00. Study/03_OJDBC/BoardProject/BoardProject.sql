@@ -185,3 +185,62 @@ SELECT * FROM "MEMBER"
 ;
 
 COMMIT;
+
+-------------------------------------------------------------------------------------------------
+
+-- 게시글 목록 조회
+-- 게시글 번호, 제목, 작성자, 작성일, 조회수
+-- 최신 게시글이 위쪽으로 오도록 정렬
+SELECT BOARD_NO, BOARD_TITLE, MEMBER_NO, MEMBER_NM, CREATE_DT, READ_COUNT,
+	(SELECT COUNT(*) FROM "COMMENT" C WHERE B.BOARD_NO = C.BOARD_NO AND DELETE_FL = 'N') COMMENT_COUNT
+FROM "BOARD" B JOIN "MEMBER" USING(MEMBER_NO)
+WHERE BOARD_NO != 0 AND DELETE_FL = 'N'-- INDEX를 사용하기 위해 추가
+ORDER BY BOARD_NO DESC -- 날짜로 정렬하는 것 보다 INDEX로 정렬하는 게 더 빠름
+
+; 
+
+-- 게시글 상세 조회
+SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, MEMBER_NO, MEMBER_NM, READ_COUNT, CREATE_DT
+FROM "BOARD" JOIN "MEMBER" USING(MEMBER_NO)
+WHERE BOARD_NO = ? AND DELETE_FL = 'N'
+
+;
+
+-- 조회수 증가
+UPDATE BOARD
+SET READ_COUNT = READ_COUNT + 1
+WHERE BOARD_NO = ?
+
+;
+
+-- 게시글 수정
+UPDATE BOARD
+SET    BOARD_TITLE = ?,
+	   BOARD_CONTENT = ?
+WHERE  BOARD_NO =?
+
+;
+
+SELECT * FROM board;
+
+;
+
+-- 게시글 삽입
+INSERT INTO "BOARD"
+VALUES(SEQ_BOARD_NO.NEXTVAL, ?, ?, DEFAULT, DEFAULT, DEFAULT, ?)
+
+;
+
+-- 다음 시퀀스 번호 생성 -> 게시글 삽입2
+SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
+
+;
+
+-- 게시글 삽입2
+INSERT INTO "BOARD"
+VALUES(?, ?, ?, DEFAULT, DEFAULT, DEFAULT, ?)
+
+;
+
+COMMIT;
+

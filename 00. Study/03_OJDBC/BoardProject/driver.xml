@@ -6,7 +6,8 @@
 	<entry key="driver">oracle.jdbc.driver.OracleDriver</entry>
 	
 	<!-- 각자 컴퓨터에 설치된 DB(19c) -->
-	<entry key="url">jdbc:oracle:thin:@localhost:1521:ORCL</entry>
+<!--	<entry key="url">jdbc:oracle:thin:@localhost:1521:ORCL</entry>-->
+	<entry key="url">jdbc:oracle:thin:@localhost:1521:XE</entry>
 	
 	<!-- 각자 컴퓨터에 설치된 DB(18c) -->
 	<!-- <entry key="url">jdbc:oracle:thin:@localhost:1521:XE</entry> -->
