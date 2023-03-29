@@ -1,6 +1,7 @@
 package edu.kh.jdbc.board.view;
 
 import edu.kh.jdbc.board.model.dto.Board;
+import edu.kh.jdbc.board.model.dto.Comment;
 import edu.kh.jdbc.board.model.service.BoardService;
 import edu.kh.jdbc.common.Session;
 
@@ -11,6 +12,7 @@ import java.util.Scanner;
 public class BoardView {
 
     private BoardService service = new BoardService();
+    private CommentView commentView = new CommentView(); // 댓글 화면 출력 객체
 
     private Scanner sc = new Scanner(System.in);
 
@@ -129,6 +131,7 @@ public class BoardView {
                 System.out.println("\n=== 해당하는 게시글이 존재하지 않습니다 ===\n");
                 return;
             }
+        
             System.out.println("--------------------------------------------------------");
             System.out.printf("글번호 : %d \n제목 : %s\n", board.getBoardNo(), board.getBoardTitle());
             System.out.printf("작성자 : %s | 작성일 : %s  \n조회수 : %d\n",
@@ -136,6 +139,26 @@ public class BoardView {
             System.out.println("--------------------------------------------------------\n");
             System.out.println(board.getBoardContent());
             System.out.println("\n--------------------------------------------------------");
+            
+            ///////////////////////////////////////////////COMMENT///////////////////////////////////////////////////
+
+            // 해당 게시글의 댓글 목록 조회
+            if(!board.getCommentList().isEmpty()) {
+	            for(Comment c : board.getCommentList()) {
+	            	System.out.printf("[댓글번호: %d]  작성자: %s  작성일: %s\n%s\n",
+	            			c.getCommentNo(), c.getMemberName(), c.getCreateDate(), c.getCommentContent());
+	            	System.out.println("--------------------------------------------------------");
+	            }
+             }
+            
+            // 댓글 메뉴 출력
+            // 1) 댓글 등록 : 누가 몇번 게시글에 작성하는가?
+            // 2) 댓글 수정 : 누가 몇번 게시글에 있는 몇번 댓글을 수정할 것인가?
+            // 3) 댓글 삭제 : 누가 몇번 게시글에 있는 몇번 댓글을 삭제할 것인가?
+            // * 해당 게시글에 있는 댓글만 수정/삭제 가능
+            commentView.commentMenu(input); // input - 게시글 번호
+            
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
             // 로그인한 회원이 작성한 게시글일 경우
             // 게시글 수정/삭제 기능 노출

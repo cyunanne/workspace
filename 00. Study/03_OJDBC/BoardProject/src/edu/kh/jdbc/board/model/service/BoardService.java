@@ -3,7 +3,9 @@ package edu.kh.jdbc.board.model.service;
 import static edu.kh.jdbc.common.JDBCTemplate.*;
 
 import edu.kh.jdbc.board.model.dao.BoardDAO;
+import edu.kh.jdbc.board.model.dao.CommentDAO;
 import edu.kh.jdbc.board.model.dto.Board;
+import edu.kh.jdbc.board.model.dto.Comment;
 
 import java.sql.Connection;
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
 // 데이터 가공, 트랜잭션 처리
 public class BoardService {
     private BoardDAO dao = new BoardDAO();
+    private CommentDAO commentDao = new CommentDAO();
 
     /**
      * 게시글 목록 조회 서비스
@@ -29,6 +32,10 @@ public class BoardService {
         Board board = dao.selectBoard(conn, input);
         // 게시글이 조회된 경우
         if( board != null ) {
+        	// 해당 게시글에 대한 댓글 목록 조회 DAO 메서드 호출
+        	List<Comment> CommentList = commentDao.selectCommentList(conn, input);
+        	board.setCommentList(CommentList); // board에 댓글 목록 세팅
+        	
             // 조회수 증가 DAO 메서드 호출(작성자가 아닌 경우만)
             if( board.getMemberNo() != memberNo ) {
                int result = dao.updateReadCount(conn, input);
