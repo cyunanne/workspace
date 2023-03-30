@@ -276,11 +276,9 @@ UPDATE "COMMENT"
 SET     COMMENT_CONTENT = ?
 WHERE   COMMENT_NO = ?
 
+;
 
-
-
-
-
+ROLLBACK;
 
 
 
