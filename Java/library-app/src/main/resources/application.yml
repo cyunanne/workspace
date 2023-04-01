@@ -27,7 +27,7 @@ spring:
     activate:
       on-profile: dev # 아래 옵션은 dev profile 에서 적용
   datasource:
-    url: "jdbc:mysql://43.201.71.63/library"
+    url: "jdbc:mysql://localhost/library"
     username: "root"
     password: "Abcd1234!" # windows
     #password: "" # mac
