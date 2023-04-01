@@ -6,7 +6,6 @@
 
 # Spring Project
 .gradle/
-gradle/
 build/
 **/src/main/**/build/
 **/src/test/**/build/
