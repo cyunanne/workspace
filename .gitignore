@@ -1,7 +1,10 @@
-# Installation Files
+### Installation Files ###
 00. Study/00_tools/
 
-# MAC XOS
+### VS Code ###
+.vscode/
+
+### Mac OS ###
 .DS_Store
 
 # Spring Project
@@ -12,7 +15,10 @@ build/
 **/src/main/**/bin/
 **/src/test/**/bin/
 
-# IntelliJ
+### IntelliJ IDEA ###
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
 HELP.md
 .idea/
 /shelf/
@@ -20,14 +26,28 @@ HELP.md
 *.iws
 *.iml
 *.ipr
-out/
 
-# Eclipse : Java Project
-*.classpath
-*.project
-.metadata/
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.metadata
+.project
+.settings
+.springBeans
+.sts4-cache
 bin/
-.settings/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### 그 외 ###
 *.class
 *.war
 *.nar
@@ -39,4 +59,3 @@ bin/
 *.bin
 *.lock
 *.probe
-
