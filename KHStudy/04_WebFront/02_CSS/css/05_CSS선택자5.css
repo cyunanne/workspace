@@ -1,0 +1,22 @@
+/* :only-child */
+/* #test1의 자식으로 p태그 혼자만 있을 때 선택 */
+#test1 > p:only-child { background-color: steelblue; }
+
+/* :only-of-type */
+/* #test2의 p태그 자식 요소가 하나밖에 없을 때 선택 */
+#test2 > p:only-of-type { background-color: deeppink; }
+
+/* :empty */
+#test3:empty { background-color: red; }
+
+/* 클래스가 여러개 작성된 요소(2번째)만 특정해서 선택 */
+.test4.cls4 { background-color: orange; }
+
+/* #test5 자식 중 4번 선택 */
+#test5 > li:nth-child(4) { background-color: darkslateblue; }
+
+/* #test5 자식 중 4, 5번 선택 */
+#test5 > li:not(.c5) { color:red; }
+
+/* #test6 자손 중 10번 선택 */
+#test6 > li:last-of-type > span { background-color: darkgreen; }
