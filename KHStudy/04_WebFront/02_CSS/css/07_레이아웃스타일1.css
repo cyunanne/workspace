@@ -1,0 +1,76 @@
+* { line-height: 180%; }
+
+.area1 { background-color: red; }
+.area2 { background-color: orange; }
+.area3 { background-color: yellow; }
+.area4 { background-color: green; }
+.area5 { background-color: blue; }
+
+.block { 
+    border: 1px solid black; 
+    width: 100px; 
+    height: 100px; 
+    color: white; 
+    display: block;
+}
+
+.inline { display: inline; }
+
+.inline-block { display: inline-block; }
+
+/* 상하 2분할 */
+/* 높이만 지정했는데 옆으로 꽉 찬 이유는? block 형식이기때문 */
+.container { 
+    border: 3px solid black; 
+    width: 320px; 
+    height: 450px;
+}
+.div1-1 { height: 30%; } /* 감싸고 있는 부모 요소의 높이의 30% */
+.div1-2 { height: 70%; } /* 감싸고 있는 부모 요소의 높이의 70% */
+
+/* 상하 3분할 */
+.container-2 { 
+    border: 3px solid black; 
+    width: 500px; 
+    height: 300px;
+}
+.div2-1 { height: 15%; }
+.div2-2 { height: 35%; }
+.div2-3 { height: 50%; }
+
+/* 좌우 2분할 */
+.container-3 {
+    border: 5px solid red;
+    width: 400px;
+    height: 200px;
+}
+.container-3 > div {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+}
+.container-3 > div:first-child { background-color: cornflowerblue; }
+.container-3 > div:last-child { background-color: pink; }
+
+/* 상하좌우 4분할 */
+.container-4 {
+    border: 3px solid black;
+    width: 300px;
+    height: 300px;
+}
+.container-4 > div {
+    /* width: 100%; */ /* 블럭형식 요소이므로 생략가능 */
+    height: 50%;
+}
+.container-4 > div > div {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+}
+.container-4 > div:first-child > div:first-child { background-color: #ff928b; }
+.container-4 > div:first-child > div:last-child { background-color: #fec3a6; }
+.container-4 > div:last-child > div:first-child { background-color: #efe9ae; }
+.container-4 > div:last-child > div:last-child { background-color: #cdeac0; }
+
+/* dispaly: none 테스트 */
+.none-test { display: none; }

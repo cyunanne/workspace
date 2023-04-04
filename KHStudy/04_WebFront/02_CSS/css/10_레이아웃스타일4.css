@@ -1,0 +1,69 @@
+pre { line-height: 180%; }
+
+div {
+    border: 1px solid black;
+
+    /* width/height 값이 content + padding + border의 합과 같도록 content 값을 조정 */
+    box-sizing: border-box;
+}
+
+.test {
+    width: 300px;
+    height: 200px;
+    background-color: #dde5b6;
+}
+
+.float-left {
+    width: 50px;
+    height: 50px;
+    background-color: rgb(0, 54, 0);
+    color: white;
+    float: left;
+}
+.clear-left {
+    /* 띄워서 왼쪽 정렬 하는 상태를 해제 */
+    clear: left;
+    background-color:fuchsia;
+}
+
+.float-right {
+    width: 30px;
+    height: 30px;
+    background-color: yellow;
+    float: right;
+}
+.clear-right {
+    clear: right;
+    background-color:fuchsia;
+}
+
+.clear-both {
+    clear: both;
+    background-color: blue;
+    color: white;
+}
+
+/* 화면분할 */
+.container-1 {
+    width: 400px;
+    height: 200px;
+}
+
+.bg1 { background-color: #ae2012 ; }
+.bg2 { background-color: #ca6702 ; }
+.bg3 { background-color: #ee9b00 ; }
+.bg4 { background-color: #e9d8a6 ; }
+.bg5 { background-color: #94d2bd ; }
+.bg6 { background-color: #0a9396 ; }
+.bg7 { background-color: #005f73 ; }
+
+.col {
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.row {
+    width: 100%;
+    height: 50%;
+}
