@@ -1,47 +1,58 @@
-*, body, button, html, input, select, textarea {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+@font-face {
+    font-family: 'NotoSansKR';
+    src: url('fonts/NotoSansKR-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+} 
+
+* { font-family: 'NotoSansKR'; }
+
+body {
+    background-color:#1f2227;
+    margin: 0;
 }
 
-body { background-color:#1f2227; }
-
-frame { height: 100%; }
+#mainFrame {
+    display: flex;
+    flex-direction: column;
+}
 
 header {
-    height: 60px;
-    box-shadow: 0 0 5px rgba(26,29,33,0);
     background: #1a1d21;
-    z-index: 100;
-    width: 100%;
-    display: block;
-    position: fixed;
-    float: left;
+    box-sizing: border-box;
+    height: 60px;
     display: flex;
+    align-items: center;
+    padding: 20px;
+}
+header > .title {
+    padding: 0 5px;
+    font-weight: 900;
+    color: palevioletred;
+    letter-spacing: 1.5px;
+}
+header > .title-description {
+    color: #808080;
+    font-size: 8pt;
+    transform: translateY(2px);
 }
 #home-icon {
     width: 35px;
     height: 35px;
-    padding-right: 12.5px;
-    align-items: center;
 }
 
 main {
-    position: relative;
-    float:left;
     top: 60px;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 210px 1fr;
-    grid-template-areas: "sidebar content";
+    display: flex;
 }
 
 #sidebar {
-    grid-area: sidebar;
     width: 210px;
     height: 100%;
     border-right: 1px solid #2c2f34;
-    position: fixed;
+    /*position: fixed;*/
     padding-top: 50px;
+    flex-shrink: 0;
 }
 .sidebarItem {
     width: 100%;
@@ -75,7 +86,29 @@ main {
 }
 
 #content {
-    grid-area: content;
-    position: relative;
-    display: block;
+    background-color: whitesmoke;
+    left:210px;
+    width: 800px;
+    padding: 30px;
+}
+
+input {
+    border-radius: 5px;
+    width: 400px;
+    padding: 5px;
+    margin: 5px;
+    border: 0px solid #808080;
+}
+input::-webkit-inner-spin-button {
+    appearance: none;
+}
+
+hr {
+    border: 0.3px dashed #808080;
+}
+
+.estimate-details {
+    width: 600px;
+    border: 1px solid #1a1d21;
+    text-align: center;
 }

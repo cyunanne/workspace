@@ -7,24 +7,25 @@
     <link rel="stylesheet" href="index-dark.css">
 </head>
 <body>
-    <form id="show-result" method="post" action="https://fiddle.jshell.net/_display/?editor_console=true">
+
+    <div id="mainFrame">
         <header>
             <a href="index.html">
                 <img id="home-icon" src="images/home.png" alt="home">
             </a>
+            <span class="title">EMS</span>
+            <sapn class="title-description">Estimate Management System</sapn>
         </header>
-        <main id="layout-container">
+        <main>
             <div id="sidebar">
-                <div class="sidebarItem"><p>견적서 신규 작성</p></div>
+                <a href="newEstimate.html"><div class="sidebarItem"><p>견적서 신규 작성</p></div></a>
                 <div class="sidebarItem"><p>기존 견적 검색</p></div>
                 <div class="sidebarItem"><p>고객사 정보</p></div>
                 <div class="sidebarItem"><p>매입/매출</p></div>
                 <div class="sidebarItem"><p>통계</p></div>
             </div>
-            <div id="content">
-
-            </div>
+            <div id="content"></div>
         </main>
-    </form>
+    </div>
 </body>
 </html>
