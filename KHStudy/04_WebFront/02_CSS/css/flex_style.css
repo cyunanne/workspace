@@ -1,0 +1,40 @@
+/* flex 에제에서 공통으로 사용할 스타일 지정 */
+div {
+    border: 1px solid black;
+    box-sizing: border-box;
+    /* content + padding + border = width/height (content 크기 조절) */
+}
+
+@font-face {
+    font-family: 'dove';
+    src: url('../../fonts/Dovemayo_gothic.ttf');
+    font-weight: normal;
+    font-style: normal;
+} 
+pre {
+    font-size: 1rem;
+    font-family: 'dove';
+    line-height: 180%;
+}
+pre > b {
+    font-size: 1.5em;
+    color: red;
+}
+pre > i {
+    font-size: 1.5em;
+}
+
+.item {
+    width: 75px;
+    height: 75px;
+}
+
+.item1 { background-color: red; }
+.item2 { background-color: orangered; }
+.item3 { background-color: orange; }
+.item4 { background-color: yellow; }
+.item5 { background-color: yellowgreen; }
+.item6 { background-color: green; }
+.item7 { background-color: darkcyan; }
+.item8 { background-color: blue; }
+.item9 { background-color: purple; }

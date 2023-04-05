@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'Dovemayo_gothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+pre { line-height: 180%; }
+
+/* color 속성 */
+#colorList > li {
+    font-size: 24px;
+    font-weight: bold; 
+}
+#colorList > li:nth-child(1) { color: red; }
+#colorList > li:nth-child(2) { color: rgb(107, 107, 255); }
+#colorList > li:nth-child(3) { color: rgba(0, 0, 255, 0.3); }
+#colorList > li:nth-child(4) { color: #DD5; }
+#colorList > li:nth-child(5) { color: #34fd53; }
+#colorList > li:nth-child(6) { color: hsl(189, 40%, 70%); }
+#colorList > li:nth-child(7) { color: hsla(63, 70%, 30%, 0.8); }
+
+/* text-decoration */
+#decorationList > li:nth-child(1) { text-decoration: overline; }
+#decorationList > li:nth-child(2) { text-decoration: line-through; }
+#decorationList > li:nth-child(3) { text-decoration: underline; }
+#decorationList > li:nth-child(4) > a { text-decoration: none; }
+
+/* text-align */
+#alignTest > p:nth-child(1) { text-align: left; }
+#alignTest > p:nth-child(2) { text-align: right; }
+#alignTest > p:nth-child(3) { text-align: center; }
+#alignTest > p:nth-child(4) { text-align: justify; }
+
+/* line-height */
+#lineHeight { line-height: 30px;}
+
+/* letter-spacing */
+#letterSpacing { letter-spacing: -1px; }
+
+/* font-family */
+#fontFamily > li:nth-child(1) { font-family: '궁서'; }
+#fontFamily > li:nth-child(2) { font-family: '궁서체'; }
+#fontFamily > li:nth-child(3) { font-family: '머시기체', 'Noto Sans KR'; }
+#fontFamily > li:nth-child(4) { font-family: 'Song Myung', serif; font-size: 20pt;}
+#fontFamily > li:nth-child(5) { font-family: 'Dovemayo_gothic'; }
+/* 다운받은 폰트 적용 */
+@font-face {
+    font-family: 'Jamsil';
+    src: url('../../fonts/The\ Jamsil\ 3\ Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+} 
+#fontFamily > li:nth-child(6) { font-family: 'Jamsil'; }
