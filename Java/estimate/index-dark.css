@@ -8,7 +8,8 @@
 * { font-family: 'NotoSansKR'; }
 
 body {
-    background-color:#1f2227;
+    background-color: whitesmoke;
+    /* background-color:#1f2227; */
     margin: 0;
 }
 
@@ -49,7 +50,7 @@ main {
 #sidebar {
     width: 210px;
     height: 100%;
-    border-right: 1px solid #2c2f34;
+    border-right: 1px solid #b0b0b0;
     /*position: fixed;*/
     padding-top: 50px;
     flex-shrink: 0;
@@ -64,7 +65,8 @@ main {
     cursor: pointer;
     display: block;
     text-decoration: none;
-    color: #cfd0d1;
+    /* color: #cfd0d1; */
+    color: #1a1d21;
     font-size: 18px;
     display: inline-block;
 
@@ -86,10 +88,9 @@ main {
 }
 
 #content {
-    background-color: whitesmoke;
     left:210px;
     width: 800px;
-    padding: 30px;
+    padding: 50px 0 0 100px;
 }
 
 input {
@@ -98,6 +99,9 @@ input {
     padding: 5px;
     margin: 5px;
     border: 0px solid #808080;
+}
+input:focus {
+    border: 0px;
 }
 input::-webkit-inner-spin-button {
     appearance: none;
@@ -108,7 +112,7 @@ hr {
 }
 
 .estimate-details {
-    width: 600px;
+    width: 800px;
     border: 1px solid #1a1d21;
     text-align: center;
 }
