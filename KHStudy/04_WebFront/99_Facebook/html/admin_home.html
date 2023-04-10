@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 기능</title>
     <link rel="stylesheet" href="../css/admin.css">
-    <script src="https://kit.fontawesome.com/9c2aaccfe5.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>상단바</header>
@@ -14,50 +13,172 @@
             <h1>관리자 기능</h1>
             <ul>
                 <li>
-                    <div class="img-menu-set">
-                        <img src="../images/user-deafult.png" alt="회원 검색">
+                    <a href="admin_home.html">
+                        <img src="../images/user-deafult.png" alt="홈">
                         <span>홈</span>
-                    </div>
+                    </a>
                 </li>
                 <li>
-                    <div class="img-menu-set">
+                    <a href="search_users.html">
                         <img src="../images/user-deafult.png" alt="회원 검색">
                         <span>회원 검색</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-right more-icon"></i>
+                    </a>
                 </li>
                 <li>
-                    <div class="img-menu-set">
-                        <img src="../images/user-deafult.png" alt="회원 검색">
+                    <a href="reported_users.html">
+                        <img src="../images/user-deafult.png" alt="신고된 회원">
                         <span>신고된 회원</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-right more-icon"></i>
+                    </a>
                 <li>
-                    <div class="img-menu-set">
-                        <img src="../images/user-deafult.png" alt="회원 검색">
+                    <a href="reported_posts.html">
+                        <img src="../images/user-deafult.png" alt="신고된 게시글">
                         <span>신고된 게시글</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-right more-icon"></i>
+                    </a>
                 </li>
                 <li>
-                    <div class="img-menu-set">
-                        <img src="../images/user-deafult.png" alt="회원 검색">
+                    <a href="reported_comments.html">
+                        <img src="../images/user-deafult.png" alt="신고된 댓글">
                         <span>신고된 댓글</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-right more-icon"></i>
+                    </a>
                 </li>
                 <li>
-                    <div class="img-menu-set">
-                        <img src="../images/user-deafult.png" alt="회원 검색">
+                    <a href="user_feedback.html">
+                        <img src="../images/user-deafult.png" alt="회원 의견 확인">
                         <span>회원 의견 확인</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-right more-icon"></i>
+                    </a>
                 </li>
             </ul>
         </section>
         <section class="contents">
-            콘텐츠 내용
-            <footer>개인정보처리방침  · 약관  · 광고  · AdChoices   · 쿠키  ·   · Meta © 2023</footer>
+            <h3>확인 요청 사항</h3>
+            <section class="missed">
+                <p>유저 신고   : <span class="number">8</span> 건</p>
+                <p>게시글 신고 : <span class="number">92</span> 건</p>
+                <p>댓글 신고   : <span class="number">883</span> 건</p>
+                <p>미확인 의견 : <span class="number">8</span> 건</p>
+            </section>
+
+            <h3>신고 현황</h3>
+            <section class="report summary">
+                <div class="recent-reports">
+                    <div class="recent">
+                        <p class="title">최근 신고된 유저</p>
+                        <div class="recent-list">
+                            <div>
+                                <span class="number">1</span>
+                                <a href="#">user01 : 테스트로 신고 해 보았음</a>
+                            </div>
+                            <div class="date">23.04.10.15:54</div>
+                        </div>
+                        <div class="recent-list">
+                            <span class="number">2</span>
+                            <a href="#">신고내용</a>
+                            <sapn class="date">23.04.10.15:54</sapn>
+                        </div>
+                        <div class="recent-list">
+                            <span class="number">3</span>
+                            <a href="#">신고내용</a>
+                            <sapn class="date">23.04.10.15:54</sapn>
+                        </div>
+                        <div class="recent-list">
+                            <span class="number">4</span>
+                            <a href="#">신고내용</a>
+                            <sapn class="date">23.04.10.15:54</sapn>
+                        </div>
+                        <div class="recent-list">
+                            <span class="number">5</span>
+                            <a href="#">신고내용</a>
+                            <sapn class="date">23.04.10.15:54</sapn>
+                        </div>
+                    </div>
+                    <div class="recent">
+                        <p class="title">최근 신고된 게시글</p>
+                        <div class="recent-list">
+                            <span class="number">1</span>
+                            <a href="#">신고된 게시글 제목</a>
+                            <sapn class="date">23.04.10.15:54</sapn>
+                        </div>
+                        <div class="recent-list">
+                            <span class="number">2</span>
+                            <a href="#">신고내용</a>
+                            <sapn class="date">23.04.10.15:54</sapn>
+                        </div>
+                        <div class="recent-list">
+                            <span class="number">3</span>
+                            <a href="#">신고내용</a>
+                            <sapn class="date">23.04.10.15:54</sapn>
+                        </div>
+                        <div class="recent-list">
+                            <span class="number">4</span>
+                            <a href="#">신고내용</a>
+                            <sapn class="date">23.04.10.15:54</sapn>
+                        </div>
+                        <div class="recent-list">
+                            <span class="number">5</span>
+                            <a href="#">신고내용</a>
+                            <sapn class="date">23.04.10.15:54</sapn>
+                        </div>
+                    </div>
+                    <div class="recent">
+                        <p class="title">최근 신고된 댓글</p>
+                        <div class="recent-list">
+                            <span class="number">1</span>
+                            <a href="#">신고된 댓글 내용</a>
+                            <sapn class="date">23.04.10.15:54</sapn>
+                        </div>
+                        <div class="recent-list">
+                            <span class="number">2</span>
+                            <a href="#">신고내용</a>
+                            <sapn class="date">23.04.10.15:54</sapn>
+                        </div>
+                        <div class="recent-list">
+                            <span class="number">3</span>
+                            <a href="#">신고내용</a>
+                            <sapn class="date">23.04.10.15:54</sapn>
+                        </div>
+                        <div class="recent-list">
+                            <span class="number">4</span>
+                            <a href="#">신고내용</a>
+                            <sapn class="date">23.04.10.15:54</sapn>
+                        </div>
+                        <div class="recent-list">
+                            <span class="number">5</span>
+                            <a href="#">신고내용</a>
+                            <sapn class="date">23.04.10.15:54</sapn>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <h3>회원 의견 현황</h3>
+            <section class="feedback summary">
+                <div class="recent-list">
+                    <span class="number">1</span>
+                    <a href="#">의견내용</a>
+                    <sapn class="date">23.04.10.15:54</sapn>
+                </div>
+                <div class="recent-list">
+                    <span class="number">2</span>
+                    <a href="#">의견내용</a>
+                    <sapn class="date">23.04.10.15:54</sapn>
+                </div>
+                <div class="recent-list">
+                    <span class="number">3</span>
+                    <a href="#">의견내용</a>
+                    <sapn class="date">23.04.10.15:54</sapn>
+                </div>
+                <div class="recent-list">
+                    <span class="number">4</span>
+                    <a href="#">의견내용</a>
+                    <sapn class="date">23.04.10.15:54</sapn>
+                </div>
+                <div class="recent-list">
+                    <span class="number">5</span>
+                    <a href="#">의견내용</a>
+                    <sapn class="date">23.04.10.15:54</sapn>
+                </div>
+            </section>
+            <!-- <footer>footer</footer> -->
         </section>
     </main>
 </body>
