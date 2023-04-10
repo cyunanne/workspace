@@ -28,6 +28,7 @@ main {
 
 .sidebar {
     flex: 0 0 360px;
+    height: 100%;
     background-color: white;
     box-shadow: 0px 0px 3.5px #bdbebd;
     padding : 10px;
@@ -127,20 +128,12 @@ main {
 .recent-list > div {
     display: flex;
     justify-content: center;
-    max-height: 30px;
-    
 }
 .recent-list > div > a {
     text-decoration: none;
     margin-left: 15px;
     color: black;
-    max-width: 250px;
-    /* 말줄임표 어떻게하쥐... */
-    /* overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    display: inline-block; */
-    
+    height: 30;
 } 
 .recent-list > div > a:hover {
     /* background-color: #eee;
