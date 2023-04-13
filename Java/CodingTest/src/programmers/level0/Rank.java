@@ -35,13 +35,13 @@ public class Rank {
             
             answer[i] = 1;
             for(int j=0; j<i; j++) {
-            	if(sum[j] > sum[i]) {
-            		answer[i]++;
-            	} else if(sum[j] < sum[i]) {
-            		answer[j]++;
+				if(sum[j] > sum[i]) {
+					answer[i]++;
+				} else if(sum[j] < sum[i]) {
+					answer[j]++;
             	} else { // sum[j] == sum[i]
-            		answer[i] = answer[j];
-            	}
+					answer[i] = answer[j];
+				}
             }
         }
         return answer;
