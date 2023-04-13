@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08_윈도우 내장 객체</title>
+    <link rel="stylesheet" href="../css/08_윈도우내장객체.css">
+</head>
+<h1ㅗ1>
+    
+    <h1>window 객체</h1>
+    <pre>
+        - 브라우저 창 자체를 나타내는 객체
+        - window 객체는 자바스크립트의 최사우이 객체이며 DOM, BOM으로 분류된다.
+
+        DOM(Document Object Medel) : 
+        BOM(Browser object Model) : location, history, screen, navigator, ...)
+        
+
+        -> window가 가지고있는 함수들은 창 자체에 종속되서 동작하기 때문에 
+            window 객체를 생략하고 호출할 수 있다.
+    </pre>
+
+    <hr>
+
+    <h3>window.setTimeout(함수, 지연시간(ms))</h3>
+    <pre>
+        지연시간이 지난 후 함수를 수행하는 widnow 내장 함수
+    </pre>
+
+    <button id="testBtn">setTimeout() 확인하기</button>
+
+    <hr>
+
+    <h3>window.setInterval(함수, 지연시간(ms))</h3>
+    <pre>
+        지연시간이 지날 때마다 함수를 수행하는 widnow 내장 함수
+    </pre>
+
+    <h4>현재 페이지가 로딩된지 몇 초가 지났을까?</h4>
+    <div id="loadingTime">0</div>
+    
+    <hr>
+    <h3>현재 시간</h3>
+    <div id="clock"></div>
+
+    <hr>
+
+    <h3>window.clearinterval(setInterval이 저장된 변수)</h3>
+    <pre>
+        매개변수로 전달받은 setInterval을 지우는 함수
+    </pre>
+
+    <button id="stop"> stop </button>
+
+    <script src="../js/08_윈도우내장객체.js"></script>
+</body>
+</html>
