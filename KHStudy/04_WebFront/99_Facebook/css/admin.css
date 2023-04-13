@@ -109,6 +109,11 @@ main {
     /* height: 250px; */
     border-radius: 5px;
     border-right: 1px solid #ddd;
+
+    overflow-x: auto;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
 }
 .recent-reports > .recent:last-child {
     border-right: none;
@@ -127,13 +132,15 @@ main {
 }
 .recent-list > div {
     display: flex;
-    justify-content: center;
 }
 .recent-list > div > a {
     text-decoration: none;
-    margin-left: 15px;
+    margin: 0 15px;
     color: black;
-    height: 30;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 } 
 .recent-list > div > a:hover {
     /* background-color: #eee;
