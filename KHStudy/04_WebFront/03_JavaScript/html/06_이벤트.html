@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06_이벤트</title>
+    <style>
+        #test3 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            background-color: aquamarine;
+            cursor: pointer;
+            transition-duration: 0.3s;
+            user-select: none;
+        }
+
+        .container { display: flex; }
+        .container, .container * { box-sizing: border-box; }
+        .container > div { width: 200px; }
+        .box {
+            width: 100%;
+            height: 200px;
+            border: 1px solid black;
+            transition-duration: 0.5s;
+        }
+        .color { width: 100%; }
+    </style>
+
+    <!-- 
+        head 태그에 script 태그를 작성하는 경우
+        
+        - body 태그가 해석되면서 화면이 출력될 때 실시간으로 js 코드가 필요한 경우
+        - API 인증키 발급이 필요한 경우
+
+        * 주의사항 *
+        head 태그는 문서 정의를 작성하는 태그로 html 렌더링(로딩) 시 가장 먼저 해석된다.
+        이 때 js 파일의 크기가 큰 경우 다운로드가 완료될 때 까지 body 태그가 해석되지 않아
+        최초 로딩 시 빈 화면이 출력되는 현상이 나타난다.
+    -->
+    <!-- <script src="../js/06_이벤트.js"></script> -->
+</head>
+<body>
+    <h1>이벤트(Event)</h1>
+    <pre>
+        ## 이벤트란?
+
+        | 사전적 의미     | 동작, 행위, 사건, ...              |
+        | HTML에서의 의미 | HTML 화면에서 할 수 있는 모든 행동 |
+
+        > ex. click, mouseover, mouseout, keydown, keypress, keyup, change, submit, drag, ...<br>
+        > [이벤트 종류 참고]("https://www.w3schools.com/jsref/dom_obj_event.asp")
+
+        ### 이벤트리스너(EventListener)
+        - HTML 문서에서 이벤트의 발생을 감지
+        - 이벤트가 감지되면 연결된 기능(함수)을 수행
+        - 이벤트명 앞에 on을 붙여서 표기
+        > ex. onclick, onkeyup, onkeydown, onsubmit, ...
+
+        ### 이벤트핸들러(EventHandler)
+        - 이벤트리스너에 연결된 기능(함수)
+        - 이벤트가 발생했을 때 어떤 일을 처리할 것인가를 정의
+    </pre>
+
+    <hr>
+
+    <h1>인라인 이벤트 모델</h1>
+    <pre>
+        ## 인라인 이벤트 모델
+
+        ### 요소 내부에 이벤트(리스너+핸들러)를 작성하는 방법
+        `on이벤트명 = 함수명()`
+        이벤트리스너 = 이벤트핸들러
+    </pre>  
+
+    <!-- this : 이벤트가 발생한 요소 -->
+    <button onclick="test1(this)">인라인 이벤트 모델 확인</button>
+
+    <hr>
+
+    <h1>고전 이벤트 모델</h1>
+    <pre>
+        ## 고전 이벤트 모델
+
+        요소가 가지고있는 속성(이벤트리스너)에 이벤트핸들러(함수)를 직접 대입해 연결하는 방법이다.
+        인라인 이벤트 모델처럼 HTML 요소에 이벤트리스너/핸들러가 포함되지 않고, JS만을 이용해서 이벤트 관련 코드를 작성한다.
+    </pre>
+
+    <button id="test2a">고전 이벤트 모델 확인</button>
+    <button id="test2b">test2a의 이벤트 동작 제거</button>
+    <button id="test2c">고전 이벤트 모델의 단점</button>
+
+    <hr>
+
+    <h1>표준 이벤트 모델(addEventListener)</h1>
+    <pre>
+        ## 표준 이벤트 모델(addEventListener)
+
+        요소가 가지고있는 이벤트 리스너를 추가하여 
+        여러 이벤트 핸들러가 동작할 수 있도록 만든 방식
+
+        W3C(웹 표준 제정 기관)에서 공식으로 지정한 이벤트 모델
+    </pre>
+
+    <div id="test3">클릭하면 크기가 늘어나요</div>
+
+    <hr>
+
+    <h3>간이 계산기(표준 이벤트 모델 만들기)</h3>
+    
+    첫 번째 값 : <input type="text" id="num1"><br>
+    두 번째 값 : <input type="text" id="num2"><br>
+    
+    <button id="add" class="op">+</button>
+    <button id="sub" class="op">-</button>
+    <button id="mul" class="op">*</button>
+    <button id="div" class="op">/</button>
+    <button id="mod" class="op">%</button>
+
+    <br><br>
+    계산결과 : <span id="result"></span>
+    
+    <hr>
+
+    <h3>이벤트 연습</h3>
+
+    <div class="container">
+        <div>
+            <div class="box"></div>
+            <input type="text" class="color">
+        </div>
+        <div>
+            <div class="box"></div>
+            <input type="text" class="color">
+        </div>
+        <div>
+            <div class="box"></div>
+            <input type="text" class="color">
+        </div>
+        <div>
+            <div class="box"></div>
+            <input type="text" class="color">
+        </div>
+        <div>
+            <div class="box"></div>
+            <input type="text" class="color">
+        </div>
+    </div>
+
+    <hr>
+
+    <h1>HTML 기본 이벤트 제거</h1>
+
+    <h3>a태그의 기본 이벤트 제거</h3>
+
+    <a href="https://www.google.com" id="moveGoogle">구글</a>
+
+    <hr>
+
+    <h3>form 태그 기본 이벤트 제거</h3>
+
+    <!-- 
+        form 태그에서 name 속성을 추가하면 js에서 해당 form 태그에 쉽게 접근할 수 있다.
+
+        form 태그 선택하는 방법
+        1) document.getElementsByName('testForm')[0]
+        2) document.querySelector('[name="testForm"]')
+        3) document.testForm *** 이게 된다는게 중요!
+    -->
+    <!-- 기본 이벤트 제거 방법(2) : onsubmit="return function()" (인라인 이벤트 모델, function은 true/false 반환) -->
+    <!-- <form action="05_4_간이계산기_만들기.html" method="get" name="testForm" onsubmit="return fnCheck();"> -->
+    <form action="05_4_간이계산기_만들기.html" method="get" name="testForm" onsubmit="return fnCheck();">
+        id : <input type="text" name="id"><br>
+        pw : <input type="password" name="pw"><br>
+        
+        <!-- 기본 이벤트 제거 방법(1) -->
+        <!-- <button type="button" id="btn">제출</button> -->
+        <button type="submit">제출</button>
+    </form>
+
+    <!-- 
+        외부 script를 추가하는 코드를 body 태그 마지막에 작성하여
+        화면과 관련된 html 코드를 우선적으로 해석 & 출력 한 후
+        기능적인 부분을 구현한 js 파일을 마지막에 다운받아
+        UX(사용자 경험) 측면에서 편의성을 제공한다.
+    -->
+    <script src="../js/06_이벤트.js"></script>
+</body>
+</html>

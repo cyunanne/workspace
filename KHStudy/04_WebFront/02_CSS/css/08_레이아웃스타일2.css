@@ -2,7 +2,7 @@
 .box {
     width: 100px;
     height: 100px;
-    /* 배경색은 content + padding 영역에 적용된다 */
+    /* 배경색은 content + padding + border 영역에 적용된다 */
     background-color: powderblue;
 }
 

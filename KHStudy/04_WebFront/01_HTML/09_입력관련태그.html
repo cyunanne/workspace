@@ -29,6 +29,14 @@
         </span>
     </pre>
 
+<!-- 
+                        action : 내부 input의 작성된 값을 제출할 경로/주소
+                        method : 어떤 방식(GET/POST)으로 제출할지 지정 
+                        - GET : input 태그 값을 주소에 담아서 제출(주소에 보임)
+                        - POST : input 태그 값을 주소에 담지 않고 제출(주소에 안보임)
+                                -> HTTP body에 담아서 제출
+                    -->
+
 
     <input type="text"> / <input>
 
@@ -298,5 +306,6 @@
         <button type="reset">초기화</button>
     </form>
 
+    <input type="submit" value="제출하기">
 </body>
 </html>

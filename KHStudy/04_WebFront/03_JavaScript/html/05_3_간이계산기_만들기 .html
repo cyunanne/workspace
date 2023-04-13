@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_3_간이계산기 만들기</title>
+</head>
+<body>
+    두 수를 입력받아 버튼에 작성된 연산을 수행하는 계산기 만들기<br>
+    <!-- 
+        if, for, while, switch, break, continue 사용 가능
+    -->
+
+    첫 번째 값 : <input type="text" id="a"><br>
+    두 번째 값 : <input type="text" id="b"><br>
+
+    <button onclick="calc(this)">+</button>
+    <button onclick="calc(this)">-</button>
+    <button onclick="calc(this)">*</button>
+    <button onclick="calc(this)">/</button>
+    <button onclick="calc(this)">%</button>
+
+    <br><br>
+
+    계산 결과 : <span id="result"><!-- 여기에 결과 출력 --></span>
+
+    <script>
+        const a = document.getElementById("a");
+        const b = document.getElementById("b");
+
+        function calc(btn) {
+            var result = 0;
+            switch (btn.innerText) {
+                case '+': result = Number(a.value) + Number(b.value); break;
+                case '-': result = Number(a.value) - Number(b.value); break;
+                case '*': result = Number(a.value) * Number(b.value); break;
+                case '/': result = Number(a.value) / Number(b.value); break;
+                case '%': result = Number(a.value) % Number(b.value); break;
+            }
+            document.getElementById("result").innerText = result;
+        }
+    </script>
+</body>
+</html>

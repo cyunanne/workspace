@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_1_간이계산기 만들기</title>
+</head>
+<body>
+    두 수를 입력받아 버튼에 작성된 연산을 수행하는 계산기 만들기<br>
+    <!-- 
+        if, for, while, switch, break, continue 사용 가능
+    -->
+
+    첫 번째 값 : <input type="text" id="a"><br>
+    두 번째 값 : <input type="text" id="b"><br>
+
+    <button onclick="add()">+</button>
+    <button onclick="sub()">-</button>
+    <button onclick="multiply()">*</button>
+    <button onclick="divide()">/</button>
+    <button onclick="mod()">%</button>
+
+    <br><br>
+
+    계산 결과 : <span id="result"><!-- 여기에 결과 출력 --></span>
+
+    <script>
+
+        const a = document.getElementById("a");
+        const b = document.getElementById("b");
+        const span = document.getElementById("result");
+
+        function add() {
+            span.innerText = Number(a.value) + Number(b.value);
+        }
+
+        function sub() {
+            span.innerText = Number(a.value) - Number(b.value);
+        }
+
+        function multiply() {
+            span.innerText = Number(a.value) * Number(b.value);
+        }
+
+        function divide() {
+            span.innerText = Number(a.value) / Number(b.value);
+        }
+
+        function mod() {
+            span.innerText = Number(a.value) % Number(b.value);
+        }
+    </script>
+</body>
+</html>
