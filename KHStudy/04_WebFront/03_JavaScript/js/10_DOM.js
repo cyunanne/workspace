@@ -32,9 +32,8 @@ document.getElementById("btn1").addEventListener("click", () => {
     console.log(list[8].nextSibling);
 
     // 탐색 구문은 연달아서 작성 가능
-    console.log(list[11].firstChild.nextSibling);
-
     // **탐색 범위를 넘어가면 null 반환**
+    console.log(list[11].firstChild.nextSibling);
 })
 
 // Element 탐색 확인하기
@@ -47,10 +46,8 @@ document.getElementById("btn2").addEventListener("click", () => {
 
     // 첫 번째 자식 요소 : firstElementChild
     test.firstElementChild.style.backgroundColor = "red";
-    
     // 마지막 자식 요소 : lastElementChild
     test.lastElementChild.style.backgroundColor = "green";
-
     // 2번째 요소 선택 : children[인덱스]
     list[1].style.backgroundColor = "skyblue";
 
@@ -71,7 +68,6 @@ document.getElementById("btn2").addEventListener("click", () => {
 const btn3 = document.getElementById("btn3");
 const area1 = document.getElementById("area1");
 let count1 = 1;
-
 btn3.addEventListener("click", () => {
     // area1.innerHTML += "<div>" + count1 + "</div>"
     area1.innerHTML += `<div>${count1}</div>`;
@@ -84,14 +80,9 @@ const area2 = document.querySelector("#area2");
 let count2 = 1;
 btn4.addEventListener('click', () => {
     // 1) div 요소 만들기 -> 아직 화면에 추가는 되지 않은 상태!
-    // 요소만 만들고 위치를 지정하지 않은 상태
     const child = document.createElement("div");
-    
     // 3) child에 내용 추가하기 (count2)
-    // -> child를 화면에 추가를 했다고 해서 해당 코드에서 추적을 못하는 것이 아닌 
-    // 아직 child 변수를 이용해서 계속 접근 가능
     child.innerText = count2++;
-    
     // 2) #area2의 마지막 자식으로 child 추가하기(덧붙이기)
     area2.append(child);
 });
