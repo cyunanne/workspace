@@ -1,9 +1,0 @@
-.sidebarItem:first-child > p {
-    font-weight: bold;
-    color: palevioletred;
-    cursor:default;
-}
-.sidebarItem:first-child:hover {
-    transform: none;
-    transition: none;
-}
