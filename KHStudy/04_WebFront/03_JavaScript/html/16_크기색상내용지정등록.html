@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>크기, 색상, 내용 지정해서 등록하기</title>
+
+    <style>
+        .container {
+            width: 400px;
+        }
+
+        #content{
+            width: 100%;
+            height: 100px;
+        }
+
+        #size{ width: 30px;}
+        #color{width: 100px;}
+    </style>
+</head>
+
+<body>
+    <h1>크기, 색상, 내용 지정해서 등록하기</h1>
+    <div class="container">
+
+        크기 : <input type="number" id="size"> px
+        |
+        색상 : <input type="text" id="color">
+
+        <button id="apply">적용</button>
+
+        <hr>
+        <textarea id="content" rows="5"></textarea>
+    </div>
+    <button id="registration">등록</button>
+
+    <div id="result"></div>
+
+    <script>
+        const content = document.getElementById('content');
+
+        document.getElementById('apply').addEventListener('click', () => {
+            content.style.fontSize = document.getElementById('size').value + 'px';
+            content.style.color = document.getElementById('color').value;
+        });
+
+        document.getElementById('registration').addEventListener('click', () => {
+            const div = document.createElement('div');
+            div.setAttribute('style', content.getAttribute('style'));
+            div.innerText = document.getElementById('content').value;
+            document.getElementById('result').append(div);
+        });
+    </script>
+</body>
+</html>

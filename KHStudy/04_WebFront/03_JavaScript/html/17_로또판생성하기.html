@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또판 생성하기</title>
+    <style>
+        #lottoBoard{
+            border: 1px solid black;
+            width: 250px;
+            height: 450px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+        }
+ 
+        .number{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            width: 30px;
+            height: 30px;
+            margin: 10px 10px;
+            border: 1px solid black;
+            border-radius: 50%;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .active{background-color: orange;}
+    </style>
+</head>
+<body>
+    <h1>로또판 생성하기</h1>
+    <button id="createBtn">로또판 생성하기</button> <button id="auto">자동</button>
+    <div id="lottoBoard"></div>
+
+    <script>
+        const lottoBoard = document.getElementById('lottoBoard');
+
+        function createBoard() {
+            // 이전에 생성된 내용물 모두 삭제
+            lottoBoard.innerHTML = ""; 
+
+            // 숫자 생성
+            for(let i=1; i<=45; i++) {
+                let number = document.createElement('span');
+                number.classList.add('number');
+                number.innerText = i;
+                lottoBoard.append(number);
+                
+                // 숫자 클릭 이벤트 추가
+                number.addEventListener('click', (e) => {
+                    e.target.classList.toggle('active');
+                    if(document.getElementsByClassName('active').length > 6) {
+                        window.alert('6개만 선택할 수 있습니다');
+                        e.target.classList.toggle('active');
+                    }
+                });
+            }
+        }
+
+        document.getElementById('createBtn').addEventListener('click', () => createBoard());
+
+        document.getElementById('auto').addEventListener('click', () => {
+            createBoard();
+
+            const numbers = [];
+            while(numbers.length < 6) {
+                const num = Math.floor(Math.random() * 45) + 1;
+                if( numbers.includes(num) ) continue;
+                numbers.push(num);
+            }
+
+            for(let i of numbers) {
+                document.getElementsByClassName('number')[i-1].classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
