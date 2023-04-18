@@ -32,12 +32,12 @@ main {
     border: 1px solid #ccc;
     width: 100%;
 }
-.side-item:first-of-type {
+.memo {
     height: 213px;
-
     background: #E4E9E1;
     border-radius: 6px;
     margin-bottom: 28px;
+    resize: none;
 }
 .side-item:last-of-type {
     height: 305px;

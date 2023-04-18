@@ -134,10 +134,16 @@ button.dark:hover {
 }
 
 .more-link {
-    font-size: 12px;
+    text-decoration: none;
     color: #277891;
+}
+.more-link > span {
+    font-size: 12px;
+    border-bottom: 1px solid #277891;
 }
 
 .side-item-header {
     padding-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
 }
