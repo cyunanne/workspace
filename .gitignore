@@ -1,5 +1,5 @@
 ### Installation Files ###
-00. Study/00_tools/
+00_tools/
 
 ### VS Code ###
 .vscode/
@@ -59,3 +59,6 @@ bin/
 *.bin
 *.lock
 *.probe
+
+### Server 관련 ###
+Servers/
