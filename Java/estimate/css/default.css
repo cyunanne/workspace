@@ -52,8 +52,8 @@ main {
     padding-top: 60px;
 }
 button {
-    width: 130px;
-    height: 40px;
+    width: 192px;
+    height: 52px;
     border-radius: 6px;
     cursor: pointer;
     text-align: center;
@@ -62,6 +62,10 @@ button {
     color: #277891;
     background: white;
     border: 1px solid #277891;
+}
+button.small {
+    width: 130px;
+    height: 40px;
 }
 button:hover {
     background: #277891;
@@ -136,14 +140,31 @@ button.dark:hover {
 .more-link {
     text-decoration: none;
     color: #277891;
+    padding-right: 5px;
 }
 .more-link > span {
     font-size: 12px;
-    border-bottom: 1px solid #277891;
+    /* border-bottom: 1px solid #277891; */
+    
+    
+}
+.more-link > span:hover {
+    background-color: #277891;
+    color: white;
+    transition-duration: 0.1s;
 }
 
 .side-item-header {
     padding-bottom: 5px;
     display: flex;
     justify-content: space-between;
+}
+
+.memo {
+    background: #E4E9E1;
+    border-radius: 6px;
+    resize: none;
+    padding: 20px;
+    border: none;
+    box-shadow: 2px 2px 5px 0px #00000040;
 }
