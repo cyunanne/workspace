@@ -57,6 +57,7 @@ button {
     border-radius: 6px;
     cursor: pointer;
     text-align: center;
+    font-weight: 600;
 
     color: #277891;
     background: white;
@@ -75,6 +76,7 @@ button.dark:hover {
     background: white;
     color: #277891;
     transition-duration: 0.1s;
+    border: 1px solid #277891;
 }
 
 #menu {
@@ -120,24 +122,22 @@ button.dark:hover {
     font-size: 13px;
     padding: 9px 0;
 }
-#join {
-    width: 130px;
-    height: 40px;
-    background: #277891;
-    border-radius: 6px;
-    color: white;
-    border: none;
-    cursor: pointer;
+#register {
     margin: 0 6px;
     margin-right: 80px;
     font-size: 13px;
-    text-align: center;
     padding: 9px 0;
 }
-#join:hover {
-    background: white;
-    color: #277891;
-    transition-duration: 0.1s;
-    border: 1px solid #277891;
+
+.header2 {
+    font-weight: bold;
 }
 
+.more-link {
+    font-size: 12px;
+    color: #277891;
+}
+
+.side-item-header {
+    padding-bottom: 5px;
+}

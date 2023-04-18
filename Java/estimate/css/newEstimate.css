@@ -5,4 +5,44 @@
 main {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+}
+
+#header {
+
+}
+
+#content {
+    display: flex;
+    height: 600px;
+}
+
+#input {
+    width: 1250px;
+    border: 1px solid #ccc;
+    margin-left: 92px;
+    margin-right: 30px;
+}
+
+#side {
+    width: 394px;
+}
+
+.side-item {
+    border: 1px solid #ccc;
+    width: 100%;
+}
+.side-item:first-of-type {
+    height: 213px;
+
+    background: #E4E9E1;
+    border-radius: 6px;
+    margin-bottom: 28px;
+}
+.side-item:last-of-type {
+    height: 305px;
+}
+
+#footer {
+
 }

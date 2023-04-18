@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMS</title>
     <link rel="stylesheet" href="../css/default.css">
-    <link rel="stylesheet" href="../css/newEstimates.css">
+    <link rel="stylesheet" href="../css/newEstimate.css">
 </head>
 <body>
     <nav>
@@ -17,18 +17,28 @@
         </div>
         <div id="account">
             <button id="login">Log in</button>
-            <button id="join">Register</button>
+            <button id="register" class="dark">Register</button>
         </div>
     </nav>
     <main>
         <section id="header">header</section>
-        <section id="content">content</section>
+        <section id="content">
+            <section id="input">데이터 입력하는 공간</section>
+            <section id="side">
+                <span class="side-item-header header2">특이사항 메모</span>
+                <div class="side-item memo"></div>
+                <div class="side-item-header">
+                    <span class="header2">업체 정보</span>
+                    <a href="#"><sapn class="more-link">더보기</sapn></a>
+                </div>
+                <div class="side-item">업체 정보</div>
+            </section>
+        </section>
         <section id="footer">
             <button type="button">불러오기</button>
             <button type="button">임시저장</button>
-            <button>등록하기</button>
+            <button class="dark">등록하기</button>
         </section>
     </main>
-    <footer></footer>
 </body>
 </html>

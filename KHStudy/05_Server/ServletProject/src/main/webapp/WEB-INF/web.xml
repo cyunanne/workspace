@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+
+  <!-- 
+    배포 서술자
+  -->
+
   <display-name>ServletProject</display-name>
   
   <!-- 메인 페이지로 사용할 파일 명 목록 (webapp 폴더에 파일 생성) -->
