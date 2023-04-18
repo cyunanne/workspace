@@ -1,0 +1,12 @@
+body {
+    background-image: url("../images/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#mainLogo {
+    margin-top: 319px;  
+    font-family: 'Major Mono Display';
+    font-size: 64px;
+    color:white;
+}
