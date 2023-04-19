@@ -23,5 +23,47 @@
 
     <h3 style="color: red;">a, js코드(location) 요청은 모두 GET 방식</h3>
     <a href="/test/result">페이지 이동</a>
+
+    <hr>
+    <h1>피자 주문하기</h1>
+
+    <form action="/pizzaOrder" method="post">
+        피자 : 
+        <select name="pizza">
+            <option value="1">치즈피자(8000)</option>
+            <option value="2">콤비네이션피자(9000)</option>
+            <option value="3">핫치킨피자(10000)</option>
+        </select>
+
+        <br><br>
+        사이즈 : 
+        <label><input type="radio" name="size" value="R"> R</label>
+        <label><input type="radio" name="size" value="L"> L (+2,000)</label>
+
+        <br><br>
+        수량 :
+        <button type="button" id="minus">-</button>
+        <span id="amount">0</span>
+        <button type="button" id="plus">+</button>
+        <input type="hidden" name="amount" value="0"> <!-- span에 있는 값은 제출이 안됨 -->
+
+        <br><br>
+        <button>주문하기</button>
+    </form>
+
+    <script>
+        const amount = document.getElementById('amount');
+        const input = document.querySelector("[name='amount']");
+        document.getElementById('minus').addEventListener('click', () => {
+            if( amount.innerText > 0 ) {
+                amount.innerText--;
+                input.value--;
+            }
+        });
+        document.getElementById('plus').addEventListener('click', () => {
+            amount.innerText++;
+            input.value++;
+        });
+    </script>
 </body>
 </html>

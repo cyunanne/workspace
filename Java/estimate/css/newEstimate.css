@@ -76,6 +76,7 @@ footer > button {
     display: flex;
     flex-direction: column;
     flex-grow: 0;
+    overflow: hidden;
 }
 #input table {
     width: 100%;
@@ -84,20 +85,49 @@ footer > button {
 }
 
 .table-header {
-    background-color: tomato;
+    /* flex-basis: 28px; */
+    overflow-y: scroll;
+    height: 31px;
+    border-bottom: 2px solid #277891;
 }
 .table-body {
-    background-color: wheat;
-    overflow-y: auto;
-    /* height: 100%;  */
+    flex-basis: 100%;
+    overflow-y: scroll;
+}
+.table-header::-webkit-scrollbar {
+    width: 5px;  /* 스크롤바의 너비 */
+}
+.table-body::-webkit-scrollbar {
+    width: 5px;  /* 스크롤바의 너비 */
+}
+.table-body::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #277891; /* 스크롤바의 색상 */
     
+    border-radius: 10px;
+}
+.table-body::-webkit-scrollbar-track {
+    background: rgba(33, 122, 244, .1);  /*스크롤바 뒷 배경 색상*/
 }
 
 
 
-tr { height: 28px; }
-td, th { border-right: 1px solid black; }
+tr { 
+    height: 28px;
+    border-bottom: 1px solid #ccc;
+}
+/* td { text-align: center; }
+td.col-name { 
+    text-align: left;
+    padding-left: 10px;
+}
+td.col-unitcost, td.col-totalcost {
+    text-align: right;
+    padding-right: 10px;
+} */
+td, th { border-right: 1px solid #ccc; }
 tr > td:last-child, tr > th:last-child { border: none; }
+tr > th.col-etc {}
 .col-no { width: 10%; }
 .col-name { width: 30%; }
 .col-size { width: 10%; }
@@ -107,9 +137,28 @@ tr > td:last-child, tr > th:last-child { border: none; }
 .col-totalcost { width: 10%; }
 .col-etc { width: 10%; }
 
-
-.table-body tr { height: 50px;}
-
+td > input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    text-align: center;
+}
+td > input:focus {
+    outline: none;
+}
+td.col-name > input { 
+    text-align: left; 
+    padding-left: 10px;
+}
+td.col-unitcost > input, td.col-totalcost > input { 
+    text-align: right; 
+    padding-right: 10px;
+}
+input[type='number']::-webkit-inner-spin-button {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
 
 /* #side */
 #side {
