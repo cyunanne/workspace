@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 기능</title>
+    <link rel="stylesheet" href="../../css/admin/admin.css">
+    <link rel="stylesheet" href="../../css/admin/manage_users.css">
+    <link rel="stylesheet" href="../../css/admin/user_info.css">
+    <script src="https://kit.fontawesome.com/9c2aaccfe5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>상단바</header>
+    <main>
+        <section id="sidebar">
+            <h1>관리자 기능</h1>
+            <hr>
+            <ul>
+                <li>
+                    <a href="manage_users.html">
+                        <img src="../../images/admin/manage-users-icon.png" alt="회원 관리">
+                        <span>회원 관리</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="user_feedback.html">
+                        <img src="../../images/admin/feedback-icon.png" alt="회원 의견" style="width: 30px;">
+                        <span>회원 의견</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <section id="content">
+            <button type="button" id="backBtn" class="back">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>뒤로가기</span>                
+            </button>
+            <div id="details">
+                <h3>회원 상세 정보</h3>
+                <hr>
+                <div class="row">
+                    <span class="title">로그인계정</span>
+                    <span class="data">cyunanne@gmail.com</span>
+                </div>
+                <div class="row">
+                    <span class="title">이름</span>
+                    <span class="data">최유나</span>
+                </div>
+                <div class="row">
+                    <span class="title">성별</span>
+                    <span class="data">여</span>
+                </div>
+                <div class="row">
+                    <span class="title">이메일</span>
+                    <span class="data">cyunanne@gmail.com</span>
+                </div>
+                <div class="row">
+                    <span class="title">주소</span>
+                    <span class="data">경기도 하남시 아리수로 499 미사강변루나리움아파트 502동 1302호</span>
+                </div>
+                <div class="row">
+                    <span class="title">연락처</span>
+                    <span class="data">010-5923-9363</span>
+                </div>
+                <div class="row">
+                    <span class="title">회원상태</span>
+                    <div class="data account-condition normal">정상</div>
+                    <div class="data account-condition disabled">비활성</div>
+                    <div class="data account-condition dropped">탈퇴</div>
+                </div>
+            </div>
+            <div id="bottom">
+                <button type="button">비활성 해제</button>
+                <button type="button" disabled>계정 복구</button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
