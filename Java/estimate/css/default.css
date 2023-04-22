@@ -172,3 +172,7 @@ button.dark:hover {
 .memo:focus {
     outline: none;
 }
+
+input:disabled {
+    background-color: inherit;
+}

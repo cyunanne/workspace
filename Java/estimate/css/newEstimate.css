@@ -130,13 +130,13 @@ td.col-unitcost, td.col-totalcost {
 td, th { border-right: 1px solid #ccc; }
 tr > td:last-child, tr > th:last-child { border: none; }
 tr > th.col-etc {}
-.col-no { width: 5%; }
-.col-name { width: 35%; }
+.col-no { width: 3%; }
+.col-name { width: 42%; }
 .col-size { width: 10%; }
-.col-unit { width: 10%; }
-.col-count { width: 10%; }
-.col-unitcost { width: 10%; }
-.col-totalcost { width: 10%; }
+.col-unit { width: 5%; }
+.col-count { width: 6%; }
+.col-unitcost { width: 12%; }
+.col-totalcost { width: 12%; }
 .col-etc { width: 10%; }
 
 td > input {
