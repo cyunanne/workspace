@@ -16,7 +16,7 @@ function addRow(prevSibling) {
     row.append(rownum);
 
     for(let j=0; j<9; j++) {
-        const cell = document.createElement("td");
+        const cell = row.insertCell(j);
         const input = document.createElement("input");
         cell.classList.add(rowClass[j]);
         input.setAttribute("type", rowType[j]);
@@ -24,7 +24,6 @@ function addRow(prevSibling) {
             input.disabled = true;
         }
         cell.append(input); 
-        row.append(cell);
     }
 
     row.children[5].addEventListener("input", (e) => {
@@ -56,12 +55,7 @@ function removeRow(prevSibling) {
         prevSibling.nextElementSibling.remove();
 }
 
-// function removeLastRow() {
-//     table.lastElementChild.remove();
-// }
-
 table.addEventListener("input", () => {
-    // const rowCount = table.children.length;
     const lastRow = table.lastElementChild.children;
     
     // tr 첫 번째 요소인 hidden rownum 제외
@@ -71,27 +65,6 @@ table.addEventListener("input", () => {
             return;
         }
     }
-
-    // for(let i=0; i<rowCount; i++) {
-    //     const lastRow = table.lastElementChild.children;
-    //     const secondLastRow = table.lastElementChild.previousSibling.children;
-
-    //     for(let j=1; j<rowClass.length; j++) {
-    //         if(lastRow[j].firstElementChild.value.length > 0) {
-    //             addRow();
-    //             return;
-    //         }
-    //     }
-        
-    //     for(let j=1; j<rowClass.length; j++) {
-    //         if(secondLastRow[j].firstElementChild.value.length > 0) {
-    //             return;
-    //         }
-    //     }
-
-    //     if( table.children.length > 3 ) 
-    //         removeLastRow();
-    // }
 });
 
 function changeCost(i) {
