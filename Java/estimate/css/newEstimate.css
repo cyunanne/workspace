@@ -1,5 +1,12 @@
 #menu > .menu:nth-child(2) { border-bottom: 3px solid #277891; }
 
+form {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
 main {
     display: flex;
     flex-wrap: nowrap;
@@ -193,4 +200,102 @@ input[type='number']::-webkit-inner-spin-button {
     justify-content: space-between;
     padding: 20px 0;
     padding-right: 40px;
+}
+
+/* footer */
+#tempSaveBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#tempCounter {
+    display: inline-block;
+    width: 20px;
+    height: 21px;
+    margin-top: 3px;
+    margin-left: 4px;
+    padding-top: 1px;
+    border-radius: 50%;
+    color: white;
+    background-color: #277891;
+    text-align: center;
+    font-size: 12px;
+    display: none;
+}
+
+
+/* Popup */
+
+#tempSavePopup {
+    display: none;
+}
+#tempSavePopup > .cover {
+    width: 100vw;
+    height: 100vh;
+    background: #000000CC;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+}
+#tempSavePopup  > .cover > .popup{
+    width: 900px;
+    height: 600px;
+
+    /* background: rgba(255, 255, 255, 0.6); */
+    background-color: white;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.temp-save-info {
+    width: 820px;
+    text-align: right;
+    color: #277891;
+    font-size: 12px;
+}
+.temp-save-main {
+    width: 820px;
+    height: 480px;
+    /* background-color: white; */
+    /* background-color: skyblue; */
+    margin-top: 4px;
+    margin-bottom: 15px;
+}
+.temp-save-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 1px solid #ccc;
+    height: 40px;
+}
+.temp-save-col {
+    text-align: center;
+}
+.temp-save-col:nth-child(1) { flex-basis: 5%; }
+.temp-save-col:nth-child(2) { flex-basis: 20%; }
+.temp-save-col:nth-child(3) { flex-basis: 25%; }
+.temp-save-col:nth-child(4) { flex-basis: 25%; }
+.temp-save-col:nth-child(5) { flex-basis: 20%; }
+.temp-save-col:nth-child(6) { flex-basis: 5%; }
+.temp-save-row.header {
+    margin-top: 20px;
+    font-weight: bold;
+    border-bottom: 3px solid #277891;
+
+}
+.temp-save-col > img {
+    width: 20px;
+    padding-top: 4px;
+    cursor: pointer;
+    display: none;
+}
+.temp-save-btns {}
+.temp-save-btns > button {
+    margin: 0 20px;
 }

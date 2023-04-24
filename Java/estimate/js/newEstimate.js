@@ -83,3 +83,53 @@ function changeCost(i) {
     }
     document.getElementById("estimateCost").value = "￦ " + sum.toLocaleString();
 }
+
+document.getElementById("tempSaveBtn").addEventListener("click", (e) => {
+    document.getElementById("tempSavePopup").style.display = "block";
+});
+
+document.querySelector("#tempSavePopup > .cover").addEventListener("click", (e) => {
+    const popup = document.querySelector("#tempSavePopup > .cover > .popup");
+
+    // 팝업 내부 클릭 시 동작 안함
+    if( e.clientX > popup.getBoundingClientRect().left 
+        && e.clientX < popup.getBoundingClientRect().right
+        && e.clientY > popup.getBoundingClientRect().top 
+        && e.clientY < popup.getBoundingClientRect().bottom ) {
+            return;
+    }
+
+    // 팝업 외부 클릭 시 팝업 닫힘
+    document.getElementById("tempSavePopup").style.display = "none";
+});
+
+// 팝업 라인 생성
+for(let i=0; i<10; i++) {
+    const popup = document.querySelector("#tempSavePopup >.cover >.popup > .temp-save-main");
+    const row = document.createElement("div");
+    row.classList.add("temp-save-row");
+    for(let j=0; j<6; j++) {
+        const col = document.createElement("div");
+        col.classList.add("temp-save-col");
+        row.append(col);
+    }
+    const img = document.createElement("img");
+    img.setAttribute("src", "../images/delete-button.png");
+    img.setAttribute("alt", "delete");
+    img.addEventListener("click", (e) => {
+        const result = confirm("정말로 삭제하시겠습니까? 복구할 수 없습니다.");
+        if(result == true) {
+            for(let div of e.target.parentElement.parentElement.children) {
+                if( div != e.target.parentElement ) div.innerText = "";
+                else e.target.style.display = "none";
+            }
+        }
+    });
+    row.lastElementChild.append(img);
+    popup.append(row);
+}
+
+document.getElementById('loadBtn').addEventListener("click", (e) => {
+    const filepath = e.target.previousElementSibling.click();
+    console.log(filepath);
+});
