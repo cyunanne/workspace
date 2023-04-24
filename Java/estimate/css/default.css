@@ -180,3 +180,7 @@ input:disabled {
 .hidden {
     display: none;
 }
+
+input:focus {
+    outline: none;
+}
