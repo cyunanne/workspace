@@ -176,3 +176,6 @@ button.dark:hover {
 input:disabled {
     background-color: inherit;
 }
+input:focus {
+    outline: none;
+}

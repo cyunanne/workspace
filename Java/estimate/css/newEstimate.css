@@ -130,10 +130,10 @@ td.col-unitcost, td.col-totalcost {
 td, th { border-right: 1px solid #ccc; }
 tr > td:last-child, tr > th:last-child { border: none; }
 tr > th.col-etc {}
-.col-no { width: 3%; }
-.col-name { width: 42%; }
+.col-no { width: 4%; }
+.col-name { width: 40%; }
 .col-size { width: 10%; }
-.col-unit { width: 5%; }
+.col-unit { width: 6%; }
 .col-count { width: 6%; }
 .col-unitcost { width: 12%; }
 .col-totalcost { width: 12%; }
@@ -155,11 +155,15 @@ td.col-name > input {
 td.col-unitcost > input, td.col-totalcost > input { 
     text-align: right; 
     padding-right: 10px;
+    color: black;
 }
 input[type='number']::-webkit-inner-spin-button {
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
+}
+#estimateCost {
+    color: black;
 }
 
 /* #side */
@@ -193,4 +197,5 @@ input[type='number']::-webkit-inner-spin-button {
     justify-content: space-between;
     padding: 20px 0;
     padding-right: 40px;
+    flex-shrink: 0;
 }

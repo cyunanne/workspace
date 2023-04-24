@@ -1,3 +1,168 @@
 #menu > .menu:last-child {
     border-bottom: 3px solid #277891;
 }
+
+#main {
+    display: flex;
+    max-height: 100vh;
+}
+
+#side {
+    flex-grow: 1;
+    flex: 0 0 400px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.25);
+    max-height: 100%;
+}
+#side > form {
+    flex : 0 0 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#side > form > input {
+    width: 260px;
+    height: 45px;
+    border: 2px solid #277891;
+    border-radius: 6px;
+    padding: 0 10px;
+}
+#side > form > button {
+    width: 60px;
+    height: 45px;
+    margin-left: 8px;
+}
+#side > div {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+#side > div > span {
+    margin: 10px;
+    font-weight: bold;
+    flex: 0 0 auto;
+}
+#searchResult {
+    overflow-y: scroll;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    border-top: 1px solid #ccc;
+}
+#searchResult::-webkit-scrollbar {
+    width: 5px;  /* 스크롤바의 너비 */
+}
+#searchResult::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #277891; /* 스크롤바의 색상 */
+    border-radius: 10px;
+}
+#searchResult::-webkit-scrollbar-track {
+    /* background: rgba(33, 122, 244, .1);  스크롤바 뒷 배경 색상 */
+    background-color: #00000000;
+}
+#searchResult > .searchResultItem {
+    flex: 0 0 95px;
+    flex-grow: 0;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    /* display: flex;
+    flex-direction: column; */
+}
+.searchResultItem:hover {
+    background-color: #f6f6f6;
+}
+.searchResultItem > ul {
+    padding : 8px 15px;
+}
+.searchResultItem > ul > li:first-child {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+.searchResultItem > ul > li:not(li:first-child) {
+    margin: 2px;
+    list-style: none;
+}
+.searchResultItem span {
+    color: #a5a5a5;
+}
+.searchResultItem span.title {
+    font-weight: bold;
+    margin-right: 10px;
+}
+.searchResultItem span.date {
+    float: right;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+#content {
+    flex-grow: 1;
+    display: grid;
+    grid-template-areas: 
+        "a b"
+        "c c"
+    ;
+    grid-template-rows: minmax(675px, auto) 207px;
+    grid-template-columns: minmax(740px, auto) 600px;
+}
+
+#content > #info1 {
+    grid-area: a;
+    padding: 30px;
+}
+.customer-name.title {
+    font-weight: bold;
+    font-size: 34px;
+    border-top: 3px solid #277891;
+    border-bottom: 3px solid #277891;
+    text-align: center;
+}
+.button-container {
+    margin-top: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.button-container button, .customer-info-container button {
+    height: 25px;
+    width: 80px;
+    color: black;
+    border-radius: 6px;
+    font-size: 10pt;
+    border: 1px solid #ccc;
+    background-color: white;
+    font-weight: normal;
+    margin-left: 3px;
+}
+.button-container > .mod-complete {
+    display: none;
+}
+.button-container button:hover, .customer-info-container button:hover {
+    background-color: #ccc;
+}
+.customer-info-container {
+    margin-top: 30px;
+    padding-left: 8px;
+}
+.customer-info-container li {
+    list-style: none;
+    height: 40px;
+}
+.customer-info-container li > span.title {
+    font-weight: bold;
+}
+
+
+#content > #info2 {
+    background-color: blueviolet;
+    grid-area: b;
+    height: auto;
+}
+#content > #info3 {
+    background-color: crimson;
+    grid-area: c;
+    max-height: 207px;
+}
