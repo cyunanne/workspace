@@ -49,6 +49,7 @@
     flex-grow: 1;
     flex-direction: column;
     border-top: 1px solid #ccc;
+    user-select: none;
 }
 #searchResult::-webkit-scrollbar {
     width: 5px;  /* 스크롤바의 너비 */
@@ -98,27 +99,61 @@
     margin-top: 4px;
 }
 
+#emptyContent {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#emptyContent > p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #277891;
+}
+#emptyContent > button {
+    margin: 30px;
+}
+
 #content {
+    padding-left: 100px;
     flex-grow: 1;
     display: grid;
     grid-template-areas: 
-        "a b"
-        "c c"
+        "a d b"
+        "c c c"
     ;
     grid-template-rows: minmax(675px, auto) 207px;
-    grid-template-columns: minmax(740px, auto) 600px;
+    /* grid-template-columns: minmax(740px, auto) 1px 600px; */
+    grid-template-columns: 700px 1px 600px;
 }
 
+.vertical-bar {
+    grid-area: d;
+    width: 1px;
+    height: 625px;
+    background-color: #ccc;
+    margin: 30px 0;
+}
+
+/* info1 : 고객 정보 출력 */
 #content > #info1 {
     grid-area: a;
     padding: 30px;
 }
-.customer-name.title {
+.customer-name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+}
+.customer-name > span.title {
     font-weight: bold;
-    font-size: 34px;
-    border-top: 3px solid #277891;
-    border-bottom: 3px solid #277891;
-    text-align: center;
+    font-size: 28px;
+}
+.customer-name > img {
+    padding: 0 50px;
+    height: 50px;
 }
 .button-container {
     margin-top: 8px;
@@ -137,8 +172,17 @@
     font-weight: normal;
     margin-left: 3px;
 }
-.button-container > .mod-complete {
+.button-container > #modCompleteBtn {
     display: none;
+    background-color: #277891;
+    border: 1px solid #277891;
+    color: white;
+}
+.button-container > #modCompleteBtn:hover {
+    display: none;
+    background-color: white;
+    border: 1px solid #277891;
+    color: #277891;
 }
 .button-container button:hover, .customer-info-container button:hover {
     background-color: #ccc;
@@ -146,23 +190,80 @@
 .customer-info-container {
     margin-top: 30px;
     padding-left: 8px;
+    display: flex;
+}
+.customer-info-container ul:first-child {
+    padding-right: 45px;
+    flex: 0 0 auto;
 }
 .customer-info-container li {
     list-style: none;
     height: 40px;
 }
-.customer-info-container li > span.title {
-    font-weight: bold;
+.customer-info-container li > input {
+    width: 500px;
+    border: none;
+    color: black;
+    padding: 0 5px;
+}
+.customer-info-container li > input.filepath {
+    width: 413px;
 }
 
-
+/* info2 : 고객 명함, 최근 견적 내역 출력 */
 #content > #info2 {
-    background-color: blueviolet;
     grid-area: b;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aqua; */
 }
+#info2 > #namecard {
+    margin-top: 10px;
+}
+#namecard > img {
+    width: 540px;
+}
+#info2 > hr {
+    width: 540px;
+    margin: 20px 0;
+    height: 1px;
+    border: none;
+    background-color: #ccc;
+}
+#info2 > #recentEstimate {
+    height: 274px;
+    width: 540px;
+ }
+ #info2 > #recentEstimate > .more-link {
+    float: right;
+ }
+ table {
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    width: 540px;
+    margin-top: 10px;
+ }
+
+/* info3 : 특이사항 출력 */
 #content > #info3 {
-    background-color: crimson;
     grid-area: c;
     max-height: 207px;
+    padding: 0 30px;
+}
+
+hr {
+    height: 1px;
+    border: none;
+    background-color: #ccc;
+}
+
+#info3 > span {
+    margin-top: 23px;
+}
+#info3 > textarea {
+    width: 100%;
+    height: 120px;
 }

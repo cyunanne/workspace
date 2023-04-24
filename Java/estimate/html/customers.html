@@ -36,89 +36,91 @@
                             <li><span class="title">최근견적</span><span>청라(멘이야) / ￦ 2,870,000</span><span class="date">23.04.13.</span></li>
                         </ul>
                     </div> 
-                    <div class="searchResultItem"></div> 
-                    <div class="searchResultItem"></div> 
-                    <div class="searchResultItem"></div> 
-                    <div class="searchResultItem"></div> 
-                    <div class="searchResultItem"></div> 
-                    <div class="searchResultItem"></div> 
-                    <div class="searchResultItem"></div> 
-                    <div class="searchResultItem"></div> 
-                    <div class="searchResultItem"></div> 
                 </div>
             </div>
         </section>
+        <section id="emptyContent">
+            <p>거래처 정보를 검색하거나<br>
+            신규 거래처를 추가하세요.</p>
+            <button type="button" class="dark">신규 거래처 추가</button>
+        </section>
         <section id="content">
             <div id="info1">
-                <div class="customer-name title">우진</div>
+                <div class="customer-name">
+                    <img src="../images/bracket-left.png">
+                    <span class="title">우진</span>
+                    <img src="../images/bracket-right.png">
+                </div>
                 <form action="#" method="post">
                     <div class="button-container">
-                        <button type="button" class="modify">정보수정</button>
-                        <button type="submit" class="mod-complete">수정완료</button>
-                        <button type="button" class="delete">거래처 삭제</button>
+                        <button type="button" id="modifyBtn">정보수정</button>
+                        <button type="button" id="modCompleteBtn">수정완료</button>
+                        <button type="button" id="deleteBtn">거래처 삭제</button>
                     </div>
                     <div class="customer-info-container">
-                        <ul>
+                        <ul class="info1 header2">
+                            <li>업체명</li>
+                            <li>전화번호</li>
+                            <li>대표명</li>
+                            <li>휴대폰</li>
+                            <li>FAX</li>
+                            <li>최근견적</li>
+                            <li>이메일</li>
+                            <li>주소</li>
+                            <li></li>
+                            <li>계좌번호(1)</li>
+                            <li>계좌번호(2)</li>
+                            <li>명함 업로드</li>
+                        </ul>
+                        <ul class="info1 data">
+                            <li><input type="text" value="우진" disabled></li>
+                            <li><input type="text" value="031-788-1493" disabled></li>
+                            <li><input type="text" value="최유나" disabled></li>
+                            <li><input type="text" value="010-5923-9363" disabled></li>
+                            <li><input type="text" value="031-788-9898" disabled></li>
+                            <li><input type="text" value="청라(멘이야) / ￦ 2,870,000 (2023-04-12)" disabled></li>
+                            <li><input type="text" value="cyunanne@gmail.com" disabled></li>
+                            <li><input type="text" value="(19020) 경기도 하남시" disabled></li>
+                            <li><input type="text" value="아리수로 499 502-1302" disabled></li>
+                            <li><input type="text" value="카카오뱅크 2222-01-222914 (예금주: 최유나)" disabled></li>
+                            <li><input type="text" value="우리은행 1002-346-000611 (예금주: 최유나)" disabled></li>
                             <li>
-                                <span class="title">업체명</span>
-                                <span>우진</span>
-                            </li>
-                            <li>
-                                <span class="title">전화번호</span>
-                                <span>031-788-1493</span>
-                            </li>
-                            <li>
-                                <span class="title">대표명</span>
-                                <span>최유나</span>
-                            </li>
-                            <li>
-                                <span class="title">휴대폰</span>
-                                <span>010-5923-9363</span>
-                            </li>
-                            <li>
-                                <span class="title">FAX</span>
-                                <span>031-788-9898</span>
-                            </li>
-                            <li>
-                                <span class="title">최근견적</span>
-                                <span>청라(멘이야) / ￦ 2,870,000 (2023-04-12)</span>
-                            </li>
-                            <li>
-                                <span class="title">이메일</span>
-                                <span>cyunanne@gmail.com</span>
-                            </li>
-                            <li>
-                                <span class="title">주소</span>
-                                <span>(19020) 경기도 하남시</span>
-                            </li>
-                            <li>
-                                <span class="title"></span>
-                                <span>아리수로 499 502-1302</span>
-                            </li>
-                            <li>
-                                <span class="title">계좌번호(1)</span>
-                                <span>카카오뱅크 2222-01-222914</span>
-                            </li>
-                            <li>
-                                <span class="title">계좌번호(2)</span>
-                                <span>우리은행 1002-346-000611</span>
-                            </li>
-                            <li>
-                                <span class="title">명함 업로드</span>
-                                <span>
-                                    <button type="button">파일 선택</button>
-                                    <input type="file" name="" id="" style="display: none;">
-                                    <span class="filepath">C:\image.jpg</span>
-                                </span>
+                                <button type="button">파일 선택</button>
+                                <input type="text" value="C:\image.jpg" class="filepath" disabled>
+                                <input type="file" name="" id="" style="display: none;">
                             </li>
                         </ul>
                     </div>
                 </form>
             </div>
-            <div id="info2"></div>
-            <div id="info3"></div>
+            <div class="vertical-bar"></div>
+            <div id="info2">
+                <div id="namecard">
+                    <img src="../images/nonamecard.png">
+                </div>
+                <hr>
+                <div id="recentEstimate">
+                    <span class="header2">최근 견적 내역</span>
+                    <a href="#" class="more-link"><span>더보기</span></a>
+                    <table border="1">
+                        <tr>
+                            <td>no.</td>
+                            <td>공사명</td>
+                            <td>금액</td>
+                            <td>견적일자</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="info3">
+                <hr>
+                <span class="side-item-header header2">특이사항 메모</span>
+                <textarea name="" class="memo" placeholder="특이사항을 적어주세요 (자동저장)"></textarea>
+            </div>
         </section>
     </main>
     <footer></footer>
+    <script src="../js/default.js"></script>
+    <script src="../js/customers.js"></script>
 </body>
 </html>

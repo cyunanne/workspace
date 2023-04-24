@@ -8,6 +8,7 @@ for(let i=0; i<3; i++) {
 
 function addRow(prevSibling) {
     const row = document.createElement("tr");
+    // const row = table.addRow();
     const rownum = document.createElement("input");
     const rownumValue = table.children.length + 1;
     rownum.setAttribute("type", "hidden");
@@ -25,6 +26,7 @@ function addRow(prevSibling) {
         }
         cell.append(input); 
     }
+    console.log("1");
 
     row.children[5].addEventListener("input", (e) => {
         const cur = Number(e.target.value.replaceAll(',', ''));

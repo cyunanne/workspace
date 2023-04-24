@@ -125,15 +125,6 @@ tr {
     height: 28px;
     border-bottom: 1px solid #ccc;
 }
-/* td { text-align: center; }
-td.col-name { 
-    text-align: left;
-    padding-left: 10px;
-}
-td.col-unitcost, td.col-totalcost {
-    text-align: right;
-    padding-right: 10px;
-} */
 td, th { border-right: 1px solid #ccc; }
 tr > td:last-child, tr > th:last-child { border: none; }
 tr > th.col-etc {}
@@ -178,7 +169,10 @@ input[type='number']::-webkit-inner-spin-button {
     display: flex;
     flex-direction: column;
 }
-#side > .side-item { display: flex; flex-direction: column; }
+#side > .side-item { 
+    display: flex; 
+    flex-direction: column; 
+}
 #side > .side-item:first-child {
     flex-basis: 60%;
     margin-bottom: 25px;
@@ -248,7 +242,6 @@ input[type='number']::-webkit-inner-spin-button {
     width: 900px;
     height: 600px;
 
-    /* background: rgba(255, 255, 255, 0.6); */
     background-color: white;
     border-radius: 10px;
 
@@ -266,8 +259,6 @@ input[type='number']::-webkit-inner-spin-button {
 .temp-save-main {
     width: 820px;
     height: 480px;
-    /* background-color: white; */
-    /* background-color: skyblue; */
     margin-top: 4px;
     margin-bottom: 15px;
 }
