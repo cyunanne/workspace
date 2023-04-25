@@ -16,6 +16,10 @@ build/
 **/src/test/**/bin/
 target/
 /target/
+.springBeans
+pom.properties
+MANIFEST.MF
+*.log
 
 ### IntelliJ IDEA ###
 out/
