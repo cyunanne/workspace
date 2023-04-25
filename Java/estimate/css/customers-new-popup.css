@@ -1,0 +1,95 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#info1 {
+    padding-top: 20px;
+}
+.customer-name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+.customer-name > span.title {
+    font-weight: bold;
+    font-size: 28px;
+}
+.customer-name > img {
+    padding: 0 50px;
+    height: 50px;
+}
+
+.customer-info-container {
+    margin-top: 30px;
+    display: flex;
+}
+.customer-info-container ul:first-child {
+    padding-right: 45px;
+    flex: 0 0 auto;
+}
+.customer-info-container li {
+    list-style: none;
+    height: 40px;
+}
+.customer-info-container li > input {
+    width: 330px;
+    border: 1px solid #ccc;
+    color: black;
+    padding: 0 5px;
+}
+.customer-info-container li > input.filepath {
+    width: 243px;
+}
+
+button {
+    height: 25px;
+    width: 80px;
+    color: black;
+    border-radius: 6px;
+    font-size: 10pt;
+    border: 1px solid #ccc;
+    background-color: white;
+    font-weight: normal;
+    margin-left: 3px;
+}
+button:hover {
+    background-color: #ccc;
+}
+
+/* info3 : 특이사항 출력 */
+#info3 {
+    max-height: 207px;
+    padding: 0 30px;
+}
+
+hr {
+    height: 1px;
+    border: none;
+    background-color: #ccc;
+}
+
+textarea {
+    width: 450px;
+    height: 120px;
+}
+
+.button-container {
+    padding-top: 15px;
+    text-align: center;
+}
+.button-container > button:first-child {
+    margin-right: 10px;
+}
+.button-container > button:last-child {
+    border: 1px solid #277891;
+    background-color: #277891;
+    color: white;
+}
+.button-container > button:last-child:hover {
+    border: 1px solid #277891;
+    background-color: white;
+    color: #277891;
+}

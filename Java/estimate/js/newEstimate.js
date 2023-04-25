@@ -132,6 +132,5 @@ for(let i=0; i<10; i++) {
 }
 
 document.getElementById('loadBtn').addEventListener("click", (e) => {
-    const filepath = e.target.previousElementSibling.click();
-    console.log(filepath);
+    e.target.previousElementSibling.click();
 });

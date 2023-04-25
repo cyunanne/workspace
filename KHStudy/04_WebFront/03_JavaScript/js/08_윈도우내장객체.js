@@ -77,3 +77,4 @@ openPopup3.addEventListener("click", () => {
 document.getElementById("sendPopup").addEventListener("click", () => {
     window.open("09_팝업.html", "popupWindow", "width=500, height=300");
 });
+
