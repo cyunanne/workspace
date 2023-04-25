@@ -5,6 +5,7 @@
 #main {
     display: flex;
     max-height: 100vh;
+    max-width: 100vw;
 }
 
 #side {
@@ -14,6 +15,9 @@
     flex-direction: column;
     box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.25);
     max-height: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
 }
 #side > form {
     flex : 0 0 150px;
@@ -107,7 +111,7 @@
     justify-content: center;
 }
 #emptyContent > p {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     color: #277891;
 }
@@ -116,7 +120,7 @@
 }
 
 #content {
-    padding-left: 100px;
+    /* padding-left: 100px; */
     flex-grow: 1;
     display: grid;
     grid-template-areas: 
