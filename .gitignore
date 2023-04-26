@@ -20,6 +20,9 @@ target/
 pom.properties
 MANIFEST.MF
 *.log
+SESSION.ser
+.factorypath
+settings.json
 
 ### IntelliJ IDEA ###
 out/
