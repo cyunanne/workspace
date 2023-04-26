@@ -69,6 +69,7 @@
         </section>
     </main>
 
+    <script src="../../js/admin/admin.js"></script>
     <script>
         const adminComment = document.getElementById('adminComment');
         adminComment.addEventListener('input', () => {
@@ -78,13 +79,6 @@
                 document.getElementById('submit').disabled = true;
             }
         }); 
-
-        const backBtnList = document.getElementsByClassName('back');
-        for(let back of backBtnList) {
-            back.addEventListener('click', () => {
-                window.history.back();
-            });
-        };
     </script>
 </body>
 </html>

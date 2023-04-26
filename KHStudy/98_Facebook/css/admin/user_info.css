@@ -13,6 +13,9 @@
     padding: 17px 10px;
 }
 
+.row > input {
+}
+
 .account-condition {
     font-weight: bold;
     width: 100px;
@@ -22,6 +25,8 @@
     text-align: center;
     padding: 2px;
 }
+
+/* 계정 상태 */
 .account-condition.normal { background-color: #4A6EA9; display: inline-block; }
 .account-condition.disabled { background-color: #8C8D8F; display: none;}
 .account-condition.dropped { background-color: black; display: none; }

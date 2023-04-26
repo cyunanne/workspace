@@ -1,3 +1,167 @@
 #sidebar > ul > li:first-child > a {
     background-color: #eee;
 }
+
+.profile-img {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+}
+
+.search_wrap {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search_wrap > span {
+    font-weight: bold;
+}
+.search_wrap > select {
+    border: none;
+}
+.search_wrap > select:focus {
+    outline: none;
+}
+
+
+.condition_select > .fa-angle-up { display: none; }
+.search_wrap > ul { 
+    list-style: none;
+}
+
+.search_box {
+    display: flex;
+    width: 388px;
+    height: 40px;
+    background-color: #eee;
+    align-items: center;
+    padding: 0 15px;
+    border-radius: 50px;
+    margin: 0 20px;
+}
+.search_box > input {
+    border: none;
+    background-color: #eee;
+    width: 388px;
+    height: 40px;
+    padding-left: 15px;
+}
+.search_box > input:focus {
+    outline: none;
+}
+/* 검색 버튼 */
+#submit {
+    background-color: #4A6EA9;
+    color: white;
+    width: 70px;
+    border-radius: 50px;
+    margin-left: 0;
+}
+
+.board_list_wrap {
+    width: 1200px;
+    height: 650px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #F7F8FA;
+    border-radius: 6px;
+    /* padding: 25px; */
+}
+.board_list > .top {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    background-color: #F0F2F5;
+    height: 51px;
+    border-radius: 6px 6px 0 0;
+}
+.board_list > div {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    height: 51px;
+    text-align: center;
+}
+.board_list > div:hover {
+    background-color: #F0F2F5;
+}
+.board_list a {
+    text-decoration: none;
+    color: black;
+}
+.board_list a:hover {
+    text-decoration: underline;
+    color: black;
+}
+.board_list > .top > div {
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+}
+.user-no { width: 15%; }
+.user-name { width: 15%; }
+.email { width: 40%; }
+.regist-date { width: 15%; }
+.account-condition { width: 15%; }
+.user-name {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 50px;
+}
+.user-name img {
+    margin-right: 10px;
+}
+.account-condition {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.board_page {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+.prev-page, .next-page {
+    color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    background-color:#4A6EA9;
+    font-weight: bold;
+}
+.current-page {
+    color: white;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background-color:#4A6EA9;
+}
+.board_page span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.board_page a {
+    text-decoration: none;
+    color: black;
+    margin: 0 20px;
+}
+
+/* 계정 상태 */
+.account-condition > div {
+    font-weight: bold;
+    width: 100px;
+    height: 25px;
+    border-radius: 50px;
+    color: white;
+    text-align: center;
+    padding: 2px;
+}
+/* DB에 저장된 계정 상태에 따라 클래스 선택 */
+.normal { background-color: #4A6EA9; }
+.disabled { background-color: #8C8D8F; }
+.dropped { background-color: black; }

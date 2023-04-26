@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 기능</title>
+    <title>관리자 기능 : 회원 관리</title>
     <link rel="stylesheet" href="../../css/admin/admin.css">
     <link rel="stylesheet" href="../../css/admin/manage_users.css">
+    <script src="https://kit.fontawesome.com/9c2aaccfe5.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>상단바</header>
@@ -29,8 +30,88 @@
             </ul>
         </section>
         <section id="content">
-            회원 관리
+            <div class="search_wrap">
+                <span>회원검색</span>
+                <div class="search_box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" name="" id="" placeholder="회원번호/회원이름/이메일 검색">
+                </div>
+                <button id="submit">검색</button>
+                <!-- <select name="" id="" placeholder="계정상태">
+                    <option value="모든계정">모든계정</option>
+                    <option value="정상">정상</option>
+                    <option value="비활성">비활성</option>
+                    <option value="탈퇴">탈퇴</option>
+                </select> -->
+
+                <!-- <button class="condition_select">
+                    <span>계정상태</span>
+                    <i class="fa-solid fa-angle-down"></i>
+                    <i class="fa-solid fa-angle-up"></i>
+                </button>
+                <ul class="listbox" id="listbox">
+                    <li><button class="list">모든계정</button></li>
+                    <li><button class="list">정상</button></li>
+                    <li><button class="list">비활성</button></li>
+                    <li><button class="list">탈퇴</button></li>
+                </ul> -->
+            </div>
+            <div class="board_list_wrap">
+                <div class="board_list">
+                    <div class="top">
+                        <div class="user-no">회원번호</div>
+                        <div class="user-name">이름</div>
+                        <div class="email">이메일</div>
+                        <div class="regist-date">가입일</div>
+                        <div class="account-condition top">계정상태</div>
+                    </div>
+                    <div class="row">
+                        <div class="user-no"><a href="#">2</a></div>
+                        <div class="user-name">
+                            <a href="#"><img src="../../images/user-deafult.png" class="profile-img"></a>
+                            <a href="#"><span>최유나</span></a>   
+                        </div>
+                        <div class="email"><a href="#">cyunanne@gmail.com</a></div>
+                        <div class="regist-date">2023-04-23</div>
+                        <div class="account-condition">
+                            <div class="normal">정상</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="user-no"><a href="#">1</a></div>
+                        <div class="user-name">
+                            <a href="#"><img src="../../images/user-deafult.png" class="profile-img"></a>
+                            <a href="#"><span>최유나</span></a>   
+                        </div>
+                        <div class="email"><a href="#">cyunanne@gmail.com</a></div>
+                        <div class="regist-date">2023-04-23</div>
+                        <div class="account-condition">
+                            <div class="disabled">비활성화</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="board_page">
+                <a href="#"><span class="prev-page"><</span></a>
+                <a href="#"><span class="current-page">1</span></a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#"><span class="next-page">></span></a>
+            </div>
         </section>
     </main>
+
+    <script src="../../js/admin/admin.js"></script>
+    <script>
+        const userList = document.querySelectorAll('.row a')
+            for(let user of userList) {
+                user.addEventListener('click', (e) => {
+                e.target.setAttribute('href', 'user_info.html');
+            });
+        }
+    </script>
 </body>
 </html>

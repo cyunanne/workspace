@@ -21,7 +21,9 @@
 
 
 .condition_select > .fa-angle-up { display: none; }
-.search_wrap > ul { list-style: none; }
+.search_wrap > ul { 
+    list-style: none;
+}
 
 .search_box {
     display: flex;
@@ -42,6 +44,14 @@
 }
 .search_box > input:focus {
     outline: none;
+}
+/* 검색 버튼 */
+#submit {
+    background-color: #4A6EA9;
+    color: white;
+    width: 70px;
+    border-radius: 50px;
+    margin-left: 0;
 }
 
 .board_list_wrap {
@@ -110,3 +120,35 @@
 /* 이 부분은 DB에 저장된 정보에 따라 출력할 상태를 결정할 것임 */
 .feedback-condition.in-porgress { background-color: #4A6EA9; display: none; }
 .feedback-condition.complete { background-color: #8C8D8F; display: inline-block; }
+
+.board_page {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+.prev-page, .next-page {
+    color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    background-color:#4A6EA9;
+    font-weight: bold;
+}
+.current-page {
+    color: white;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background-color:#4A6EA9;
+}
+.board_page span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.board_page a {
+    text-decoration: none;
+    color: black;
+    margin: 0 20px;
+}
+
