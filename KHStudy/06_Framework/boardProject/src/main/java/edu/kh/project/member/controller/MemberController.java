@@ -286,14 +286,17 @@ public class MemberController {
 	@PostMapping("/signUp")
 	public String signUp(
 			Member inputMember,
-			String[] memberAddress // name="memberAddress" 인 모든 파라미터를 받음
+			String[] memberAddress, // name="memberAddress" 인 모든 파라미터를 받음
+			RedirectAttributes ra
 			) {
 		
-		///////////////////////////// 매개변수 설명 /////////////////////////////
-		//																	   //
-		// Member inputMember : 커맨드 객체(제출된 파라미터가 저장된 객체)     //
-		//																	   //
-		/////////////////////////////////////////////////////////////////////////
+		//////////////////////////////// 매개변수 설명 /////////////////////////////////
+		//																	   	 	  //
+		// Member inputMember : 커맨드 객체(제출된 파라미터가 저장된 객체)		 	  //
+		// String[] memberAddress : input name="memberAddress" 3개가 저장된 배열 	  //
+		// RedirectAttributes ra : redirect 시 데이터를 request scope로 전달하는 객체 //
+		//																	   	 	  //
+		////////////////////////////////////////////////////////////////////////////////
 		
 		// 만약 주소를 입력하지 않은 경우(,,) null로 변경
 		if(inputMember.getMemberAddress().equals(",,")) {
@@ -310,12 +313,25 @@ public class MemberController {
 			inputMember.setMemberAddress(addr);
 		}
 		
-		// 가입 성공 여부에 따라 redirect 경로 결정
-		String path = "redirect:";
-		
 		// 회원 가입 서비스 호출
 		// DB에 DML 수행 시 성공 행의 개수(int) 반환
 		int result = service.signUp(inputMember);
+		
+		// 가입 성공 여부에 따라 redirect 경로 결정
+		String path = "redirect:";
+		String message = null;
+		
+		if(result > 0) { // 가입 성공
+			path += "/";
+			message = inputMember.getMemberNickname() + "님의 가입을 환영합니다!";
+		} else { // 가입 실패
+//			path += "/member/signUp"; // 회원 가입 페이지(절대경로)
+			path += "signUp"; 		  // 회원 가입 페이지(상대경로)
+			message = "회원 가입 실패!";
+		}
+		
+		// 리다이렉트 시 session에 잠깐 올라갔다 내려오도록 세팅
+		ra.addFlashAttribute("message", message);
 		
 		return path;
 	}
