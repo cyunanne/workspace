@@ -28,6 +28,4 @@
 	<!-- Bean : Spring이 만들고 관리하는 객체 -->
 	<context:component-scan base-package="edu.kh.project" />
 	
-	
-	
 </beans:beans>

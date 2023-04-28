@@ -54,60 +54,21 @@
     margin-left: 0;
 }
 
-.board_list_wrap {
-    width: 1200px;
-    height: 650px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    background-color: #F7F8FA;
-    border-radius: 6px;
-    /* padding: 25px; */
-}
-.board_list {
+/* 게시판 열 너비 */
+.feedback-no { width: 10%; }
+.user-no { width: 10%; }
+.feedback-content { width: 45%; }
+.regist-date { width: 10%; }
+.complete-date { width: 10%; }
+.feedback-condition { width: 15%; }
 
-}
-.board_list > .top {
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    background-color: #F0F2F5;
-    height: 51px;
-    border-radius: 6px 6px 0 0;
-}
-.board_list > div {
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    height: 51px;
-    text-align: center;
-}
-.board_list > div:hover {
-    background-color: #F0F2F5;
-}
-.board_list > div > .feedback_content {
-    text-align: left;
+/* 내용(.feedback-content) 열 왼쪽 정렬 */
+.feedback-content {
     padding-left: 20px;
+    text-align: left;
 }
-.board_list > div > .feedback_content > a {
-    text-decoration: none;
-    color: black;
-}
-.board_list > div > .feedback_content > a:hover {
-    text-decoration: underline;
-    color: black;
-}
-.board_list > .top > div {
-    font-weight: bold;
-    display: inline-block;
-    text-align: center;
-}
-.feedback_no { width: 8%; }
-.user_no { width: 8%; }
-.feedback_content { width: 50%; }
-.regist_date { width: 10%; }
-.complete_date { width: 10%; }
-.feedback_condition { width: 14%; }
 
+/* 의견 처리상태 */
 .feedback-condition {
     font-weight: bold;
     width: 100px;
@@ -120,35 +81,3 @@
 /* 이 부분은 DB에 저장된 정보에 따라 출력할 상태를 결정할 것임 */
 .feedback-condition.in-porgress { background-color: #4A6EA9; display: none; }
 .feedback-condition.complete { background-color: #8C8D8F; display: inline-block; }
-
-.board_page {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-}
-.prev-page, .next-page {
-    color: white;
-    height: 45px;
-    width: 45px;
-    border-radius: 50%;
-    background-color:#4A6EA9;
-    font-weight: bold;
-}
-.current-page {
-    color: white;
-    height: 24px;
-    width: 24px;
-    border-radius: 50%;
-    background-color:#4A6EA9;
-}
-.board_page span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.board_page a {
-    text-decoration: none;
-    color: black;
-    margin: 0 20px;
-}
-

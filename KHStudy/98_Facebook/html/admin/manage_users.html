@@ -56,8 +56,8 @@
                     <li><button class="list">탈퇴</button></li>
                 </ul> -->
             </div>
-            <div class="board_list_wrap">
-                <div class="board_list">
+            <div class="board-list-wrap">
+                <div class="board-list">
                     <div class="top">
                         <div class="user-no">회원번호</div>
                         <div class="user-name">이름</div>
@@ -65,48 +65,48 @@
                         <div class="regist-date">가입일</div>
                         <div class="account-condition top">계정상태</div>
                     </div>
-                    <div class="row">
-                        <div class="user-no"><a href="#">2</a></div>
+                    <a href="#" class="row">
+                        <div class="user-no">2</div>
                         <div class="user-name">
-                            <a href="#"><img src="../../images/user-deafult.png" class="profile-img"></a>
-                            <a href="#"><span>최유나</span></a>   
+                            <img src="../../images/user-deafult.png" class="profile-img">
+                            <span>최유나</span>
                         </div>
-                        <div class="email"><a href="#">cyunanne@gmail.com</a></div>
+                        <div class="email">cyunanne@gmail.com</div>
                         <div class="regist-date">2023-04-23</div>
                         <div class="account-condition">
                             <div class="normal">정상</div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="user-no"><a href="#">1</a></div>
+                    </a>
+                    <a href="#" class="row">
+                        <div class="user-no">1</div>
                         <div class="user-name">
-                            <a href="#"><img src="../../images/user-deafult.png" class="profile-img"></a>
-                            <a href="#"><span>최유나</span></a>   
+                            <img src="../../images/user-deafult.png" class="profile-img">
+                            <span>최유나</span>  
                         </div>
-                        <div class="email"><a href="#">cyunanne@gmail.com</a></div>
+                        <div class="email">cyunanne@gmail.com</div>
                         <div class="regist-date">2023-04-23</div>
                         <div class="account-condition">
                             <div class="disabled">비활성화</div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
-            <div class="board_page">
-                <a href="#"><span class="prev-page"><</span></a>
-                <a href="#"><span class="current-page">1</span></a>
+            <div class="board-page">
+                <a href="#" class="prev-page">PREV</a>
+                <a href="#" class="current-page">1</a>
                 <a href="#">2</a>
                 <a href="#">3</a>
                 <a href="#">4</a>
                 <a href="#">5</a>
                 <a href="#">6</a>
-                <a href="#"><span class="next-page">></span></a>
+                <a href="#" class="next-page">NEXT</a>
             </div>
         </section>
     </main>
 
     <script src="../../js/admin/admin.js"></script>
     <script>
-        const userList = document.querySelectorAll('.row a')
+        const userList = document.querySelectorAll('.board-list > a')
             for(let user of userList) {
                 user.addEventListener('click', (e) => {
                 e.target.setAttribute('href', 'user_info.html');

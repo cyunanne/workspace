@@ -74,10 +74,9 @@
 	<select id="login" parameterType="Member" resultMap="member_rm">
 	<!-- 사용자 지정 별칭 & DTO의 필드명과 DB의 컬럼명이 같지 않기 때문에 Mapping 필요 -->
 		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_TEL, MEMBER_ADDR, PROFILE_IMG, AUTHORITY,
-			TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') ENROLL_DATE
+			TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') ENROLL_DATE, MEMBER_PW
 		FROM "MEMBER"
 		WHERE MEMBER_DEL_FL = 'N'
 		AND MEMBER_EMAIL = #{memberEmail}
-		AND MEMBER_PW = #{memberPw}
 	</select>
 </mapper>

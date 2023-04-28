@@ -73,3 +73,7 @@ textarea:focus {
     display: inline-block;
     margin-left: 120px;
 }
+
+#bottom > button {
+    width: 130px;
+}

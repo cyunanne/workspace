@@ -33,17 +33,19 @@
 	</bean>
 
 
-	<!-- SqlSession : sql구문을 DB에 전달, 실행하는 객체 SqlSessionFactory : SqlSession을 
-		만드는 객체 sqlSessionFactoryBean : mybatis 설정 파일(mybatis-config.xml)과 Connection 
-		Pool 정보를 이용하여 SqlSessionFactory를 만드는 객체 sqlSessionTemplate : SqlSession 객체에 
-		트랜잭션 처리 역할이 가능하도록 하는 객체 -->
-
+	<!-- 
+		SqlSession : sql구문을 DB에 전달, 실행하는 객체 
+		SqlSessionFactory : SqlSession을 만드는 객체
+		sqlSessionFactoryBean : mybatis 설정 파일(mybatis-config.xml)과 Connection Pool 정보를 이용하여 SqlSessionFactory를 만드는 객체  (connection + jdbc + close)
+		sqlSessionTemplate : SqlSession 객체에 트랜잭션 처리 역할이 가능하도록 하는 객체 (sqlSessionFactoryBean + transaction)
+	-->
 	<!-- 마이바티스 SqlSession 등록하기 (xml 방식으로 bean 등록) -->
 	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- mybatis-config.xml 설정 불러오기 -->
 		<property name="configLocation" value="classpath:mybatis-config.xml" />
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	<!--  -->
 
 	<!-- SqlSessionTemplate : 기본 SQL 실행 + 트랜잭션 관리 역할을 하는 SqlSession을 생성할 수 있게 하는 객체(Spring bean으로 등록해야함) -->
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">

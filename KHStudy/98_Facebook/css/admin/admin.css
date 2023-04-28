@@ -153,3 +153,84 @@ button.back:hover {
     left: 143px;
 }
 
+/* 게시판 목록 + 페이징 */
+.board-list-wrap {
+    width: 1200px;
+    height: 650px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #F7F8FA;
+    border-bottom: 1px solid #ccc;
+}
+/* 게시판 헤더 */
+.board-list > .top {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    background-color: #4A6EA9;
+    color: white;
+    height: 51px;
+    border-radius: 6px 6px 0 0;
+}
+.board-list > .top > div {
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+}
+
+/* 게시판 목록 */
+.board-list > a.row {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    height: 51px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    text-decoration: none;
+    color: black;
+}
+.board-list > a.row * {
+    pointer-events: none;
+}
+.board-list > a:hover {
+    background-color: #F0F2F5;
+}
+
+/* 게시판 페이징 */
+.board-page {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+.board-page > a {
+    text-decoration: none;
+    color: black;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-left: none;
+}
+.board-page > a:hover {
+    color: white;
+    background-color:#4A6EA9;
+    transition-duration: 0.1s;
+}
+.board-page > a.prev-page, .board-page > a.next-page {
+    width: 60px;
+    padding: 0 10px;
+}
+.board-page > a.prev-page {
+    border-left: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+}
+.board-page > a.next-page {
+    border-right: 1px solid #ccc;
+    border-radius: 0 5px 5px 0;
+}
+.board-page > a.current-page {
+    color: white;
+    background-color:#4A6EA9;
+}
