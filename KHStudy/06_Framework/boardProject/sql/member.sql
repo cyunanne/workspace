@@ -58,6 +58,9 @@ SET MEMBER_PW='$2a$10$6fpluhNi.x5u31by7TTOieH33qAFFdG6fnub7VqfdAltmzhGQTg.a'
 
 COMMIT;
 
+-- 
+
+SELECT * FROM "MEMBER";
 
 
 

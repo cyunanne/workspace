@@ -25,4 +25,18 @@ public class MemberDAO {
 		// -> namespace가 일치하는 Mapper에서 id가 일치하는 SQL구문 수행 후 결과를 1행(dto, 기본자료형) 반환
 		return sqlSession.selectOne("memberMapper.login", inputMember);
 	}
+
+	/**
+	 * 회원가입 DAO
+	 * @param inputMember
+	 * @return 0 또는 1
+	 */
+	public int signUp(Member inputMember) {
+		// 1) mapper의 namepsace를 지정 후 
+		//    그 안에 어떤 id를 가지는 sql을 수행할지 작성
+		// 2) SQL에 사용할 데이터를 전달(자료형 중요)
+		
+		// insert 성공한 행의 개수 반환
+		return sqlSession.insert(/*1*/"memberMapper.signUp", /*2*/inputMember);
+	}
 }

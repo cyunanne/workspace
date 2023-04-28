@@ -284,7 +284,10 @@ public class MemberController {
 	
 	// 회원 가입 진행
 	@PostMapping("/signUp")
-	public String signUp(Member inputMember) {
+	public String signUp(
+			Member inputMember,
+			String[] memberAddress // name="memberAddress" 인 모든 파라미터를 받음
+			) {
 		
 		///////////////////////////// 매개변수 설명 /////////////////////////////
 		//																	   //
@@ -292,8 +295,28 @@ public class MemberController {
 		//																	   //
 		/////////////////////////////////////////////////////////////////////////
 		
+		// 만약 주소를 입력하지 않은 경우(,,) null로 변경
+		if(inputMember.getMemberAddress().equals(",,")) {
+			inputMember.setMemberAddress(null);
+		} else {
+			// 주소 구분자를 , -> ^^^ 으로 변경
+//			String addr = inputMember.getMemberAddress().replaceAll(",", "^^^");
+//			inputMember.setMemberAddress(addr);
+			// -> 클라이언트가 ,를 직접 입력하면 문제 발생
+			
+			// String.join("구분자", String[])
+			// : 요소 사이에 구분자를 추가하여 배열의 요소를 하나의 문자열로 변경 
+			String addr = String.join("^^^", memberAddress);
+			inputMember.setMemberAddress(addr);
+		}
 		
+		// 가입 성공 여부에 따라 redirect 경로 결정
+		String path = "redirect:";
 		
-		return "redirect:/";
+		// 회원 가입 서비스 호출
+		// DB에 DML 수행 시 성공 행의 개수(int) 반환
+		int result = service.signUp(inputMember);
+		
+		return path;
 	}
 }
