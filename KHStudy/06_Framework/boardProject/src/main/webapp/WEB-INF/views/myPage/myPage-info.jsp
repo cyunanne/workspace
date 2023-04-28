@@ -29,19 +29,17 @@
 
                     <div class="myPage-row">
                         <label>닉네임</label>
-                        <input type="text" name="memberNickname"  maxlength="10">
+                        <input type="text" name="memberNickname" maxlength="10" value="${loginMember.memberNickname}">
                     </div>
 
                     <div class="myPage-row">
                         <label>전화번호</label>
-                        <input type="text" name="memberTel"  maxlength="11">
+                        <input type="text" name="memberTel" maxlength="11" value="${loginMember.memberTel}">
                     </div>
 
                     <div class="myPage-row info-title">
                         <span>주소</span>
                     </div>
-
-
 
                     <div class="myPage-row info-address">
                         <input type="text" name="memberAddress" placeholder="우편번호">
@@ -49,11 +47,11 @@
                     </div>
 
                     <div class="myPage-row info-address">
-                        <input type="text" name="memberAddress"  placeholder="도로명/지번 주소">                
+                        <input type="text" name="memberAddress" placeholder="도로명/지번 주소">                
                     </div>
 
                     <div class="myPage-row info-address">
-                        <input type="text" name="memberAddress"  placeholder="상세 주소">                
+                        <input type="text" name="memberAddress" placeholder="상세 주소">                
                     </div>
 
                     <button class="myPage-submit">수정하기</button>
