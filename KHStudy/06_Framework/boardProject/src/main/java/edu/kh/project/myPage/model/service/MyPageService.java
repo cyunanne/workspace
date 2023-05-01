@@ -6,4 +6,8 @@ public interface MyPageService {
 
 	int updateInfo(Member updateMember);
 
+	int changePw(String currentPw, String newPw, int memberNo);
+
+	int secession(String memberPw, int memberNo);
+
 }

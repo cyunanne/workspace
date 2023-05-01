@@ -10,4 +10,41 @@
 				MEMBER_ADDR =#{memberAddress}
 		WHERE 	MEMBER_NO = #{memberNo}
 	</update>
+	
+	<!--
+		MyBatis 기본 별칭
+		자료형		별칭
+		java		mybatis
+		int			_int
+		Integer		int
+		String		string
+	-->
+	
+	<!--
+		(1) 조회 결과가 1개인 경우(int, string 등)
+		(2) 조회 결과를 모두 Map에 담는 경우
+		=> resultType 속성 사용
+	-->
+	
+	<!-- 비밀번호 조회 -->
+	<select id="selectEncPw" parameterType="_int" resultType="string">
+		SELECT 	MEMBER_PW
+		FROM	"MEMBER"
+		WHERE 	MEMBER_NO = #{memberNo}
+	</select>
+	
+	<!-- 비밀번호 수정 -->
+	<update id="changePw" parameterType="Member">
+		UPDATE "MEMBER"
+		SET		MEMBER_PW = #{memberPw}
+		WHERE	MEMBER_NO = #{memberNo}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<update id="secession" parameterType="_int">
+		UPDATE "MEMBER"
+		SET		MEMBER_DEL_FL = 'Y'
+		WHERE	MEMBER_NO = #{memberNo}
+	</update>
+	
 </mapper>
