@@ -69,7 +69,7 @@
 }
 
 /* 의견 처리상태 */
-.feedback-condition {
+.feedback-condition-icon {
     font-weight: bold;
     width: 100px;
     height: 25px;
@@ -79,5 +79,5 @@
     padding: 2px;
 }
 /* 이 부분은 DB에 저장된 정보에 따라 출력할 상태를 결정할 것임 */
-.feedback-condition.in-porgress { background-color: #4A6EA9; display: none; }
-.feedback-condition.complete { background-color: #8C8D8F; display: inline-block; }
+.feedback-condition-icon.in-porgress { background-color: #4A6EA9; display: none; }
+.feedback-condition-icon.complete { background-color: #8C8D8F; display: inline-block; }

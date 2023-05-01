@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>설정</title>
+    <link rel="stylesheet" href="../../css/admin/admin.css">
+    <link rel="stylesheet" href="../../css/admin/manage_users.css">
+    <link rel="stylesheet" href="../../css/setting/general.css">
+    <script src="https://kit.fontawesome.com/9c2aaccfe5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>상단바</header>
+    <main>
+        <section id="sidebar">
+            <h1>설정</h1>
+            <hr>
+            <ul>
+                <li>
+                    <a href="manage_users.html">
+                        <img src="../../images/setting/setting-icon.png" alt="회원 관리">
+                        <span>일반</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="user_feedback.html">
+                        <img src="../../images/setting/shield-icon.png" alt="회원 의견" style="width: 30px;">
+                        <span>보안 관련 설정</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="user_feedback.html">
+                        <img src="../../images/setting/alarm-icon.png" alt="회원 의견" style="width: 30px;">
+                        <span>알림 설정</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="user_feedback.html">
+                        <img src="../../images/setting/feedback-icon.png" alt="회원 의견" style="width: 30px;">
+                        <span>의견 보내기</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <form action="#" method="POST" id="content">
+            <div id="details">
+                <h3>회원 상세 정보</h3>
+                <hr>
+                <div class="row">
+                    <span class="title">로그인계정</span>
+                    <span class="data">cyunanne@gmail.com</span>
+                </div>
+                <div class="row">
+                    <span class="title">이름</span>
+                    <span class="data">최유나</span>
+                </div>
+                <div class="row">
+                    <span class="title">비밀번호</span>
+                    <span class="data">************** </span>
+                    <input class="data info-input" />
+                    <span class="mod">
+                        <img src="../../images/setting/pencil-icon.png">
+                        <span>수정</span>
+                    </span>
+                </div>
+                <div class="row">
+                    <span class="title">성별</span>
+                    <span class="data">여</span>
+                    <span class="data info-input">
+                        <label><input type="radio" name="gender" value="M"> 남</label>
+                        <label><input type="radio" name="gender" value="F"> 여</label>
+                        <label><input type="radio" name="gender" value="None"> 알리고 싶지 않음</label>
+                    </span>
+                    <span class="mod">
+                        <img src="../../images/setting/pencil-icon.png">
+                        <span>수정</span>
+                    </span>
+                </div>
+                <div class="row">
+                    <span class="title">주소</span>
+                    <span class="data">경기도 하남시 아리수로 499 미사강변루나리움아파트 502동 1302호</span>
+                    <input class="data info-input" value="경기도 하남시 아리수로 499 미사강변루나리움아파트 502동 1302호" />
+                    <span class="mod">
+                        <img src="../../images/setting/pencil-icon.png">
+                        <span>수정</span>
+                    </span>
+                </div>
+                <div class="row">
+                    <span class="title">연락처</span>
+                    <span class="data">010-5923-9363</span>
+                    <input class="data info-input" value="010-5923-9363" />
+                    <span class="mod">
+                        <img src="../../images/setting/pencil-icon.png">
+                        <span>수정</span>
+                    </span>
+                </div>
+                <div class="row">
+                    <span class="title">회원상태</span>
+                    <div class="data account-condition normal">정상</div>
+                    <div class="data account-condition disabled">비활성</div>
+                    <div class="data account-condition dropped">탈퇴</div>
+                </div>
+            </div>
+            <div id="bottom">
+                <button type="button" name="button" value="able" disabled>비활성 해제</button>
+                <button type="button" name="button" vlaue="recover" disabled>계정 복구</button>
+            </div>
+        </form>
+    </main>
+
+    <script src="../../js/setting/setting.js"></script>
+</body>
+</html>
