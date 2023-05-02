@@ -17,55 +17,59 @@
             <hr>
             <ul>
                 <li>
-                    <a href="manage_users.html">
+                    <a href="general.html">
                         <img src="../../images/setting/setting-icon.png" alt="회원 관리">
                         <span>일반</span>
                     </a>
                 </li>
                 <li>
-                    <a href="user_feedback.html">
+                    <a href="security.html">
                         <img src="../../images/setting/shield-icon.png" alt="회원 의견" style="width: 30px;">
                         <span>보안 관련 설정</span>
                     </a>
                 </li>
                 <li>
-                    <a href="user_feedback.html">
+                    <a href="alarm.html">
                         <img src="../../images/setting/alarm-icon.png" alt="회원 의견" style="width: 30px;">
                         <span>알림 설정</span>
                     </a>
                 </li>
                 <li>
-                    <a href="user_feedback.html">
+                    <a href="feedback.html">
                         <img src="../../images/setting/feedback-icon.png" alt="회원 의견" style="width: 30px;">
                         <span>의견 보내기</span>
                     </a>
                 </li>
             </ul>
         </section>
-        <form action="#" method="POST" id="content">
+        <form action="#" id="content">
             <div id="details">
-                <h3>회원 상세 정보</h3>
+                <h3>내 정보</h3>
                 <hr>
                 <div class="row">
                     <span class="title">로그인계정</span>
                     <span class="data">cyunanne@gmail.com</span>
                 </div>
+
                 <div class="row">
                     <span class="title">이름</span>
                     <span class="data">최유나</span>
                 </div>
+
                 <div class="row">
                     <span class="title">비밀번호</span>
-                    <span class="data">************** </span>
+                    <span class="data info-print">************** </span>
                     <input class="data info-input" />
                     <span class="mod">
                         <img src="../../images/setting/pencil-icon.png">
-                        <span>수정</span>
+                        <span class="mod-text">수정</span>
+                        <span class="save-text">저장</span>
                     </span>
                 </div>
+
                 <div class="row">
                     <span class="title">성별</span>
-                    <span class="data">여</span>
+                    <span class="data info-print">여</span>
                     <span class="data info-input">
                         <label><input type="radio" name="gender" value="M"> 남</label>
                         <label><input type="radio" name="gender" value="F"> 여</label>
@@ -73,37 +77,33 @@
                     </span>
                     <span class="mod">
                         <img src="../../images/setting/pencil-icon.png">
-                        <span>수정</span>
+                        <span class="mod-text">수정</span>
+                        <span class="save-text">저장</span>
                     </span>
                 </div>
+
                 <div class="row">
                     <span class="title">주소</span>
-                    <span class="data">경기도 하남시 아리수로 499 미사강변루나리움아파트 502동 1302호</span>
+                    <span class="data info-print">경기도 하남시 아리수로 499 미사강변루나리움아파트 502동 1302호</span>
                     <input class="data info-input" value="경기도 하남시 아리수로 499 미사강변루나리움아파트 502동 1302호" />
                     <span class="mod">
                         <img src="../../images/setting/pencil-icon.png">
-                        <span>수정</span>
+                        <span class="mod-text">수정</span>
+                        <span class="save-text">저장</span>
                     </span>
                 </div>
+
                 <div class="row">
                     <span class="title">연락처</span>
-                    <span class="data">010-5923-9363</span>
+                    <span class="data info-print">010-5923-9363</span>
                     <input class="data info-input" value="010-5923-9363" />
                     <span class="mod">
                         <img src="../../images/setting/pencil-icon.png">
-                        <span>수정</span>
+                        <span class="mod-text">수정</span>
+                        <span class="save-text">저장</span>
                     </span>
                 </div>
-                <div class="row">
-                    <span class="title">회원상태</span>
-                    <div class="data account-condition normal">정상</div>
-                    <div class="data account-condition disabled">비활성</div>
-                    <div class="data account-condition dropped">탈퇴</div>
-                </div>
-            </div>
-            <div id="bottom">
-                <button type="button" name="button" value="able" disabled>비활성 해제</button>
-                <button type="button" name="button" vlaue="recover" disabled>계정 복구</button>
+                <hr>
             </div>
         </form>
     </main>

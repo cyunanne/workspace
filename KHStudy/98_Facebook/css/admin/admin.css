@@ -1,7 +1,14 @@
 /* 다 만들고 삭제 */
 /* div, main, header, section, footer, article, nav, aside, form { border: 1px solid black; } */
+@font-face {
+    font-family: 'NotoSansKR';
+    src: url('../../fonts/NotoSansKR-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
 
 * {
+    font-family: 'NotoSansKR';
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -139,6 +146,23 @@ button.back {
 button.back:hover {
     background: #4A6EA9;
     color: white;
+    transition-duration: 0.1s;
+}
+
+button.reverse {
+    width: 99px;
+    height: 36px;
+    background: #4A6EA9;
+    border-radius: 6px;
+    margin-top: 24px;
+    margin-left: 30px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+}
+button.reverse:hover {
+    background: #35507a;
     transition-duration: 0.1s;
 }
 

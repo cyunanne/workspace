@@ -1,3 +1,7 @@
+#sidebar > ul > li:nth-child(1) > a {
+    background-color: #eee;
+}
+
 #content {
     min-width: 950px;
 }
@@ -49,3 +53,15 @@
     height: 12px;
     width: 12px;
 }
+
+.row:last-child {
+    border-bottom: 0;
+}
+
+.info-input {
+    height: 20px;
+    width: 600px;
+    font-size: 16px;
+}
+input.info-input { border: 1px solid #ccc; }
+.info-input > label { margin-right: 20px; }
