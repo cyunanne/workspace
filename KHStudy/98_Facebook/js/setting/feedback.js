@@ -28,3 +28,11 @@ submitBtn.addEventListener('click', () => {
     modalContent2.style.display = 'flex';
     modalBottom2.style.display = 'block';
 });
+
+// 모달창 취소 버튼 기능 넣기
+const cancelBtnList = document.getElementsByClassName('cancelBtn');
+for(let btn of cancelBtnList) {
+    btn.addEventListener('click', () => {
+        modal.classList.remove('show');
+    });
+}

@@ -12,11 +12,22 @@ const modalBottom2 = document.getElementById('modalBottom2');
 
 // 모달창 띄우기
 accountDisableBtn.addEventListener('click', () => {
-    modal.style.display = 'block';
-    modalContent1.style.display = 'block';
-    modalBottom1.style.display = 'block';
-    modalContent2.style.display = 'none';
-    modalBottom2.style.display = 'none';
+    modal.classList.add('show');
+    modalContent1.classList.add('show');
+    modalBottom1.classList.add('show');
+
+    modalContent2.classList.remove('show');
+    modalBottom2.classList.remove('show');
+});
+
+
+// 두 번째 모달 창으로 이동
+disableContinueBtn.addEventListener('click', () => {
+    modalContent1.classList.remove('show');
+    modalBottom1.classList.remove('show');
+
+    modalContent2.classList.add('show');
+    modalBottom2.classList.add('show');
 });
 
 // 모달창 외부 클릭 시 창 닫힘
@@ -28,16 +39,14 @@ modal.addEventListener("click", (e) => {
         && e.clientY < modalBody.getBoundingClientRect().bottom ) {
             return;
     }
-
     // 팝업 외부 클릭 시 팝업 닫힘
-    modal.style.display = "none";
+    modal.classList.remove('show');
 });
 
-// 두 번째 모달 창으로 이동
-disableContinueBtn.addEventListener('click', () => {
-    modalContent1.style.display = 'none';
-    modalBottom1.style.display = 'none';
-    modalContent2.style.display = 'block';
-    modalBottom2.style.display = 'block';
-});
-
+// 모달창 취소 버튼 기능 넣기
+const cancelBtnList = document.getElementsByClassName('cancelBtn');
+for(let btn of cancelBtnList) {
+    btn.addEventListener('click', () => {
+        modal.classList.remove('show');
+    });
+}
