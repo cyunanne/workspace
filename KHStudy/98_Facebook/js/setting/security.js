@@ -50,3 +50,15 @@ for(let btn of cancelBtnList) {
         modal.classList.remove('show');
     });
 }
+
+// 드롭다운
+// const label = document.getElementById('label');
+// const checkbox = document.getElementById('checkbox');
+// const items = document.getElementsByClassName('item');
+
+// for(let item of items) {
+//     item.addEventListener('click', e => {
+//         label.innerText = e.target.innerText;
+//         checkbox.checked = false;
+//     });
+// };

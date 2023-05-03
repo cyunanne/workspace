@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테스트</title>
+
+    <style>
+        .container > div { display: none; }
+
+        #checkbox:checked + .container > div { display: block; }
+        #checkbox { display: none; }
+
+        #label {
+            cursor: pointer;
+            display: block;
+            width: 100px;
+            height: 28px;
+
+            background: #D9D9D9;
+            border-radius: 2px;
+
+            margin-bottom: 4px;
+            text-align: center;
+            padding-top: 6px;
+        }
+
+        .item {
+            width: 100px;
+            height: 28px;
+
+            background: #D9D9D9;
+            border-radius: 2px;
+
+            margin-bottom: 4px;
+            text-align: center;
+            padding-top: 6px;
+        }
+        .item:hover {
+            background-color: #eee;
+            transition-duration: 0.1s;
+        }
+
+        .container {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <label for="checkbox" id="label">드롭다운</label>
+    <input type="checkbox" id="checkbox">
+    <div class="container">
+        <div class="item" id="test1">모두</div>
+        <div class="item" id="test2">친구만</div>
+        <div class="item" id="test3">나만</div>
+    </div>
+
+    <script>
+        const label = document.getElementById('label');
+        const checkbox = document.getElementById('checkbox');
+        const items = document.getElementsByClassName('item');
+
+        for(let item of items) {
+            item.addEventListener('click', e => {
+                label.innerText = e.target.innerText;
+                checkbox.checked = false;
+            });
+        };
+    </script>
+</body>
+</html>

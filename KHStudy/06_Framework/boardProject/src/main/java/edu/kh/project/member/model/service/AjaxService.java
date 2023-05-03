@@ -1,5 +1,9 @@
 package edu.kh.project.member.model.service;
 
+import java.util.List;
+
+import edu.kh.project.member.model.dto.Member;
+
 public interface AjaxService {
 
 	/**
@@ -29,5 +33,19 @@ public interface AjaxService {
 	 * @return count
 	 */
 	int checkNickname(String nickname);
+
+	/**
+	 * 회원 정보 조회
+	 * @param email
+	 * @return Member
+	 */
+	Member selectMember(String email);
+
+	/**
+	 * 이메일이 일부라도 일치하는 회원 목록 조회
+	 * @param input
+	 * @return memberList
+	 */
+	List<Member> selectMemberList(String input);
 
 }
