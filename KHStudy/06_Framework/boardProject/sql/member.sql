@@ -110,5 +110,4 @@ SELECT * FROM "AUTH_KEY";
 SELECT COUNT(*) FROM "AUTH_KEY"
 WHERE EMAIL = #{email}
 AND CODE = #{inputKey}
-
-
+;
