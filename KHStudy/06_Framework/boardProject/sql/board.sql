@@ -326,3 +326,111 @@ JOIN "MEMBER" USING(MEMBER_NO)
 WHERE BOARD_DEL_FL = 'N'
 AND BOARD_CODE = 1
 ORDER BY BOARD_NO DESC;
+
+----------------------------------------------------------------------
+
+-- 게시글 상세조회
+SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, READ_COUNT, MEMBER_NICKNAME, MEMBER_NO, PROFILE_IMG, BOARD_CODE,
+	TO_CHAR(B_CREATE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') B_CREATE_DATE,
+	TO_CHAR(B_UPDATE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') B_UPDATE_DATE,
+	(
+		SELECT COUNT(*)
+		FROM "BOARD_LIKE" L
+		WHERE L.BOARD_NO = B.BOARD_NO	
+	) LIKE_COUNT
+FROM "BOARD" B JOIN "MEMBER" USING (MEMBER_NO)
+WHERE BOARD_DEL_FL='N' AND BOARD_CODE=1 AND BOARD_NO=1994
+
+;
+
+----------------------------------------------------------------------
+
+-- 게시글 좋아요 샘플 데이터 삽입
+INSERT INTO "BOARD_LIKE" VALUES(1994, 3);
+INSERT INTO "BOARD_LIKE" VALUES(1994, 2);
+COMMIT;
+SELECT * FROM "BOARD_LIKE";
+
+-- 특정 게시글의 좋아요 개수 카운트
+SELECT COUNT(*)
+FROM "BOARD_LIKE" L
+WHERE L.BOARD_NO=1994
+;
+
+----------------------------------------------------------------------
+
+-- 특정 게시글에 존재하는 이미지 조회(IMG_ORDER 오름차순)
+SELECT *
+FROM "BOARD_IMG"
+WHERE BOARD_NO=1994
+ORDER BY IMG_ORDER
+
+;
+
+INSERT INTO "BOARD_IMG" VALUES(
+	SEQ_IMG_NO.NEXTVAL, 
+	'/resources/images/board/', 
+	'20230508115013_00002.jpg',
+	'cat2.jpg', 1, 1994);
+INSERT INTO "BOARD_IMG" VALUES(
+	SEQ_IMG_NO.NEXTVAL, 
+	'/resources/images/board/', 
+	'20230508115013_00003.jpg',
+	'cat3.jpg', 2, 1994);
+COMMIT;
+
+-- 특정 게시글에 대한 댓글 목록 조회(바뀔예정)
+SELECT COMMENT_NO, COMMENT_CONTENT,
+  TO_CHAR(C_CREATE_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') C_CREATE_DATE,
+      BOARD_NO, MEMBER_NO, MEMBER_NICKNAME, PROFILE_IMG, PARENT_NO, COMMENT_DEL_FL
+FROM "COMMENT"
+JOIN MEMBER USING(MEMBER_NO)
+WHERE BOARD_NO = 1994
+ORDER BY COMMENT_NO
+
+;
+-- 좋아요 여부 확인
+SELECT COUNT(*) FROM "BOARD_LIKE"
+WHERE BOARD_NO=1994  -- 게시글 번호
+AND MEMBER_NO=2  -- 로그인 회원 번호
+
+;
+
+SELECT * FROM "BOARD_LIKE";
+
+COMMIT;
+
+----------------------------------------------------------------------
+
+-- 좋아요 테이블 삽입
+INSERT INTO "BOARD_LIKE" 
+VALUES(1 ,1)
+
+;
+
+-- 좋아요 테이블 삭제
+DELETE FROM "BOARD_LIKE"
+WHERE BOARD_NO=1 AND MEMBER_NO=1
+
+;
+
+----------------------------------------------------------------------
+-- 2023.5.11.
+-- 한 번에 여러개 INSERT
+-- INSERT ALL : 여러 테이블에 동시에 INSERT 하는 구문
+--> 시퀀스 생성 구문을 작성할 수 없음 (~>탈락)
+-- INSERT + SUB QUERY
+SELECT '웹접근경로' IMG_PATH, '변경명' IMG_RENAME, '원본명' IMG_ORIGINAL, 0 IMG_ORDER, 2001 BOARD_NO
+FROM DUAL
+
+UNION ALL
+
+SELECT '웹접근경로' IMG_PATH, '변경명' IMG_RENAME, '원본명' IMG_ORIGINAL, 1 IMG_ORDER, 2001 BOARD_NO
+FROM DUAL
+
+UNION ALL
+
+SELECT '웹접근경로' IMG_PATH, '변경명' IMG_RENAME, '원본명' IMG_ORIGINAL, 2 IMG_ORDER, 2001 BOARD_NO
+FROM DUAL
+
+;

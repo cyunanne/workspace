@@ -111,3 +111,10 @@ SELECT COUNT(*) FROM "AUTH_KEY"
 WHERE EMAIL = #{email}
 AND CODE = #{inputKey}
 ;
+
+-- 회원 프로필 이미지 변경
+UPDATE "MEMBER" SET
+PROFILE_IMG = '/resources/images/member/logoyogo-1-112.jpg'
+WHERE MEMBER_NO=1;
+COMMIT;
+
