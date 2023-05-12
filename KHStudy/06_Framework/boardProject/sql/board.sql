@@ -420,17 +420,49 @@ WHERE BOARD_NO=1 AND MEMBER_NO=1
 -- INSERT ALL : 여러 테이블에 동시에 INSERT 하는 구문
 --> 시퀀스 생성 구문을 작성할 수 없음 (~>탈락)
 -- INSERT + SUB QUERY
-SELECT '웹접근경로' IMG_PATH, '변경명' IMG_RENAME, '원본명' IMG_ORIGINAL, 0 IMG_ORDER, 2001 BOARD_NO
-FROM DUAL
 
-UNION ALL
+INSERT INTO "BOARD_IMG"
+SELECT SEQ_IMG_NO.NEXTVAL, A.*
+FROM (
+	SELECT '웹접근경로' IMG_PATH, '변경명' IMG_RENAME, '원본명' IMG_ORIGINAL, 0 IMG_ORDER, 2001 BOARD_NO FROM DUAL	
+	UNION ALL
+	SELECT '웹접근경로' IMG_PATH, '변경명' IMG_RENAME, '원본명' IMG_ORIGINAL, 1 IMG_ORDER, 2001 BOARD_NO FROM DUAL
+	UNION ALL
+	SELECT '웹접근경로' IMG_PATH, '변경명' IMG_RENAME, '원본명' IMG_ORIGINAL, 2 IMG_ORDER, 2001 BOARD_NO FROM DUAL
+) A
+;
 
-SELECT '웹접근경로' IMG_PATH, '변경명' IMG_RENAME, '원본명' IMG_ORIGINAL, 1 IMG_ORDER, 2001 BOARD_NO
-FROM DUAL
+SELECT * FROM "BOARD_IMG" ORDER BY IMG_NO DESC;
 
-UNION ALL
-
-SELECT '웹접근경로' IMG_PATH, '변경명' IMG_RENAME, '원본명' IMG_ORIGINAL, 2 IMG_ORDER, 2001 BOARD_NO
-FROM DUAL
+----------------------------------------------------------------------
+-- 2023.5.12.
+-- 게시글 수정(제목, 내용만)
+UPDATE "BOARD" SET
+BOARD_TITLE = #{boardTitle},
+BOARD_CONTENT = #{boardContent},
+B_UPDATE_DATE = SYSDATE
+WHERE BOARD_CODE = #{boardCode} 
+AND BOARD_NO = #{boardNo}
 
 ;
+
+-- 이미지 삭제
+DELETE FROM "BOARD_IMG"
+WHERE BOARD_NO = #{boardNo}
+AND IMG_ORDER IN (${deleteList})
+
+;
+
+-- 이미지 수정
+UPDATE "BOARD_IMG"
+SET		IMG_PATH = #{imagePath},
+		IMG_ORIGINAL = #{imageOriginal},
+		IMG_RENAME = #{imageReName}
+WHERE 	BOARD_NO = #{boardNo}
+		AND IMG_ORDER = #{imageOrder}
+		
+;
+
+UPDATE "BOARD"
+		SET		BOARD_DEL_FL = 'N';
+	COMMIT;

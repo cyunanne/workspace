@@ -98,8 +98,6 @@
                     </div>
                 </c:if>
 
-
-
                 <%-- 썸네일을 제외한 나머지 이미지의 시작 index 번호 --%>
 
                 <%-- 썸네일이 있는 경우 --%>
@@ -144,8 +142,8 @@
 
                 <!-- 로그인한 회원과 게시글 작성자 번호가 같은 경우-->
                 <c:if test="${loginMember.memberNo == board.memberNo}" >
-                    <button>수정</button>     
-                    <button>삭제</button>
+                    <button id="updateBtn">수정</button>     
+                    <button id="deleteBtn">삭제</button>
                 </c:if>
 
 
