@@ -5,6 +5,7 @@
 
 <!-- font awesome 라이브러리 추가 + key 등록 -->
 <script src="https://kit.fontawesome.com/9c2aaccfe5.js" crossorigin="anonymous"></script>
+<script src="/resources/js/header.js"></script>
 
 <header>
     <section>
@@ -23,7 +24,7 @@
                 - POST : input 태그 값을 주소에 담지 않고 제출(주소에 안보임)
                         -> HTTP body에 담아서 제출
             -->
-            <form action="#" method="GET">
+            <form action="/board/1" method="GET">
                 <fieldset> <!-- form 태그 내 영역 구분 -->
                     <!-- 
                         input의 name 속성 == 제출 시 key 값
@@ -31,11 +32,16 @@
 
                         autocomplete="off" : 브라우저가 제공하는 자동완성 기능 off
                     -->
-                    <input type="search" name="query" id="query" placeholder="검색어를 입력해주세요" autocomplete="off">
+                    <input type="search" name="query" id="query" placeholder="검색어를 입력해주세요" autocomplete="off" value="${param.query}">
+                    <%-- 1번 게시판(공지사항)에서 제목 검색 --%>
+                    <input type="hidden" name="key" value="t">
+                    
                     <!-- 검색 버튼 -->
                     <button id="searchBtn" class="fa-solid fa-magnifying-glass"></button>
                 </fieldset>
             </form>
+
+            <ul id="searchResult" class="close"></ul>
         </article>
     </section>
     <section></section>

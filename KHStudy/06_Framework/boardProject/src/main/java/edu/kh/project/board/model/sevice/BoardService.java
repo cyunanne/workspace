@@ -45,4 +45,20 @@ public interface BoardService {
 	 */
 	int updateReadCount(int boardNo);
 
+	/**
+	 * [검색] 검색 결과 조회 서비스
+	 * @param paramMap
+	 * @param cp
+	 * @return map
+	 */
+	Map<String, Object> selectBoardList(Map<String, Object> paramMap, int cp);
+	
+	/** 헤더 검색
+	 * @param query
+	 * @return list
+	 */
+	List<Map<String, Object>> headerSearch(String query);
+
+
+
 }
