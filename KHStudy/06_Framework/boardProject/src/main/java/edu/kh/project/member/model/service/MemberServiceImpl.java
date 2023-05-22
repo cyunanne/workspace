@@ -1,5 +1,7 @@
 package edu.kh.project.member.model.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,11 @@ import edu.kh.project.member.model.dto.Member;
 // 2) Spring Bean으로 등록
 public class MemberServiceImpl implements MemberService {
 
+	// org.slf4j.Logger : 로그를 작성할 수 있는 객체
+	private Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
+													// 현재 클래스명
+	
+	
 	// @Autowired : 작성된 필드와 Bean으로 등록된 객체 중 타입이 일치하는 Bean을 
 	// 해당 필드에 주입(Injection)해주는 어노테이션
 	// == DI(Dependency Injection, 의존성 주입)
@@ -25,6 +32,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	// CheckedException이었던 SQLException이 Spring에서는 UncheckedException이 된다 
 	public Member login(Member inputMember) {
+		
+		// 로그 출력
+		logger.info("MemberService.login() 실행"); // 정보 출력
+		logger.debug("memberEmail : " + inputMember.getMemberEmail());
+		logger.warn("이건 경고용도");
+		logger.error("이건 오류 발생 시");
+		
 		// 암호화 추가 예정
 //		System.out.println("암호화 확인 : " + bcrypt.encode(inputMember.getMemberPw()));
 		

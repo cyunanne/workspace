@@ -118,3 +118,8 @@ PROFILE_IMG = '/resources/images/member/logoyogo-1-112.jpg'
 WHERE MEMBER_NO=1;
 COMMIT;
 
+
+COMMIT;
+
+SELECT * FROM "COMMENT";
+SELECT COUNT(*) FROM "COMMENT";
