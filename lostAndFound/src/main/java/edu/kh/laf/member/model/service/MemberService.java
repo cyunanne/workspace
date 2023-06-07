@@ -11,7 +11,7 @@ public class MemberService {
     @Autowired
     MemberMapper mapper;
 
-    public Member test() {
-        return mapper.selectMember(1L);
+    public Member getMember(Long id) {
+        return mapper.selectMember(id);
     }
 }
