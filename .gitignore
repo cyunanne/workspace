@@ -24,6 +24,9 @@ SESSION.ser
 .factorypath
 settings.json
 
+# Spring-Boot Project
+config.properties
+
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/
