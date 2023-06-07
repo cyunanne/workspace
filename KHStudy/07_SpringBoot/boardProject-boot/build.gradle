@@ -24,9 +24,16 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
 	
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+   	// 스프링 시큐리티(bcrypt)
+   	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+   	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '3.1.0'
+	
 	annotationProcessor 'org.projectlombok:lombok'
+   	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor' // @ConfigurationProperties 사용 가능
+
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
