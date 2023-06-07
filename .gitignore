@@ -26,6 +26,7 @@ settings.json
 
 # Spring-Boot Project
 config.properties
+db.properties
 
 ### IntelliJ IDEA ###
 out/

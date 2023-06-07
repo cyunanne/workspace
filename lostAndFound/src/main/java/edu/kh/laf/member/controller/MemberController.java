@@ -16,7 +16,7 @@ public class MemberController {
     @GetMapping("/")
     public String home(String memberId, String memberPw, Model model) {
         model.addAttribute("message", "서버에서 보낸 메시지~!");
-        model.addAttribute("message2", service.test());
+        model.addAttribute("message2", service.getMember(1L));
         return "main";
     }
 }
