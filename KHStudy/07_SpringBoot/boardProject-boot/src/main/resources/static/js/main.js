@@ -169,27 +169,56 @@ btn3.addEventListener('click', () => {
 // 1. SockJS 라이브러리 추가
 // 2. SockJS를 이용해서 클라이언트용 웹소켓 객체 생성
 //    - servlet-context.xml <websocket:mapping>의 path
-let testSock = new SockJS("/testSock");
+// let testSock = new SockJS("/testSock");
 
-function sendMessage(name, str) {
+// function sendMessage(name, str) {
 
-    // 매개변수를 JS 객체에 저장
-    const obj = {}; // 비어있는 객체
-    obj.name = name; // 객체에 일치하는 key가 없다면 자동으로 추가
-    obj.str = str;
+//     // 매개변수를 JS 객체에 저장
+//     const obj = {}; // 비어있는 객체
+//     obj.name = name; // 객체에 일치하는 key가 없다면 자동으로 추가
+//     obj.str = str;
 
-    // console.log(obj);
+//     // console.log(obj);
 
-    testSock.send(JSON.stringify(obj)); // 웹소켓이 연결된 곳으로 메시지를 보냄
-                    // JS객체 -> JSON
+//     testSock.send(JSON.stringify(obj)); // 웹소켓이 연결된 곳으로 메시지를 보냄
+//                     // JS객체 -> JSON
+// }
+
+// // 웹소켓 객체(testSock)가 서버로부터 전달받은 메시지가 있을 경우
+// testSock.onmessage = e => {
+//     // e : 이벤트 객체
+//     // e.data : 전달받은 메시지(JSON)
+
+//     let obj = JSON.parse(e.data); // JSON -> JS객체
+
+//     console.log(`보낸사람 : ${obj.name} / ${obj.str}`);
+// };
+// -----------------------------------------------------------------------------------------
+
+// JS로 쿠키 얻어오기
+function getCookie(key) {
+    const cookies = document.cookie;
+
+    // 배열.map() : 배열의 모든 요소를 순차 접근하여 함수 수행 후 수행 결과를 이용해서 새로운 배열을 만드는 함수
+    // 예) [1, 2, 3].map( num => num+1 ) == [2, 3, 4]
+    const cookieList = cookies.split("; ").map(cookie => cookie.split("="));
+    // =>               [a=1, b=2, c=3]       [[a, 1], [b, 2], [c, 3]]
+    const obj = {}; // 비어있는 객체 생성
+    for(let i=0; i<cookieList.length; i++) {
+        obj[cookieList[i][0]] = cookieList[i][1];
+    }
+    
+    return obj[key];
 }
 
-// 웹소켓 객체(testSock)가 서버로부터 전달받은 메시지가 있을 경우
-testSock.onmessage = e => {
-    // e : 이벤트 객체
-    // e.data : 전달받은 메시지(JSON)
+// 쿠기에 saveId가 있을 경우
+if(document.querySelector('input[name="memberEmail"]') != null) {
+    // 화면에 memberEmail 입력박스가 있을 경우
+    const saveId = getCookie('saveId'); // 있으면 이메일, 없으면 undefined
 
-    let obj = JSON.parse(e.data); // JSON -> JS객체
-
-    console.log(`보낸사람 : ${obj.name} / ${obj.str}`);
-};
+    if(saveId != undefined) {
+        // 쿠키에 저장된 이메일이 있을 경우
+        document.querySelector('input[name="memberEmail"]').value = saveId;
+        document.querySelector('input[name="saveId"]').checked = true;
+    }
+}

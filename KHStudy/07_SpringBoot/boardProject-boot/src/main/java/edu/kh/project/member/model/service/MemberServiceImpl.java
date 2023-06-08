@@ -13,11 +13,12 @@ import edu.kh.project.member.model.dto.Member;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-	private Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
 	@Autowired
 	private MemberMapper dao;
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
+	
+	private Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
 	
 	@Override
 	// CheckedException이었던 SQLException이 Spring에서는 UncheckedException이 된다 

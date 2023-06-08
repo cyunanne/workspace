@@ -93,4 +93,49 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	// 회원 가입 페이지 이동
+	@GetMapping("/signUp")
+	public String signUp() {
+		return "member/signUp";
+	}
+		
+	// 회원 가입 진행
+	@PostMapping("/signUp")
+	public String signUp(
+			Member inputMember,
+			String[] memberAddress, // name="memberAddress" 인 모든 파라미터를 받음
+			RedirectAttributes ra
+			) {
+		
+		if(inputMember.getMemberAddress().equals(",,")) {
+			inputMember.setMemberAddress(null);
+		} else {
+			// 주소 구분자를 , -> ^^^ 으로 변경
+			// String.join("구분자", String[])
+			// : 요소 사이에 구분자를 추가하여 배열의 요소를 하나의 문자열로 변경 
+			String addr = String.join("^^^", memberAddress);
+			inputMember.setMemberAddress(addr);
+		}
+		
+		// 회원 가입 서비스 호출
+		// DB에 DML 수행 시 성공 행의 개수(int) 반환
+		int result = service.signUp(inputMember);
+		
+		// 가입 성공 여부에 따라 redirect 경로 결정
+		String path = "redirect:";
+		String message = null;
+		
+		if(result > 0) { // 가입 성공
+			path += "/";
+			message = inputMember.getMemberNickname() + "님의 가입을 환영합니다!";
+		} else { // 가입 실패
+			path += "signUp"; 		  // 회원 가입 페이지(상대경로)
+			message = "회원 가입 실패!";
+		}
+		
+		// 리다이렉트 시 session에 잠깐 올라갔다 내려오도록 세팅
+		ra.addFlashAttribute("message", message);
+		
+		return path;
+	}
 }

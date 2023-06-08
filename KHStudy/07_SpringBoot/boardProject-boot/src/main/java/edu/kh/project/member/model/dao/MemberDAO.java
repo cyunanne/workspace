@@ -21,4 +21,13 @@ public class MemberDAO {
 	public Member login(Member inputMember) {
 		return memberMapper.login(inputMember);
 	}
+	
+	/** 
+	 * 회원가입 DAO
+	 * @param inputMember
+	 * @return 0 또는 1
+	 */
+	public int signUp(Member inputMember) {
+		return memberMapper.signUp(inputMember);
+	}
 }

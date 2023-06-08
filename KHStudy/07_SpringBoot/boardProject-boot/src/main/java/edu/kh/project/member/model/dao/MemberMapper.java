@@ -10,6 +10,5 @@ import edu.kh.project.member.model.dto.Member;
 // -> DAO에 매퍼 인터페이스를 @Autowired 하면 sqlSessionTemplate 객체가 의존성 주입됨.
 public interface MemberMapper {
 	Member login(Member inputMember);
-
 	int signUp(Member inputMember);
 }
