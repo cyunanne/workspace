@@ -99,8 +99,8 @@
                 <th:block th:if="${session.loginMember}"> <!-- null -> false -->
                     <article class="login-area">
                         <a th:href="@{/myPage/profile}">
-                            
-                            <img th:src="@{/images/user.png}" id="memberProfile">
+                            <img th:unless="${session.loginMember.profileImage}" th:src="@{/images/user.png}" id="memberProfile">
+                            <img th:if="${session.loginMember.profileImage}" th:src="${session.loginMember.profileImage}" id="memberProfile">
                         </a>
 
                         <div class="my-info">
@@ -122,6 +122,6 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script> -->
 
     <!-- main.js 추가 -->
-    <script src="/js/main.js"></script>
+    <script th:src="@{/js/main.js}"></script>
 </body>
 </html>
