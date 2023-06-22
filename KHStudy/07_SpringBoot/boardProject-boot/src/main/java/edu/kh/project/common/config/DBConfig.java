@@ -58,7 +58,8 @@ public class DBConfig {
 		// -> 해당 패키지에 있는 모든 클래스가 클래스명으로 별칭이 지정됨
 		sessionFactoryBean.setTypeAliasesPackage(
 				"edu.kh.project.member.model.dto,"
-			  + "edu.kh.project.board.model.dto");
+			  + "edu.kh.project.board.model.dto,"
+			  + "edu.kh.project.chatting.model.dto");
 //		sessionFactoryBean.setTypeAliasesPackage("edu.kh.project.member.model.dto");
 		
 		// 마이바티스 설정 파일 경로 지정
