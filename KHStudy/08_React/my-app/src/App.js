@@ -4,6 +4,7 @@ import Ex1 from './components/Exam1';
 // components 폴더의 Exam1.js를 가져와서 사용
 // 사용할 때 이름을 Ex1으로 지정
 import Ex2 from './components/Exam2';
+import PropsEx  from './components/R01_props';
 
 function App() {
 
@@ -16,8 +17,11 @@ function App() {
       <h1>Hello React!!</h1>
       <p>ㅎ</p>
 
-      <Ex1 />
-      <Ex2 />
+      {/* <Ex1 /> */}
+      {/* <Ex2 /> */}
+
+      <PropsEx name={'홍길동'} />
+      <PropsEx name={'최유나'} />
     </>
   );
 }
