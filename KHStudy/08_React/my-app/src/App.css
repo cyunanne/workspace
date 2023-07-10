@@ -1,7 +1,19 @@
+body {
+  padding: 20px;
+}
+
 h1 {
   color: darkred;
 }
 
 .completed {
   text-decoration: line-through;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
 }
