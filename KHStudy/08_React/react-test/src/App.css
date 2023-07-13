@@ -1,0 +1,11 @@
+#root { text-align: center; }
+/* 
+button { border-radius: 5px; }
+button.plus { background-color: magenta; }
+button.minus { background-color: cyan; } */
+
+div.container {
+  border: 1px solid black;
+  width: 80%;
+  margin: auto;
+}
